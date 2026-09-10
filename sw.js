@@ -7,6 +7,7 @@ const CORE = [
   './404.html',
   './data/advisories.json',
   './data/advisories-bundle.js',
+  './data/runtime-config.js',
   './data/feeder-mapping.json',
   './data/feeder-bundle.js',
   './data/geography-bundle.js',
@@ -14,7 +15,8 @@ const CORE = [
   './data/iloilo-city-barangays.geojson',
   './data/iloilo-city-boundary.geojson',
   './assets/brand/gridwatch-icon-192.png',
-  './assets/brand/gridwatch-icon-512.png'
+  './assets/brand/gridwatch-icon-512.png',
+  './src/gridwatch-api.js'
 ];
 
 self.addEventListener('install', event => {

@@ -1,0 +1,63 @@
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "gridwatch-ingestion",
+  "main": "src/index.js",
+  "compatibility_date": "2026-09-01",
+  "workers_dev": true,
+  "vars": {
+    "GRIDWATCH_ENV": "production",
+    "ALLOWED_ORIGIN": "https://kurtiscool.github.io",
+    "PUBLIC_API_BASE": "https://gridwatch-ingestion.ltuvilla8.workers.dev",
+    "NGCP_SOURCE_URL": "",
+    "MORE_SOURCE_URL": "",
+    "VISION_MODEL": "@cf/meta/llama-3.2-11b-vision-instruct",
+    "BROWSER_DAILY_SOFT_LIMIT": "480",
+    "AI_DAILY_SOFT_LIMIT": "8000",
+    "AI_ESTIMATED_UNITS_PER_CALL": "500",
+    "QUEUE_DAILY_SOFT_LIMIT": "7000"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "gridwatch-db",
+      "database_id": "1e0d0d15-f5a3-48e4-a659-e922050d5b04",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "RAW_SOURCES",
+      "bucket_name": "gridwatch-raw-sources"
+    }
+  ],
+  "queues": {
+    "producers": [
+      {
+        "binding": "INGESTION_QUEUE",
+        "queue": "gridwatch-ingestion"
+      }
+    ],
+    "consumers": [
+      {
+        "queue": "gridwatch-ingestion",
+        "max_batch_size": 10,
+        "max_batch_timeout": 30,
+        "max_retries": 3,
+        "dead_letter_queue": "gridwatch-ingestion-dlq"
+      }
+    ]
+  },
+  "ai": {
+    "binding": "AI"
+  },
+  "browser": {
+    "binding": "BROWSER"
+  },
+  "triggers": {
+    "crons": ["*/30 * * * *"]
+  },
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 0.1
+  }
+}

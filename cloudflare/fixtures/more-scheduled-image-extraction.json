@@ -1,0 +1,12 @@
+{
+  "source_type": "MORE_POWER_IMAGE",
+  "document_type": "SCHEDULED_INTERRUPTION",
+  "date": "2026-09-12",
+  "start_time": "21:00",
+  "end_time": "02:00",
+  "feeders": [{"source_label": "Diversion Feeder 2"}],
+  "areas": [{"source_label": "Buhang Taft North", "district": "Mandurriao", "coverage": "PORTION"}],
+  "institutions": [],
+  "raw_text": "MORE POWER ADVISORY Scheduled interruption September 12, 2026 9:00 PM to 2:00 AM Diversion Feeder 2 Portion of Buhang Taft North",
+  "extraction_confidence": 0.98
+}

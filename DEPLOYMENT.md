@@ -49,3 +49,14 @@ Do not change the application to accept `PENDING_BUILD` geography just to enable
 ## PWA/offline behavior
 
 GitHub Pages serves the app over HTTPS, allowing the included service worker and web app manifest to work. The service worker caches only same-origin GridWatch shell/data files. MapLibre and the NAMRIA basemap remain network enhancements; validated local administrative geography is the trusted map layer.
+
+## Optional live API
+
+The static deployment does not depend on Cloudflare. To point a build at a separately deployed Worker later, generate the checked-in runtime configuration before publishing the static files:
+
+```powershell
+$env:GRIDWATCH_API_BASE_URL="https://YOUR-WORKER-OR-CUSTOM-DOMAIN"
+npm run build:config
+```
+
+The configured origin must also be present in the Worker's `ALLOWED_ORIGIN` value. If the API is unavailable, malformed, or stale, the resident application keeps using the bundled validated dataset and labels the live service unavailable. Cloudflare resource creation and deployment steps are intentionally separate in `docs/cloudflare-setup.md`.

@@ -2,15 +2,27 @@
   "name": "iloilo-gridwatch",
   "version": "2.9.0",
   "private": true,
-  "description": "GridWatch \u2014 Iloilo City power interruption and feeder coverage prototype",
+  "type": "module",
+  "description": "GridWatch — Iloilo City power interruption and feeder coverage prototype",
   "scripts": {
-    "test": "node tests/repo-integrity.mjs && node tests/feeder-integrity.mjs && node tests/geography-integrity.mjs && node tests/data-consistency.mjs && node tests/runtime-integrity.mjs && node tests/link-integrity.mjs",
+    "pretest": "npm run build:cf-data",
+    "test": "node tests/repo-integrity.mjs && node tests/feeder-integrity.mjs && node tests/geography-integrity.mjs && node tests/data-consistency.mjs && node tests/runtime-integrity.mjs && node tests/link-integrity.mjs && npm run cf:test",
     "test:app": "node tests/repo-integrity.mjs",
     "test:feeder": "node tests/feeder-integrity.mjs",
     "test:geography": "node tests/geography-integrity.mjs",
-    "build:data": "node tools/build-runtime-artifacts.mjs"
+    "build:data": "node tools/build-runtime-artifacts.mjs && npm run build:cf-data",
+    "build:cf-data": "node tools/build-cloudflare-data.mjs",
+    "build:config": "node tools/build-runtime-config.mjs",
+    "cf:dev": "wrangler dev --config cloudflare/wrangler.local.jsonc",
+    "cf:test": "node --test cloudflare/tests/*.test.mjs",
+    "cf:migrate:local": "wrangler d1 migrations apply gridwatch-db --local --config cloudflare/wrangler.jsonc",
+    "ingest:image": "node tools/ingest-image.mjs"
   },
   "devDependencies": {
-    "@turf/turf": "7.4.0"
+    "@turf/turf": "7.4.0",
+    "wrangler": "^4.130.0"
+  },
+  "overrides": {
+    "sharp": "0.35.4"
   }
 }

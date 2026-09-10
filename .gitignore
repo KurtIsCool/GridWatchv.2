@@ -1,1 +1,7 @@
 .sources/
+.dev.vars
+cloudflare/.dev.vars
+.wrangler/
+cloudflare/.wrangler/
+.gridwatch-local/
+node_modules/

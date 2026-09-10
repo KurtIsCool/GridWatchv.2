@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <rect width="1200" height="900" fill="#ffffff"/>
+  <rect x="60" y="60" width="1080" height="780" fill="none" stroke="#08090b" stroke-width="6"/>
+  <text x="100" y="150" font-family="Arial" font-size="64" font-weight="700">MORE POWER ADVISORY</text>
+  <text x="100" y="240" font-family="Arial" font-size="42">Scheduled interruption: September 12, 2026</text>
+  <text x="100" y="310" font-family="Arial" font-size="42">9:00 PM to 2:00 AM</text>
+  <text x="100" y="410" font-family="Arial" font-size="38">Diversion Feeder 2</text>
+  <text x="100" y="480" font-family="Arial" font-size="38">Portion of Buhang Taft North</text>
+</svg>
