@@ -1,4 +1,4 @@
-﻿feeder_id,feeder_name,district,source_label,coverage_type,city_membership,match_status,canonical_name,barangay_psgc,suggested_canonical_name,geometry_precision
+feeder_id,feeder_name,district,source_label,coverage_type,city_membership,match_status,canonical_name,barangay_psgc,suggested_canonical_name,geometry_precision
 MORE-ILO-DIVERSION-F01,Diversion Feeder 1,City Proper,Arsenal Aduana,PORTION,ILOILO_CITY,EXACT_PSA,Arsenal Aduana,0631000007,,PARTIAL_NO_SUBBARANGAY_GEOMETRY
 MORE-ILO-DIVERSION-F01,Diversion Feeder 1,City Proper,Danao,PORTION,ILOILO_CITY,EXACT_PSA,Danao,0631000042,,PARTIAL_NO_SUBBARANGAY_GEOMETRY
 MORE-ILO-DIVERSION-F01,Diversion Feeder 1,City Proper,Ed Ganzon,PORTION,ILOILO_CITY,EXPLICIT_ALIAS,Edganzon,0631000054,,PARTIAL_NO_SUBBARANGAY_GEOMETRY
@@ -53,7 +53,7 @@ MORE-ILO-DIVERSION-F03,Diversion Feeder 3,City Proper,Rizal Palapala II,WHOLE,IL
 MORE-ILO-DIVERSION-F03,Diversion Feeder 3,City Proper,San Jose,WHOLE,ILOILO_CITY,DISTRICT_DISAMBIGUATED,San Jose (City Proper),0631000200,,FULL_BARANGAY
 MORE-ILO-DIVERSION-F04,Diversion Feeder 4,Mandurriao,Bolilao,PORTION,ILOILO_CITY,EXACT_PSA,Bolilao,0631000021,,PARTIAL_NO_SUBBARANGAY_GEOMETRY
 MORE-ILO-DIVERSION-F04,Diversion Feeder 4,Mandurriao,San Rafael,PORTION,ILOILO_CITY,EXACT_PSA,San Rafael,0631000160,,PARTIAL_NO_SUBBARANGAY_GEOMETRY
-MORE-ILO-DIVERSION-F04,Diversion Feeder 4,Mandurriao,Taft North,PORTION,ILOILO_CITY_EXPECTED,REVIEW_REQUIRED,,,Buhang Taft North,PARTIAL_NO_SUBBARANGAY_GEOMETRY
+MORE-ILO-DIVERSION-F04,Diversion Feeder 4,Mandurriao,Taft North,PORTION,ILOILO_CITY,DISTRICT_RESOLVED_ALIAS,Buhang Taft North,0631000025,Buhang Taft North,PARTIAL_NO_SUBBARANGAY_GEOMETRY
 MORE-ILO-LAPAZ-F01,La Paz Feeder 1,Lapuz,Alalasan,PORTION,ILOILO_CITY,EXPLICIT_ALIAS,Alalasan Lapuz,0631000005,,PARTIAL_NO_SUBBARANGAY_GEOMETRY
 MORE-ILO-LAPAZ-F01,La Paz Feeder 1,Lapuz,Don Esteban,PORTION,ILOILO_CITY,EXPLICIT_ALIAS,Don Esteban-Lapuz,0631000047,,PARTIAL_NO_SUBBARANGAY_GEOMETRY
 MORE-ILO-LAPAZ-F01,La Paz Feeder 1,Lapuz,Lapuz Sur,PORTION,ILOILO_CITY,EXACT_PSA,Lapuz Sur,0631000088,,PARTIAL_NO_SUBBARANGAY_GEOMETRY

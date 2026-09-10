@@ -1,0 +1,466 @@
+{
+  "schema_version": "1.0.0",
+  "dataset_id": "gridwatch-reviewed-advisories",
+  "city_psgc": "0631000000",
+  "generated_at": "2026-09-10T08:30:00Z",
+  "events": [
+    {
+      "id": "more-2025-06-08-main",
+      "date": "2025-06-08",
+      "start": "05:00",
+      "end": "17:00",
+      "cause": "SCHEDULED",
+      "status": "ARCHIVED",
+      "title": "NGCP scheduled interruption — selected portions",
+      "feeders": [
+        "Mobile Feeder 3",
+        "Megaworld Feeder 3",
+        "Megaworld Feeder 4",
+        "Megaworld Feeder 5"
+      ],
+      "targets": [
+        [
+          "Abeto Mirasol Taft South",
+          "PARTIAL"
+        ],
+        [
+          "Airport",
+          "PARTIAL"
+        ],
+        [
+          "Dungon C",
+          "PARTIAL"
+        ],
+        [
+          "El 98 Del Castilla",
+          "PARTIAL"
+        ],
+        [
+          "Guzman-Jesena",
+          "PARTIAL"
+        ],
+        [
+          "Hibao-an Norte",
+          "PARTIAL"
+        ],
+        [
+          "Hibao-an Sur",
+          "PARTIAL"
+        ],
+        [
+          "Navais",
+          "PARTIAL"
+        ],
+        [
+          "Onate De Leon",
+          "PARTIAL"
+        ],
+        [
+          "Our Lady of Lourdes",
+          "PARTIAL"
+        ],
+        [
+          "Pale Benedicto",
+          "PARTIAL"
+        ],
+        [
+          "PHHC Block 17",
+          "PARTIAL"
+        ],
+        [
+          "Sambag",
+          "PARTIAL"
+        ],
+        [
+          "San Vicente",
+          "PARTIAL"
+        ],
+        [
+          "Santa Rosa",
+          "PARTIAL"
+        ]
+      ],
+      "source": {
+        "publisher": "MORE Power / NGCP",
+        "url": "https://morepower.com.ph/power-advisories/",
+        "publishedAt": "2025-06-01T00:00:00+08:00"
+      },
+      "confidence": "HIGH",
+      "note": "Official advisory names portions of these barangays. Exact feeder-segment polygons are not public in this dataset."
+    },
+    {
+      "id": "more-2025-06-08-baldoza",
+      "date": "2025-06-08",
+      "start": "05:00",
+      "end": "17:00",
+      "cause": "SCHEDULED",
+      "status": "ARCHIVED",
+      "title": "La Paz Feeder 3 — Baldoza portion",
+      "feeders": [
+        "La Paz Feeder 3"
+      ],
+      "targets": [
+        [
+          "Baldoza",
+          "PARTIAL"
+        ]
+      ],
+      "source": {
+        "publisher": "MORE Power / NGCP",
+        "url": "https://morepower.com.ph/power-advisories/",
+        "publishedAt": "2025-06-01T00:00:00+08:00"
+      },
+      "confidence": "HIGH",
+      "note": "Official advisory; partial barangay coverage."
+    },
+    {
+      "id": "more-2025-06-08-lp3-am",
+      "date": "2025-06-08",
+      "start": "05:00",
+      "end": "07:00",
+      "cause": "SCHEDULED",
+      "status": "ARCHIVED",
+      "title": "Whole La Paz Feeder 3 — morning switching window",
+      "feeders": [
+        "La Paz Feeder 3"
+      ],
+      "targetFeeders": [
+        "La Paz Feeder 3"
+      ],
+      "targetCoverage": "FEEDER_WIDE",
+      "source": {
+        "publisher": "MORE Power / NGCP",
+        "url": "https://morepower.com.ph/power-advisories/",
+        "publishedAt": "2025-06-01T00:00:00+08:00"
+      },
+      "confidence": "MEDIUM",
+      "note": "Feeder-wide advisory. GridWatch does not project this feeder onto barangay polygons without an official utility coverage dataset."
+    },
+    {
+      "id": "more-2025-06-08-lp3-pm",
+      "date": "2025-06-08",
+      "start": "15:30",
+      "end": "17:00",
+      "cause": "SCHEDULED",
+      "status": "ARCHIVED",
+      "title": "Whole La Paz Feeder 3 — afternoon switching window",
+      "feeders": [
+        "La Paz Feeder 3"
+      ],
+      "targetFeeders": [
+        "La Paz Feeder 3"
+      ],
+      "targetCoverage": "FEEDER_WIDE",
+      "source": {
+        "publisher": "MORE Power / NGCP",
+        "url": "https://morepower.com.ph/power-advisories/",
+        "publishedAt": "2025-06-01T00:00:00+08:00"
+      },
+      "confidence": "MEDIUM",
+      "note": "Feeder-wide advisory. No barangay polygon is inferred without an official utility coverage dataset."
+    },
+    {
+      "id": "more-2025-06-08-lp7-am",
+      "date": "2025-06-08",
+      "start": "05:00",
+      "end": "05:15",
+      "cause": "SCHEDULED",
+      "status": "ARCHIVED",
+      "title": "Whole La Paz Feeder 7 — switching",
+      "feeders": [
+        "La Paz Feeder 7"
+      ],
+      "targetFeeders": [
+        "La Paz Feeder 7"
+      ],
+      "targetCoverage": "FEEDER_WIDE",
+      "source": {
+        "publisher": "MORE Power / NGCP",
+        "url": "https://morepower.com.ph/power-advisories/",
+        "publishedAt": "2025-06-01T00:00:00+08:00"
+      },
+      "confidence": "MEDIUM",
+      "note": "Feeder-wide advisory. No barangay polygon is inferred without an official utility coverage dataset."
+    },
+    {
+      "id": "more-2025-06-08-lp7-pm",
+      "date": "2025-06-08",
+      "start": "16:45",
+      "end": "17:00",
+      "cause": "SCHEDULED",
+      "status": "ARCHIVED",
+      "title": "Whole La Paz Feeder 7 — switching",
+      "feeders": [
+        "La Paz Feeder 7"
+      ],
+      "targetFeeders": [
+        "La Paz Feeder 7"
+      ],
+      "targetCoverage": "FEEDER_WIDE",
+      "source": {
+        "publisher": "MORE Power / NGCP",
+        "url": "https://morepower.com.ph/power-advisories/",
+        "publishedAt": "2025-06-01T00:00:00+08:00"
+      },
+      "confidence": "MEDIUM",
+      "note": "Feeder-wide advisory. No barangay polygon is inferred without an official utility coverage dataset."
+    },
+    {
+      "id": "more-2025-06-08-arevalo-am",
+      "date": "2025-06-08",
+      "start": "05:00",
+      "end": "05:15",
+      "cause": "SCHEDULED",
+      "status": "ARCHIVED",
+      "title": "Molo Feeder 5 portions — Arevalo switching",
+      "feeders": [
+        "Molo Feeder 5"
+      ],
+      "targets": [
+        [
+          "Santo Domingo",
+          "PARTIAL"
+        ],
+        [
+          "Santa Filomena",
+          "PARTIAL"
+        ]
+      ],
+      "source": {
+        "publisher": "MORE Power / NGCP",
+        "url": "https://morepower.com.ph/power-advisories/",
+        "publishedAt": "2025-06-01T00:00:00+08:00"
+      },
+      "confidence": "HIGH"
+    },
+    {
+      "id": "more-2025-06-08-arevalo-pm",
+      "date": "2025-06-08",
+      "start": "16:45",
+      "end": "17:00",
+      "cause": "SCHEDULED",
+      "status": "ARCHIVED",
+      "title": "Molo Feeder 5 portions — Arevalo switching",
+      "feeders": [
+        "Molo Feeder 5"
+      ],
+      "targets": [
+        [
+          "Santo Domingo",
+          "PARTIAL"
+        ],
+        [
+          "Santa Filomena",
+          "PARTIAL"
+        ]
+      ],
+      "source": {
+        "publisher": "MORE Power / NGCP",
+        "url": "https://morepower.com.ph/power-advisories/",
+        "publishedAt": "2025-06-01T00:00:00+08:00"
+      },
+      "confidence": "HIGH"
+    },
+    {
+      "id": "more-2025-05-25-main",
+      "date": "2025-05-25",
+      "start": "05:00",
+      "end": "17:00",
+      "cause": "SCHEDULED",
+      "status": "ARCHIVED",
+      "title": "NGCP scheduled interruption — Megaworld feeder portions",
+      "feeders": [
+        "Megaworld Feeder 3",
+        "Megaworld Feeder 4",
+        "Megaworld Feeder 5"
+      ],
+      "targets": [
+        [
+          "So-oc",
+          "WHOLE"
+        ],
+        [
+          "Calajunan",
+          "PARTIAL"
+        ],
+        [
+          "Dulonan",
+          "PARTIAL"
+        ],
+        [
+          "Dungon C",
+          "PARTIAL"
+        ],
+        [
+          "Guzman-Jesena",
+          "PARTIAL"
+        ],
+        [
+          "Navais",
+          "PARTIAL"
+        ],
+        [
+          "Pale Benedicto",
+          "PARTIAL"
+        ],
+        [
+          "PHHC Block 17",
+          "PARTIAL"
+        ],
+        [
+          "PHHC Block 22 NHA",
+          "PARTIAL"
+        ],
+        [
+          "San Isidro (Jaro)",
+          "PARTIAL"
+        ],
+        [
+          "San Jose (Arevalo)",
+          "PARTIAL"
+        ],
+        [
+          "Santa Rosa",
+          "PARTIAL"
+        ]
+      ],
+      "source": {
+        "publisher": "MORE Power / NGCP",
+        "url": "https://morepower.com.ph/power-advisories/",
+        "publishedAt": "2025-05-20T00:00:00+08:00"
+      },
+      "confidence": "HIGH"
+    },
+    {
+      "id": "more-2025-04-26-main",
+      "date": "2025-04-26",
+      "start": "06:00",
+      "end": "10:00",
+      "cause": "SCHEDULED",
+      "status": "ARCHIVED",
+      "title": "Feeder load balance — selected Mandurriao areas",
+      "feeders": [
+        "Mobile Feeder 5",
+        "Megaworld Feeder 1"
+      ],
+      "targets": [
+        [
+          "Bakhaw",
+          "PARTIAL"
+        ],
+        [
+          "Bolilao",
+          "PARTIAL"
+        ],
+        [
+          "Buhang Taft North",
+          "PARTIAL"
+        ]
+      ],
+      "source": {
+        "publisher": "MORE Power",
+        "url": "https://morepower.com.ph/power-advisories/",
+        "publishedAt": "2025-04-20T00:00:00+08:00"
+      },
+      "confidence": "HIGH"
+    },
+    {
+      "id": "more-2024-11-17-large",
+      "date": "2024-11-17",
+      "start": "06:00",
+      "end": "18:00",
+      "cause": "SCHEDULED",
+      "status": "ARCHIVED",
+      "title": "NGCP maintenance — large service-area interruption",
+      "feeders": [
+        "Diversion Feeder 2",
+        "Diversion Feeder 4",
+        "Megaworld Feeder 2",
+        "Megaworld Feeder 3",
+        "Megaworld Feeder 6",
+        "Molo Feeder 4",
+        "Molo Feeder 5"
+      ],
+      "targets": [
+        [
+          "Molo Boulevard",
+          "WHOLE"
+        ],
+        [
+          "Habog-habog Salvacion",
+          "WHOLE"
+        ],
+        [
+          "Kasingkasing",
+          "WHOLE"
+        ],
+        [
+          "Katilingban",
+          "WHOLE"
+        ],
+        [
+          "Mabolo-Delgado",
+          "WHOLE"
+        ],
+        [
+          "Malipayon-Delgado",
+          "WHOLE"
+        ],
+        [
+          "San Juan",
+          "WHOLE"
+        ],
+        [
+          "West Timawa",
+          "WHOLE"
+        ],
+        [
+          "Calaparan",
+          "PARTIAL"
+        ],
+        [
+          "Calumpang",
+          "PARTIAL"
+        ],
+        [
+          "Cochero",
+          "PARTIAL"
+        ],
+        [
+          "Compania",
+          "PARTIAL"
+        ],
+        [
+          "East Baluarte",
+          "PARTIAL"
+        ],
+        [
+          "East Timawa",
+          "PARTIAL"
+        ],
+        [
+          "Hipodromo",
+          "PARTIAL"
+        ],
+        [
+          "Infante",
+          "PARTIAL"
+        ],
+        [
+          "North Avanceña",
+          "PARTIAL"
+        ],
+        [
+          "Poblacion Molo",
+          "PARTIAL"
+        ]
+      ],
+      "source": {
+        "publisher": "MORE Power / NGCP",
+        "url": "https://morepower.com.ph/power-advisories/",
+        "publishedAt": "2024-11-10T00:00:00+08:00"
+      },
+      "confidence": "HIGH"
+    }
+  ]
+}

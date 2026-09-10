@@ -1,9 +1,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
-const root=path.resolve(new URL('..',import.meta.url).pathname);
+import {fileURLToPath} from 'node:url';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const must=[
   'index.html','ops.html','manifest.webmanifest','sw.js','.nojekyll',
-  'data/feeder-mapping.json','data/feeder-bundle.js','data/geography-bundle.js',
+  'data/feeder-mapping.json','data/feeder-bundle.js','data/advisories.json','data/advisories-bundle.js','data/geography-bundle.js',
   'data/geography-manifest.json','data/iloilo-city-barangays.geojson','data/iloilo-city-boundary.geojson',
   'assets/brand/gridwatch-icon-192.png','assets/brand/gridwatch-icon-512.png'
 ];
@@ -24,7 +25,7 @@ for(const f of feeder.feeders){
   }
 }
 const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
-for(const rel of ['./manifest.webmanifest','./ops.html','./data/geography-bundle.js','./data/feeder-bundle.js']){
+for(const rel of ['./manifest.webmanifest','./ops.html','./data/advisories-bundle.js','./data/geography-bundle.js','./data/feeder-bundle.js']){
   if(!html.includes(rel))throw new Error(`index.html is missing required reference ${rel}`);
 }
 if(!html.includes("navigator.serviceWorker.register('./sw.js')"))throw new Error('PWA service worker registration is not enabled.');

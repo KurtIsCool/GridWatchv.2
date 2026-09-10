@@ -1,8 +1,10 @@
 import fs from 'node:fs';
+import {area,difference,featureCollection,union} from '@turf/turf';
 const manifest=JSON.parse(fs.readFileSync('data/geography-manifest.json','utf8'));
 const psa=JSON.parse(fs.readFileSync('data/psa-iloilo-city-barangays.json','utf8'));
 const barangays=JSON.parse(fs.readFileSync('data/iloilo-city-barangays.geojson','utf8'));
 const boundary=JSON.parse(fs.readFileSync('data/iloilo-city-boundary.geojson','utf8'));
+const referenceBoundary=JSON.parse(fs.readFileSync('data/iloilo-city-boundary-reference.geojson','utf8'));
 const fail=message=>{throw new Error(`GEOGRAPHY INTEGRITY: ${message}`)};
 const eq=(a,b)=>a[0]===b[0]&&a[1]===b[1];
 const cross=(a,b,c)=>(b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0]);
@@ -19,4 +21,12 @@ if(barangays.type!=='FeatureCollection'||barangays.features?.length!==180)fail('
 const seen=new Set();for(const feature of barangays.features){const code=String(feature.properties?.psgc||'');if(!official.has(code))fail(`non-PSA barangay feature ${code||'(missing)'}`);if(seen.has(code))fail(`duplicate barangay feature ${code}`);seen.add(code);geometryValid(feature.geometry,`barangay ${code}`);}if(seen.size!==180||[...official].some(code=>!seen.has(code)))fail('barangay GeoJSON membership differs from PSA');
 if(boundary.type!=='FeatureCollection'||boundary.features?.length!==1)fail('city boundary is unavailable or does not have exactly one feature');
 if(String(boundary.features[0].properties?.psgc||boundary.features[0].properties?.city_psgc||'')!=='0631000000')fail('city boundary PSGC mismatch');geometryValid(boundary.features[0].geometry,'Iloilo City boundary');
-console.log('PASS: mandatory geography gate validated 180 exact PSA members, valid unique polygon geometry, and one independently sourced city boundary.');
+if(boundary.metadata?.operational_basis!=='CANONICAL_BARANGAY_UNION')fail('operational boundary is not derived from all accepted barangays');
+if(referenceBoundary.type!=='FeatureCollection'||referenceBoundary.features?.length!==1)fail('independent city reference boundary is unavailable');
+geometryValid(referenceBoundary.features[0].geometry,'independent Iloilo City reference boundary');
+const merged=union(featureCollection(barangays.features));if(!merged)fail('accepted barangays cannot be unioned');
+const mismatch=difference(featureCollection([merged,boundary.features[0]]));
+if(mismatch&&area(mismatch)>1)fail(`operational boundary omits ${area(mismatch).toFixed(2)} square metres of accepted barangay geometry`);
+for(const feature of barangays.features){const outside=difference(featureCollection([feature,boundary.features[0]]));if(outside&&area(outside)>1)fail(`operational boundary clips accepted barangay ${feature.properties.psgc}`);}
+if(manifest.spatial_consistency?.status!=='ACKNOWLEDGED_SOURCE_DIFFERENCE')fail('independent-boundary discrepancy is not recorded in the manifest');
+console.log('PASS: 180 exact PSA members, valid unique polygons, a non-clipping operational union, and an independently retained city reference.');

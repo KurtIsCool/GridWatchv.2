@@ -24,6 +24,15 @@
       "status": "VALIDATED",
       "city_psgc": "0631000000",
       "expected_features": 1,
+      "source": "Operational boundary derived from the accepted 180 CCHAIN barangay polygons",
+      "operational_basis": "CANONICAL_BARANGAY_UNION",
+      "independent_reference": "iloilo-city-boundary-reference.geojson",
+      "retrieved_at": "2026-09-10T06:17:21.410Z"
+    },
+    {
+      "status": "VALIDATED",
+      "city_psgc": "0631000000",
+      "expected_features": 1,
       "source": "OpenStreetMap administrative boundary relation 3499101 (independent source)",
       "source_url": "https://www.openstreetmap.org/relation/3499101",
       "license": "ODbL-1.0",
@@ -751,5 +760,12 @@
       "psgc": "0631000202",
       "name": "Rizal"
     }
-  ]
+  ],
+  "spatial_consistency": {
+    "status": "ACKNOWLEDGED_SOURCE_DIFFERENCE",
+    "accepted_barangays": 180,
+    "operational_area_outside_reference_ratio": 0.025964950161726463,
+    "reference_area_outside_operational_ratio": 0.35481098528678323,
+    "policy": "The resident map mask follows the union of all accepted barangay polygons so no accepted barangay is clipped. The independent OSM outline is retained for review and is not presented as exact agreement."
+  }
 }

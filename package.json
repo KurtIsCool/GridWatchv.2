@@ -1,12 +1,16 @@
 {
   "name": "iloilo-gridwatch",
-  "version": "2.8.3",
+  "version": "2.9.0",
   "private": true,
   "description": "GridWatch \u2014 Iloilo City power interruption and feeder coverage prototype",
   "scripts": {
-    "test": "node tests/repo-integrity.mjs && node tests/feeder-integrity.mjs && node tests/geography-integrity.mjs && node tests/link-integrity.mjs",
+    "test": "node tests/repo-integrity.mjs && node tests/feeder-integrity.mjs && node tests/geography-integrity.mjs && node tests/data-consistency.mjs && node tests/runtime-integrity.mjs && node tests/link-integrity.mjs",
     "test:app": "node tests/repo-integrity.mjs",
     "test:feeder": "node tests/feeder-integrity.mjs",
-    "test:geography": "node tests/geography-integrity.mjs"
+    "test:geography": "node tests/geography-integrity.mjs",
+    "build:data": "node tools/build-runtime-artifacts.mjs"
+  },
+  "devDependencies": {
+    "@turf/turf": "7.4.0"
   }
 }
