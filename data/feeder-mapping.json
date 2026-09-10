@@ -1,0 +1,2056 @@
+{
+  "schema_version": "1.0.0",
+  "dataset_id": "gridwatch-more-power-feeder-coverage",
+  "utility": "MORE Power",
+  "city_psgc": "0631000000",
+  "source": {
+    "type": "UTILITY_PUBLISHED_FEEDER_COVERAGE_CARDS",
+    "facebook_album_url": "https://www.facebook.com/media/set/?set=a.1512271020927983&type=3",
+    "ingested_from_user_supplied_images": true,
+    "ingestion_date": "2026-09-05",
+    "publication_date": "UNKNOWN_FROM_CARDS",
+    "cards_ingested": 16,
+    "confirmed_against_additional_user_images": [
+      "e8478ce8-b8f0-4c1e-bd3a-3f1a521f59a9.png",
+      "0c5802ff-cc22-4848-b385-7be54244e63f.png"
+    ]
+  },
+  "policy": {
+    "barangay_is_resident_location_unit": true,
+    "feeder_is_electrical_network_context": true,
+    "feeder_to_barangay_is_many_to_many": true,
+    "portion_does_not_identify_exact_address_or_subbarangay_polygon": true,
+    "feeder_wide_interruption_must_not_auto_paint_all_associated_barangays_as_confirmed": true,
+    "outside_iloilo_city_records_are_context_only_and_must_not_enter_city_search_or_city_map": true,
+    "unresolved_aliases_must_fail_closed_for_barangay_level_use": true
+  },
+  "summary": {
+    "feeders_ingested": 16,
+    "coverage_rows_total": 177,
+    "iloilo_city_rows_with_psgc": 170,
+    "unique_iloilo_city_barangays_referenced": 108,
+    "whole_rows": 37,
+    "portion_rows": 133,
+    "outside_city_rows": 4,
+    "review_required_rows": 3
+  },
+  "known_missing_cards_in_uploaded_set": [
+    "La Paz Feeder 6",
+    "Megaworld Feeder 5"
+  ],
+  "feeders": [
+    {
+      "feeder_id": "MORE-ILO-DIVERSION-F01",
+      "feeder_name": "Diversion Feeder 1",
+      "source_image": "a0323cfd-f760-42cf-a76b-d54c767b5597.png",
+      "institutions": [],
+      "notes": [],
+      "coverage": [
+        {
+          "district": "City Proper",
+          "source_label": "Arsenal Aduana",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Arsenal Aduana",
+          "barangay_psgc": "0631000007",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Danao",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Danao",
+          "barangay_psgc": "0631000042",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Ed Ganzon",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Edganzon",
+          "barangay_psgc": "0631000054",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Inday",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Inday",
+          "barangay_psgc": "0631000070",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Kauswagan",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Kauswagan",
+          "barangay_psgc": "0631000081",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Magsaysay",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Magsaysay",
+          "barangay_psgc": "0631000102",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Nonoy",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Nonoy",
+          "barangay_psgc": "0631000116",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Roxas Village",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Roxas Village",
+          "barangay_psgc": "0631000140",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Sampaguita",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Sampaguita",
+          "barangay_psgc": "0631000146",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "San Agustin",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "San Agustin",
+          "barangay_psgc": "0631000148",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "San Felix",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "San Felix",
+          "barangay_psgc": "0631000150",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Villa Anita",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Villa Anita",
+          "barangay_psgc": "0631000189",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Yulo Arroyo",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Yulo-Arroyo",
+          "barangay_psgc": "0631000193",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "La Paz",
+          "source_label": "Nabitasan",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Nabitasan",
+          "barangay_psgc": "0631000114",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        }
+      ]
+    },
+    {
+      "feeder_id": "MORE-ILO-DIVERSION-F02",
+      "feeder_name": "Diversion Feeder 2",
+      "source_image": "70c2e84f-a937-4c21-9103-5c7438afd233.png",
+      "institutions": [
+        "Western Visayas Medical Center"
+      ],
+      "notes": [],
+      "coverage": [
+        {
+          "district": "Mandurriao",
+          "source_label": "Bakhaw",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Bakhaw",
+          "barangay_psgc": "0631000009",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Mandurriao",
+          "source_label": "Bolilao",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Bolilao",
+          "barangay_psgc": "0631000021",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Mandurriao",
+          "source_label": "Buhang Taft North",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Buhang Taft North",
+          "barangay_psgc": "0631000025",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Mandurriao",
+          "source_label": "Dungon C",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY_EXPECTED",
+          "match_status": "UNRESOLVED",
+          "canonical_name": null,
+          "barangay_psgc": null,
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Mandurriao",
+          "source_label": "Hibao-an Sur",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Hibao-an Sur",
+          "barangay_psgc": "0631000067",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Mandurriao",
+          "source_label": "Hibao-an Norte",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Hibao-an Norte",
+          "barangay_psgc": "0631000152",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Mandurriao",
+          "source_label": "San Rafael",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "San Rafael",
+          "barangay_psgc": "0631000160",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Mandurriao",
+          "source_label": "Santa Rosa",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Santa Rosa",
+          "barangay_psgc": "0631000165",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Mandurriao",
+          "source_label": "Pale Benedicto",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Pale Benedicto Rizal",
+          "barangay_psgc": "0631000196",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Mandurriao",
+          "source_label": "PHHC Block 22 NHA",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "PHHC Block 22 NHA",
+          "barangay_psgc": "0631000128",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Mandurriao",
+          "source_label": "PHHC Block 17",
+          "coverage_type": "WHOLE",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "PHHC Block 17",
+          "barangay_psgc": "0631000127",
+          "geometry_precision": "FULL_BARANGAY"
+        },
+        {
+          "district": "Jaro",
+          "source_label": "Calubihan",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Calubihan",
+          "barangay_psgc": "0631000078",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Jaro",
+          "source_label": "Cuartero",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Cuartero",
+          "barangay_psgc": "0631000040",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Jaro",
+          "source_label": "Dungon A",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Dungon A",
+          "barangay_psgc": "0631000050",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Jaro",
+          "source_label": "Dungon B",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Dungon B",
+          "barangay_psgc": "0631000051",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Jaro",
+          "source_label": "Sambag",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Sambag",
+          "barangay_psgc": "0631000144",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        }
+      ]
+    },
+    {
+      "feeder_id": "MORE-ILO-DIVERSION-F03",
+      "feeder_name": "Diversion Feeder 3",
+      "source_image": "3711f21a-3f8c-4da9-9756-734deb1af0cb.png",
+      "institutions": [],
+      "notes": [
+        "The source card groups “Rizal Palapala I & II”; this dataset expands it to the two current PSA barangays while preserving this note."
+      ],
+      "coverage": [
+        {
+          "district": "City Proper",
+          "source_label": "Ed Ganzon",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Edganzon",
+          "barangay_psgc": "0631000054",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Delgado-Jalandoni Bagumbayan",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Delgado-Jalandoni-Bagumbayan",
+          "barangay_psgc": "0631000075",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Jalandoni-Wilson",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Jalandoni-Wilson",
+          "barangay_psgc": "0631000074",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Hipodromo",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Hipodromo",
+          "barangay_psgc": "0631000069",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Inday",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Inday",
+          "barangay_psgc": "0631000070",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Kauswagan",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Kauswagan",
+          "barangay_psgc": "0631000081",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Kahirupan",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Kahirupan",
+          "barangay_psgc": "0631000197",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Liberation",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Liberation",
+          "barangay_psgc": "0631000090",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Magsaysay",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Magsaysay",
+          "barangay_psgc": "0631000102",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Maria Clara",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Maria Clara",
+          "barangay_psgc": "0631000107",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Nonoy",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Nonoy",
+          "barangay_psgc": "0631000116",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Roxas Village",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Roxas Village",
+          "barangay_psgc": "0631000140",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Sampaguita",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Sampaguita",
+          "barangay_psgc": "0631000146",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "San Agustin",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "San Agustin",
+          "barangay_psgc": "0631000148",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Flores",
+          "coverage_type": "WHOLE",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Flores",
+          "barangay_psgc": "0631000057",
+          "geometry_precision": "FULL_BARANGAY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Gloria",
+          "coverage_type": "WHOLE",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Gloria",
+          "barangay_psgc": "0631000062",
+          "geometry_precision": "FULL_BARANGAY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Osmeña",
+          "coverage_type": "WHOLE",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Osmeña",
+          "barangay_psgc": "0631000123",
+          "geometry_precision": "FULL_BARANGAY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Rima Rizal",
+          "coverage_type": "WHOLE",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Rima-Rizal",
+          "barangay_psgc": "0631000136",
+          "geometry_precision": "FULL_BARANGAY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Rizal Ibarra",
+          "coverage_type": "WHOLE",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Rizal Ibarra",
+          "barangay_psgc": "0631000138",
+          "geometry_precision": "FULL_BARANGAY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Rizal Palapala I",
+          "coverage_type": "WHOLE",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Rizal Palapala I",
+          "barangay_psgc": "0631000125",
+          "geometry_precision": "FULL_BARANGAY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Rizal Palapala II",
+          "coverage_type": "WHOLE",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Rizal Palapala II",
+          "barangay_psgc": "0631000126",
+          "geometry_precision": "FULL_BARANGAY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "San Jose",
+          "coverage_type": "WHOLE",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "DISTRICT_DISAMBIGUATED",
+          "canonical_name": "San Jose (City Proper)",
+          "barangay_psgc": "0631000200",
+          "geometry_precision": "FULL_BARANGAY"
+        }
+      ]
+    },
+    {
+      "feeder_id": "MORE-ILO-DIVERSION-F04",
+      "feeder_name": "Diversion Feeder 4",
+      "source_image": "8268d77d-9af1-4472-a660-2d16fd5acdcf.png",
+      "institutions": [
+        "Medicus Medical Center",
+        "Medicus Cancer Institute"
+      ],
+      "notes": [],
+      "coverage": [
+        {
+          "district": "Mandurriao",
+          "source_label": "Bolilao",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Bolilao",
+          "barangay_psgc": "0631000021",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Mandurriao",
+          "source_label": "San Rafael",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "San Rafael",
+          "barangay_psgc": "0631000160",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Mandurriao",
+          "source_label": "Taft North",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY_EXPECTED",
+          "match_status": "REVIEW_REQUIRED",
+          "canonical_name": null,
+          "barangay_psgc": null,
+          "suggested_canonical_name": "Buhang Taft North",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        }
+      ]
+    },
+    {
+      "feeder_id": "MORE-ILO-LAPAZ-F01",
+      "feeder_name": "La Paz Feeder 1",
+      "source_image": "5893c1b0-b694-47a1-a766-d1b11ea405b8.png",
+      "institutions": [],
+      "notes": [],
+      "coverage": [
+        {
+          "district": "Lapuz",
+          "source_label": "Alalasan",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Alalasan Lapuz",
+          "barangay_psgc": "0631000005",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Lapuz",
+          "source_label": "Don Esteban",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Don Esteban-Lapuz",
+          "barangay_psgc": "0631000047",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Lapuz",
+          "source_label": "Lapuz Sur",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Lapuz Sur",
+          "barangay_psgc": "0631000088",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Lapuz",
+          "source_label": "Loboc",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Loboc-Lapuz",
+          "barangay_psgc": "0631000094",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Lapuz",
+          "source_label": "Punong",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Punong-Lapuz",
+          "barangay_psgc": "0631000133",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Lapuz",
+          "source_label": "Sinikway",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Sinikway",
+          "barangay_psgc": "0631000014",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Lapuz",
+          "source_label": "Bo. Obrero",
+          "coverage_type": "WHOLE",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Obrero-Lapuz",
+          "barangay_psgc": "0631000121",
+          "geometry_precision": "FULL_BARANGAY"
+        },
+        {
+          "district": "Lapuz",
+          "source_label": "Jalandoni Estate",
+          "coverage_type": "WHOLE",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Jalandoni Estate-Lapuz",
+          "barangay_psgc": "0631000073",
+          "geometry_precision": "FULL_BARANGAY"
+        },
+        {
+          "district": "Lapuz",
+          "source_label": "Lapuz Norte",
+          "coverage_type": "WHOLE",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Lapuz Norte",
+          "barangay_psgc": "0631000087",
+          "geometry_precision": "FULL_BARANGAY"
+        },
+        {
+          "district": "Lapuz",
+          "source_label": "Libertad",
+          "coverage_type": "WHOLE",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Libertad-Lapuz",
+          "barangay_psgc": "0631000092",
+          "geometry_precision": "FULL_BARANGAY"
+        },
+        {
+          "district": "Lapuz",
+          "source_label": "Mansaya",
+          "coverage_type": "WHOLE",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Mansaya-Lapuz",
+          "barangay_psgc": "0631000105",
+          "geometry_precision": "FULL_BARANGAY"
+        },
+        {
+          "district": "Lapuz",
+          "source_label": "Progreso",
+          "coverage_type": "WHOLE",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Progreso-Lapuz",
+          "barangay_psgc": "0631000132",
+          "geometry_precision": "FULL_BARANGAY"
+        },
+        {
+          "district": "La Paz",
+          "source_label": "Baldoza",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Baldoza",
+          "barangay_psgc": "0631000012",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "La Paz",
+          "source_label": "Ingore",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Ingore",
+          "barangay_psgc": "0631000072",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Danao",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Danao",
+          "barangay_psgc": "0631000042",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Ed Ganzon",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Edganzon",
+          "barangay_psgc": "0631000054",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        }
+      ]
+    },
+    {
+      "feeder_id": "MORE-ILO-LAPAZ-F02",
+      "feeder_name": "La Paz Feeder 2",
+      "source_image": "7174d898-83d2-44e2-b410-a0d8575a005d.png",
+      "institutions": [
+        "Metro Iloilo Hospital and Medical Center"
+      ],
+      "notes": [],
+      "coverage": [
+        {
+          "district": "La Paz",
+          "source_label": "Baldoza",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Baldoza",
+          "barangay_psgc": "0631000012",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "La Paz",
+          "source_label": "Banuyao",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Banuyao",
+          "barangay_psgc": "0631000016",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "La Paz",
+          "source_label": "Hinactacan",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Hinactacan",
+          "barangay_psgc": "0631000068",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "La Paz",
+          "source_label": "Ingore",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Ingore",
+          "barangay_psgc": "0631000072",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "La Paz",
+          "source_label": "San Isidro",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "DISTRICT_DISAMBIGUATED",
+          "canonical_name": "San Isidro (La Paz)",
+          "barangay_psgc": "0631000199",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "La Paz",
+          "source_label": "Ticud",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Ticud",
+          "barangay_psgc": "0631000183",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Jaro",
+          "source_label": "Balabago",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Balabago",
+          "barangay_psgc": "0631000010",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Jaro",
+          "source_label": "Balantang",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Balantang",
+          "barangay_psgc": "0631000011",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Jaro",
+          "source_label": "Bito-On",
+          "coverage_type": "WHOLE",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Bito-on",
+          "barangay_psgc": "0631000019",
+          "geometry_precision": "FULL_BARANGAY"
+        },
+        {
+          "district": "Jaro",
+          "source_label": "Buntatala",
+          "coverage_type": "WHOLE",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Buntatala",
+          "barangay_psgc": "0631000026",
+          "geometry_precision": "FULL_BARANGAY"
+        },
+        {
+          "district": "Jaro",
+          "source_label": "Lanit",
+          "coverage_type": "WHOLE",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Lanit",
+          "barangay_psgc": "0631000086",
+          "geometry_precision": "FULL_BARANGAY"
+        },
+        {
+          "district": "Jaro",
+          "source_label": "Tagbac",
+          "coverage_type": "WHOLE",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Tagbac",
+          "barangay_psgc": "0631000179",
+          "geometry_precision": "FULL_BARANGAY"
+        }
+      ]
+    },
+    {
+      "feeder_id": "MORE-ILO-LAPAZ-F03",
+      "feeder_name": "La Paz Feeder 3",
+      "source_image": "78af314c-dae6-4120-8a79-3d8bf4dd8107.png",
+      "institutions": [],
+      "notes": [],
+      "coverage": [
+        {
+          "district": "La Paz",
+          "source_label": "Banuyao",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Banuyao",
+          "barangay_psgc": "0631000016",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "La Paz",
+          "source_label": "Divinagracia",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Divinagracia",
+          "barangay_psgc": "0631000046",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "La Paz",
+          "source_label": "Hinactacan",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Hinactacan",
+          "barangay_psgc": "0631000068",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "La Paz",
+          "source_label": "Lopez Jaena Sur",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Lopez Jaena Sur",
+          "barangay_psgc": "0631000096",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "La Paz",
+          "source_label": "Tabuc Suba",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "DISTRICT_DISAMBIGUATED",
+          "canonical_name": "Tabuc Suba (La Paz)",
+          "barangay_psgc": "0631000201",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Lapuz",
+          "source_label": "Alalasan",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Alalasan Lapuz",
+          "barangay_psgc": "0631000005",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Lapuz",
+          "source_label": "Sinikway",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Sinikway",
+          "barangay_psgc": "0631000014",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Lapuz",
+          "source_label": "Don Esteban",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Don Esteban-Lapuz",
+          "barangay_psgc": "0631000047",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Jaro",
+          "source_label": "Balabago",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Balabago",
+          "barangay_psgc": "0631000010",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Jaro",
+          "source_label": "Buhang",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Buhang",
+          "barangay_psgc": "0631000024",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Jaro",
+          "source_label": "Cubay",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Cubay",
+          "barangay_psgc": "0631000041",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Jaro",
+          "source_label": "MV Hechanova",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "M. V. Hechanova",
+          "barangay_psgc": "0631000098",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Jaro",
+          "source_label": "Quintin Salas",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Quintin Salas",
+          "barangay_psgc": "0631000135",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Jaro",
+          "source_label": "Tabuc Suba",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "DISTRICT_DISAMBIGUATED",
+          "canonical_name": "Tabuc Suba (Jaro)",
+          "barangay_psgc": "0631000175",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        }
+      ]
+    },
+    {
+      "feeder_id": "MORE-ILO-LAPAZ-F04",
+      "feeder_name": "La Paz Feeder 4",
+      "source_image": "5aeafa9f-3fd0-4dd3-b902-6c329d33c966.png",
+      "institutions": [],
+      "notes": [],
+      "coverage": [
+        {
+          "district": "City Proper",
+          "source_label": "Ed Ganzon",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Edganzon",
+          "barangay_psgc": "0631000054",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Maria Clara",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Maria Clara",
+          "barangay_psgc": "0631000107",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Nonoy",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Nonoy",
+          "barangay_psgc": "0631000116",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "President Roxas",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "President Roxas",
+          "barangay_psgc": "0631000131",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Yulo Arroyo",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Yulo-Arroyo",
+          "barangay_psgc": "0631000193",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Arsenal-Aduana",
+          "coverage_type": "WHOLE",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Arsenal Aduana",
+          "barangay_psgc": "0631000007",
+          "geometry_precision": "FULL_BARANGAY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Concepcion-Montes",
+          "coverage_type": "WHOLE",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Concepcion-Montes",
+          "barangay_psgc": "0631000038",
+          "geometry_precision": "FULL_BARANGAY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "General Hughes-Montes",
+          "coverage_type": "WHOLE",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "General Hughes-Montes",
+          "barangay_psgc": "0631000061",
+          "geometry_precision": "FULL_BARANGAY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Legaspi Delarama",
+          "coverage_type": "WHOLE",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Legaspi dela Rama",
+          "barangay_psgc": "0631000089",
+          "geometry_precision": "FULL_BARANGAY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Monica Blumentritt",
+          "coverage_type": "WHOLE",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Monica Blumentritt",
+          "barangay_psgc": "0631000020",
+          "geometry_precision": "FULL_BARANGAY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Muelle-Loney Montes",
+          "coverage_type": "WHOLE",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Muelle Loney-Montes",
+          "barangay_psgc": "0631000113",
+          "geometry_precision": "FULL_BARANGAY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Ortiz",
+          "coverage_type": "WHOLE",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Ortiz",
+          "barangay_psgc": "0631000122",
+          "geometry_precision": "FULL_BARANGAY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Santo Rosario Duran",
+          "coverage_type": "WHOLE",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Santo Rosario-Duran",
+          "barangay_psgc": "0631000169",
+          "geometry_precision": "FULL_BARANGAY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Veterans Village",
+          "coverage_type": "WHOLE",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Veterans Village",
+          "barangay_psgc": "0631000188",
+          "geometry_precision": "FULL_BARANGAY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Zamora-Melliza",
+          "coverage_type": "WHOLE",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Zamora-Melliza",
+          "barangay_psgc": "0631000195",
+          "geometry_precision": "FULL_BARANGAY"
+        }
+      ]
+    },
+    {
+      "feeder_id": "MORE-ILO-LAPAZ-F05",
+      "feeder_name": "La Paz Feeder 5",
+      "source_image": "aea98ee0-f204-49b6-b230-88e5ca04b267.png",
+      "institutions": [
+        "St. Paul's Hospital"
+      ],
+      "notes": [],
+      "coverage": [
+        {
+          "district": "La Paz",
+          "source_label": "Baldoza",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Baldoza",
+          "barangay_psgc": "0631000012",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "La Paz",
+          "source_label": "Burgos-Mabini-Plaza",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Burgos-Mabini-Plaza",
+          "barangay_psgc": "0631000099",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "La Paz",
+          "source_label": "Divinagracia",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Divinagracia",
+          "barangay_psgc": "0631000046",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "La Paz",
+          "source_label": "Laguda",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Laguda",
+          "barangay_psgc": "0631000085",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "La Paz",
+          "source_label": "Railway",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Railway",
+          "barangay_psgc": "0631000139",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "La Paz",
+          "source_label": "Aguinaldo",
+          "coverage_type": "WHOLE",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Aguinaldo",
+          "barangay_psgc": "0631000003",
+          "geometry_precision": "FULL_BARANGAY"
+        },
+        {
+          "district": "La Paz",
+          "source_label": "MacArthur",
+          "coverage_type": "WHOLE",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Macarthur",
+          "barangay_psgc": "0631000100",
+          "geometry_precision": "FULL_BARANGAY"
+        },
+        {
+          "district": "La Paz",
+          "source_label": "Rizal",
+          "coverage_type": "WHOLE",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Rizal",
+          "barangay_psgc": "0631000202",
+          "geometry_precision": "FULL_BARANGAY"
+        },
+        {
+          "district": "Lapuz",
+          "source_label": "Alalasan",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Alalasan Lapuz",
+          "barangay_psgc": "0631000005",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Lapuz",
+          "source_label": "Lapuz Sur",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Lapuz Sur",
+          "barangay_psgc": "0631000088",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Lapuz",
+          "source_label": "Loboc",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Loboc-Lapuz",
+          "barangay_psgc": "0631000094",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Lapuz",
+          "source_label": "Punong",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Punong-Lapuz",
+          "barangay_psgc": "0631000133",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Arsenal Aduana",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Arsenal Aduana",
+          "barangay_psgc": "0631000007",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Danao",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Danao",
+          "barangay_psgc": "0631000042",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Ed Ganzon",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Edganzon",
+          "barangay_psgc": "0631000054",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "President Roxas",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "President Roxas",
+          "barangay_psgc": "0631000131",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Sampaguita",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Sampaguita",
+          "barangay_psgc": "0631000146",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "City Proper",
+          "source_label": "Yulo Arroyo",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Yulo-Arroyo",
+          "barangay_psgc": "0631000193",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        }
+      ]
+    },
+    {
+      "feeder_id": "MORE-ILO-LAPAZ-F07",
+      "feeder_name": "La Paz Feeder 7",
+      "source_image": "df049388-3724-4c13-b7e9-e9537c14d539.png",
+      "institutions": [],
+      "notes": [],
+      "coverage": [
+        {
+          "district": "La Paz",
+          "source_label": "Baldoza",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Baldoza",
+          "barangay_psgc": "0631000012",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "La Paz",
+          "source_label": "Banuyao",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Banuyao",
+          "barangay_psgc": "0631000016",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "La Paz",
+          "source_label": "Burgos-Mabini",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Burgos-Mabini-Plaza",
+          "barangay_psgc": "0631000099",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "La Paz",
+          "source_label": "Jereos",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Jereos",
+          "barangay_psgc": "0631000077",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "La Paz",
+          "source_label": "Lopez Jaena Sur",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Lopez Jaena Sur",
+          "barangay_psgc": "0631000096",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "La Paz",
+          "source_label": "San Isidro",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "DISTRICT_DISAMBIGUATED",
+          "canonical_name": "San Isidro (La Paz)",
+          "barangay_psgc": "0631000199",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "La Paz",
+          "source_label": "Tabuc Suba",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "DISTRICT_DISAMBIGUATED",
+          "canonical_name": "Tabuc Suba (La Paz)",
+          "barangay_psgc": "0631000201",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "La Paz",
+          "source_label": "Ticud",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Ticud",
+          "barangay_psgc": "0631000183",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "La Paz",
+          "source_label": "Caingin",
+          "coverage_type": "WHOLE",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Caingin",
+          "barangay_psgc": "0631000029",
+          "geometry_precision": "FULL_BARANGAY"
+        },
+        {
+          "district": "La Paz",
+          "source_label": "Gustillo",
+          "coverage_type": "WHOLE",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Gustilo",
+          "barangay_psgc": "0631000063",
+          "geometry_precision": "FULL_BARANGAY"
+        },
+        {
+          "district": "La Paz",
+          "source_label": "Lopez Jaena Norte",
+          "coverage_type": "WHOLE",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Lopez Jaena Norte",
+          "barangay_psgc": "0631000095",
+          "geometry_precision": "FULL_BARANGAY"
+        },
+        {
+          "district": "Jaro",
+          "source_label": "Benedicto",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Benedicto",
+          "barangay_psgc": "0631000018",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Jaro",
+          "source_label": "Democracia",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Democracia",
+          "barangay_psgc": "0631000044",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Jaro",
+          "source_label": "MH Del Pilar",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Marcelo H. del Pilar",
+          "barangay_psgc": "0631000106",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Jaro",
+          "source_label": "San Pedro",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "DISTRICT_DISAMBIGUATED",
+          "canonical_name": "San Pedro (Jaro)",
+          "barangay_psgc": "0631000159",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        }
+      ]
+    },
+    {
+      "feeder_id": "MORE-ILO-LAPAZ-F08",
+      "feeder_name": "La Paz Feeder 8",
+      "source_image": "a04c693f-c289-47e9-8fc8-4dd81f6f030b.png",
+      "institutions": [],
+      "notes": [
+        "Source card states “GOLDEN PORTALS - LA PAZ” and does not name a barangay. Stored as a feeder note, not converted to barangay coverage."
+      ],
+      "coverage": []
+    },
+    {
+      "feeder_id": "MORE-ILO-MEGAWORLD-F01",
+      "feeder_name": "Megaworld Feeder 1",
+      "source_image": "92dbb45a-6c5a-46ba-b1e8-bf779d7e6516.png",
+      "institutions": [],
+      "notes": [],
+      "coverage": [
+        {
+          "district": "Mandurriao",
+          "source_label": "Calajunan",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Calahunan",
+          "barangay_psgc": "0631000030",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Mandurriao",
+          "source_label": "Dungon C",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY_EXPECTED",
+          "match_status": "UNRESOLVED",
+          "canonical_name": null,
+          "barangay_psgc": null,
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Mandurriao",
+          "source_label": "Guzman-Jesena",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Guzman-Jesena",
+          "barangay_psgc": "0631000064",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Mandurriao",
+          "source_label": "Hibao-an Sur",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Hibao-an Sur",
+          "barangay_psgc": "0631000067",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Mandurriao",
+          "source_label": "Hibao-an Norte",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Hibao-an Norte",
+          "barangay_psgc": "0631000152",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Mandurriao",
+          "source_label": "Onate De Leon",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Oñate de Leon",
+          "barangay_psgc": "0631000120",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Mandurriao",
+          "source_label": "Santa Rosa",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Santa Rosa",
+          "barangay_psgc": "0631000165",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Mandurriao",
+          "source_label": "Pale Benedicto",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Pale Benedicto Rizal",
+          "barangay_psgc": "0631000196",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Mandurriao",
+          "source_label": "PHHC Block 22 NHA",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "PHHC Block 22 NHA",
+          "barangay_psgc": "0631000128",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Pavia",
+          "source_label": "Jibao-an",
+          "coverage_type": "PORTION",
+          "city_membership": "OUTSIDE_ILOILO_CITY",
+          "match_status": "OUTSIDE_CITY",
+          "canonical_name": null,
+          "barangay_psgc": null,
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        }
+      ]
+    },
+    {
+      "feeder_id": "MORE-ILO-MEGAWORLD-F02",
+      "feeder_name": "Megaworld Feeder 2",
+      "source_image": "1a2e5090-e845-463a-bb0a-2a44e2155696.png",
+      "institutions": [],
+      "notes": [],
+      "coverage": [
+        {
+          "district": "Mandurriao",
+          "source_label": "Abeto Mirasol Taft South",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Abeto Mirasol Taft South",
+          "barangay_psgc": "0631000178",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Mandurriao",
+          "source_label": "Airport Mandurriao",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Airport",
+          "barangay_psgc": "0631000004",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        }
+      ]
+    },
+    {
+      "feeder_id": "MORE-ILO-MEGAWORLD-F03",
+      "feeder_name": "Megaworld Feeder 3",
+      "source_image": "1bf332c9-8e84-4ec4-a13c-b753ce34f2fc.png",
+      "institutions": [
+        "AMOSUP Seamen’s Hospital"
+      ],
+      "notes": [],
+      "coverage": [
+        {
+          "district": "Mandurriao",
+          "source_label": "Abeto Mirasol Taft-South",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Abeto Mirasol Taft South",
+          "barangay_psgc": "0631000178",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Mandurriao",
+          "source_label": "Airport Mandurriao",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Airport",
+          "barangay_psgc": "0631000004",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Mandurriao",
+          "source_label": "Calajunan",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Calahunan",
+          "barangay_psgc": "0631000030",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Mandurriao",
+          "source_label": "Guzman-Jesena",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Guzman-Jesena",
+          "barangay_psgc": "0631000064",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Mandurriao",
+          "source_label": "Navais",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Navais",
+          "barangay_psgc": "0631000115",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Mandurriao",
+          "source_label": "Onate De Leon",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "Oñate de Leon",
+          "barangay_psgc": "0631000120",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Mandurriao",
+          "source_label": "Tabucan",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Tabucan",
+          "barangay_psgc": "0631000176",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        }
+      ]
+    },
+    {
+      "feeder_id": "MORE-ILO-MEGAWORLD-F04",
+      "feeder_name": "Megaworld Feeder 4",
+      "source_image": "0edf864a-9d01-45ae-bf58-814b00569a29.png",
+      "institutions": [
+        "Asia Pacific Medical Center-Iloilo"
+      ],
+      "notes": [],
+      "coverage": [
+        {
+          "district": "Jaro",
+          "source_label": "Buhang",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Buhang",
+          "barangay_psgc": "0631000024",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Jaro",
+          "source_label": "Dungon B",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Dungon B",
+          "barangay_psgc": "0631000051",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Jaro",
+          "source_label": "MV Hechanova",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXPLICIT_ALIAS",
+          "canonical_name": "M. V. Hechanova",
+          "barangay_psgc": "0631000098",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Jaro",
+          "source_label": "Quintin Salas",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Quintin Salas",
+          "barangay_psgc": "0631000135",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Jaro",
+          "source_label": "Sambag",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Sambag",
+          "barangay_psgc": "0631000144",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Jaro",
+          "source_label": "Tabuc Suba",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "DISTRICT_DISAMBIGUATED",
+          "canonical_name": "Tabuc Suba (Jaro)",
+          "barangay_psgc": "0631000175",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Jaro",
+          "source_label": "Tacas",
+          "coverage_type": "WHOLE",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Tacas",
+          "barangay_psgc": "0631000177",
+          "geometry_precision": "FULL_BARANGAY"
+        },
+        {
+          "district": "Jaro",
+          "source_label": "Ungka",
+          "coverage_type": "WHOLE",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Ungka",
+          "barangay_psgc": "0631000187",
+          "geometry_precision": "FULL_BARANGAY"
+        },
+        {
+          "district": "Pavia",
+          "source_label": "Mali-ao",
+          "coverage_type": "PORTION",
+          "city_membership": "OUTSIDE_ILOILO_CITY",
+          "match_status": "OUTSIDE_CITY",
+          "canonical_name": null,
+          "barangay_psgc": null,
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Pavia",
+          "source_label": "Ungka I",
+          "coverage_type": "PORTION",
+          "city_membership": "OUTSIDE_ILOILO_CITY",
+          "match_status": "OUTSIDE_CITY",
+          "canonical_name": null,
+          "barangay_psgc": null,
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Pavia",
+          "source_label": "Ungka II",
+          "coverage_type": "PORTION",
+          "city_membership": "OUTSIDE_ILOILO_CITY",
+          "match_status": "OUTSIDE_CITY",
+          "canonical_name": null,
+          "barangay_psgc": null,
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        }
+      ]
+    },
+    {
+      "feeder_id": "MORE-ILO-MEGAWORLD-F06",
+      "feeder_name": "Megaworld Feeder 6",
+      "source_image": "aa6ae224-ffe5-429c-a7f5-de3586f4efde.png",
+      "institutions": [],
+      "notes": [],
+      "coverage": [
+        {
+          "district": "Mandurriao",
+          "source_label": "Buhang Taft North",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "Buhang Taft North",
+          "barangay_psgc": "0631000025",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        },
+        {
+          "district": "Mandurriao",
+          "source_label": "San Rafael",
+          "coverage_type": "PORTION",
+          "city_membership": "ILOILO_CITY",
+          "match_status": "EXACT_PSA",
+          "canonical_name": "San Rafael",
+          "barangay_psgc": "0631000160",
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+        }
+      ]
+    }
+  ],
+  "outside_iloilo_city": [
+    {
+      "feeder_id": "MORE-ILO-MEGAWORLD-F01",
+      "district": "Pavia",
+      "source_label": "Jibao-an",
+      "coverage_type": "PORTION",
+      "city_membership": "OUTSIDE_ILOILO_CITY",
+      "match_status": "OUTSIDE_CITY",
+      "canonical_name": null,
+      "barangay_psgc": null,
+      "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+    },
+    {
+      "feeder_id": "MORE-ILO-MEGAWORLD-F04",
+      "district": "Pavia",
+      "source_label": "Mali-ao",
+      "coverage_type": "PORTION",
+      "city_membership": "OUTSIDE_ILOILO_CITY",
+      "match_status": "OUTSIDE_CITY",
+      "canonical_name": null,
+      "barangay_psgc": null,
+      "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+    },
+    {
+      "feeder_id": "MORE-ILO-MEGAWORLD-F04",
+      "district": "Pavia",
+      "source_label": "Ungka I",
+      "coverage_type": "PORTION",
+      "city_membership": "OUTSIDE_ILOILO_CITY",
+      "match_status": "OUTSIDE_CITY",
+      "canonical_name": null,
+      "barangay_psgc": null,
+      "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+    },
+    {
+      "feeder_id": "MORE-ILO-MEGAWORLD-F04",
+      "district": "Pavia",
+      "source_label": "Ungka II",
+      "coverage_type": "PORTION",
+      "city_membership": "OUTSIDE_ILOILO_CITY",
+      "match_status": "OUTSIDE_CITY",
+      "canonical_name": null,
+      "barangay_psgc": null,
+      "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+    }
+  ],
+  "review_required": [
+    {
+      "feeder_id": "MORE-ILO-DIVERSION-F02",
+      "district": "Mandurriao",
+      "source_label": "Dungon C",
+      "coverage_type": "PORTION",
+      "city_membership": "ILOILO_CITY_EXPECTED",
+      "match_status": "UNRESOLVED",
+      "canonical_name": null,
+      "barangay_psgc": null,
+      "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+    },
+    {
+      "feeder_id": "MORE-ILO-DIVERSION-F04",
+      "district": "Mandurriao",
+      "source_label": "Taft North",
+      "coverage_type": "PORTION",
+      "city_membership": "ILOILO_CITY_EXPECTED",
+      "match_status": "REVIEW_REQUIRED",
+      "canonical_name": null,
+      "barangay_psgc": null,
+      "suggested_canonical_name": "Buhang Taft North",
+      "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+    },
+    {
+      "feeder_id": "MORE-ILO-MEGAWORLD-F01",
+      "district": "Mandurriao",
+      "source_label": "Dungon C",
+      "coverage_type": "PORTION",
+      "city_membership": "ILOILO_CITY_EXPECTED",
+      "match_status": "UNRESOLVED",
+      "canonical_name": null,
+      "barangay_psgc": null,
+      "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+    }
+  ]
+}

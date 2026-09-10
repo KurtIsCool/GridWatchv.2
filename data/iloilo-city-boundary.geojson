@@ -1,0 +1,10 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "status": "PENDING_BUILD",
+    "city_psgc": "0631000000",
+    "expected_features": 1,
+    "note": "Replace with validated Iloilo City administrative boundary before enabling map geography."
+  },
+  "features": []
+}

@@ -1,0 +1,10 @@
+{
+  "name": "iloilo-gridwatch",
+  "version": "2.8.2",
+  "private": true,
+  "description": "GridWatch \u2014 Iloilo City power interruption and feeder coverage prototype",
+  "scripts": {
+    "test": "node tests/repo-integrity.mjs",
+    "test:geography": "node tests/geography-integrity.mjs"
+  }
+}

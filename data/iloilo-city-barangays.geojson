@@ -1,0 +1,10 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "status": "PENDING_BUILD",
+    "city_psgc": "0631000000",
+    "expected_features": 180,
+    "note": "Replace with validated Iloilo City barangay polygons before enabling map geography."
+  },
+  "features": []
+}

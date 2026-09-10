@@ -1,0 +1,24 @@
+{
+  "name": "GridWatch \u2014 Iloilo City Power Interruption Map",
+  "short_name": "GridWatch",
+  "description": "Resident-facing Iloilo City power interruption, schedule, feeder, and grid context.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f6f7",
+  "theme_color": "#f5f6f7",
+  "icons": [
+    {
+      "src": "./assets/brand/gridwatch-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./assets/brand/gridwatch-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
