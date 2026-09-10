@@ -1,0 +1,11 @@
+# Copy to cloudflare/.dev.vars for local-only overrides. Never commit the real file.
+GRIDWATCH_ENV="development"
+ALLOWED_ORIGIN="http://localhost:8080"
+PUBLIC_API_BASE="http://localhost:8787"
+NGCP_SOURCE_URL=""
+MORE_SOURCE_URL=""
+VISION_MODEL="@cf/meta/llama-3.2-11b-vision-instruct"
+BROWSER_DAILY_SOFT_LIMIT="480"
+AI_DAILY_SOFT_LIMIT="8000"
+AI_ESTIMATED_UNITS_PER_CALL="500"
+QUEUE_DAILY_SOFT_LIMIT="7000"

@@ -57,6 +57,16 @@ Color never carries status alone: every status also has a text label, evidence d
 - Every icon-only responsive state keeps an explicit accessible name.
 - States: default, hover, focus-visible, active, disabled.
 
+### Live-service state
+- Resident evidence keeps the existing status readout and adds a compact monospaced service note below provenance.
+- Service states are `CHECKING`, `LIVE`, `UNAVAILABLE`, and `NOT_CONFIGURED`; unavailable states explicitly identify the bundled validated fallback.
+- Live API evidence may replace the current readout only when it carries an explicit barangay target and complete source provenance.
+
+### Operator health
+- The operator surface remains read-only and uses bordered metric cells plus key/value rows, with no card shadows or administrative controls.
+- Health states are `LIVE`, `DEGRADED`, and `NOT CONNECTED`; color is always paired with a text label.
+- Mobile collapses metrics from three columns to two, then one, while preserving source and budget labels.
+
 ## 6. Motion and interaction
 
 - `--motion: 150ms` for meaningful state feedback.

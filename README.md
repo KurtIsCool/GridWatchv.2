@@ -7,7 +7,7 @@ GridWatch is a resident-facing power interruption and feeder-context prototype f
 - **NOW** — select a PSA-recognized Iloilo City barangay and see the current answer, evidence, and published MORE Power feeder relationships.
 - **NEXT** — scheduled interruption view.
 - **CITY GRID** — grid context and feeder coverage directory.
-- **`/ops.html`** — reserved operator surface; currently a shell only.
+- **`/ops.html`** — read-only Cloudflare ingestion, source, review, and budget health; it remains useful in a clear `NOT CONNECTED` state without an API.
 
 ## Data rules
 
@@ -26,6 +26,24 @@ This repository is GitHub Pages ready. See [`DEPLOYMENT.md`](./DEPLOYMENT.md).
 ```bash
 npm test
 ```
+
+## Cloudflare ingestion foundation
+
+The optional Worker backend lives in `cloudflare/`. It adds D1, private R2 evidence storage, Queue processing, Workers AI extraction, a 30-minute NGCP cron adapter, a replaceable operator-triggered MORE Power adapter, public read-only APIs, and a local manual-image review workflow. The static resident app remains fully functional when none of those bindings exist.
+
+```bash
+npm run cf:migrate:local
+npm run cf:test
+npm run cf:dev
+```
+
+In another terminal, serve the static app on the allowed local origin:
+
+```bash
+python -m http.server 8080
+```
+
+See `docs/cloudflare-architecture.md` and `docs/cloudflare-setup.md`. No deployment or Cloudflare account resource is created by these commands.
 
 Push to `main`, enable **Settings → Pages → Source: GitHub Actions**, and the included workflow publishes the static site.
 

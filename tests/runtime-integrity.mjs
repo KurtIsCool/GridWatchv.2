@@ -10,7 +10,7 @@ if(html.includes('const OFFICIAL_EVENTS'))throw new Error('Advisories must be lo
 if(html.includes('gridwatch.importedEvents'))throw new Error('Untrusted localStorage events must not enter the official evidence engine.');
 if(!html.includes("return 'WINDOW_ENDED'"))throw new Error('Elapsed schedules must use WINDOW_ENDED, not RESTORED.');
 
-const selectBody=html.match(/function selectBarangay\([\s\S]*?\n}\n\nfunction renderPlaceCard/)?.[0]||'';
+const selectBody=html.match(/function selectBarangay\([\s\S]*?(?=function apiEvidenceStatus)/)?.[0]||'';
 if(!selectBody.includes('renderNow()'))throw new Error('Barangay selection must refresh the complete NOW evidence surface immediately.');
 
 const context={window:{}};

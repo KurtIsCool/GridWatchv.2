@@ -94,6 +94,7 @@ input,select,textarea{border-radius:var(--r-action);background:var(--paper)}
 .stress-bar{background:var(--utility)}
 .map-statusline>div,.map-key,.map-message{border-radius:2px;background:var(--surface)}
 .map-statusline>div{border-left:3px solid var(--brand)}
+.live-service-note{margin-top:10px;padding:8px 0;border-top:1px solid var(--line-soft);color:var(--muted);font:700 10px/1.45 var(--font-mono);letter-spacing:.025em;text-transform:uppercase}
 .map-reset{border-radius:2px;text-transform:uppercase;font:750 10px var(--font-mono)}
 .map-key summary{font-family:var(--font-mono);letter-spacing:.05em;text-transform:uppercase}
 .legend-swatch,.legend-hatch,.legend-dot{border-radius:0}
@@ -259,9 +260,11 @@ input,select,textarea{border-radius:var(--r-action);background:var(--paper)}
 <script src="./data/advisories-bundle.js"></script>
 <script src="./data/geography-bundle.js"></script>
 <script src="./data/feeder-bundle.js"></script>
+<script src="./data/runtime-config.js"></script>
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@turf/turf@7/turf.min.js"></script>
 <script type="module">
+import {getGridWatchHealth,getGridWatchStatus} from './src/gridwatch-api.js';
 const LOCAL_GEOGRAPHY = Object.freeze({
   barangays:'./data/iloilo-city-barangays.geojson',
   boundary:'./data/iloilo-city-boundary.geojson',
@@ -309,7 +312,8 @@ const state = {
   geo:null, cityFeatures:[], cityBoundary:null, cityMask:null, cityBounds:null, events:[],
   identityManifest:null, identityCheck:null, advisoryData:null, feederData:null, feederByBarangay:new Map(), feederById:new Map(), feederError:null, geographyError:null,
   selectedBarangay:null, map:null, mapReady:false, mapFallback:false, currentView:'now', playTimer:null,
-  deferredInstall:null, lastDataLoad:null, dataSaver:false, replayMode:false, replay3d:false
+  deferredInstall:null, lastDataLoad:null, dataSaver:false, replayMode:false, replay3d:false,
+  apiMode:'CHECKING',apiStatus:null,apiHealth:null,apiReason:null,apiRequestToken:0
 };
 
 const el = id => document.getElementById(id);
@@ -633,19 +637,33 @@ function selectBarangay(name,fly=true){
   if(fly&&window.matchMedia?.('(max-width: 820px)').matches)el('statusSection')?.scrollIntoView({behavior:'smooth',block:'start'});
   if(fly&&f&&state.mapReady){const b=featureBounds(f);state.map.fitBounds([[b.west,b.south],[b.east,b.north]],{padding:80,maxZoom:15,duration:700});}
   updateMap();
+  void refreshLiveStatus(identity);
+}
+function apiEvidenceStatus(){
+  const data=state.apiStatus;if(state.apiMode!=='LIVE'||!data?.official_event||data.evidence_type!=='EXPLICIT_BARANGAY')return null;
+  const states={CONFIRMED:'ACTIVE',SCHEDULED:'SCHEDULED',RESTORED:'RESTORED',COMMUNITY:'COMMUNITY'},mapped=states[data.status];if(!mapped)return null;
+  return {state:mapped,coverage:data.coverage==='PARTIAL'?'PARTIAL':data.coverage,event:{id:data.official_event.id,start:data.official_event.start_at?.slice(11,16)||'',end:data.official_event.end_at?.slice(11,16)||'',date:data.official_event.start_at?.slice(0,10)||todayISO(),title:'Live validated advisory',feeders:data.feeders||[],source:{publisher:data.official_event.source.publisher,url:data.official_event.source.url,publishedAt:data.official_event.source.published_at},confidence:'VALIDATED'}};
+}
+async function refreshLiveStatus(identity){
+  const token=++state.apiRequestToken;state.apiMode='CHECKING';updateOnline();
+  const result=await getGridWatchStatus(normalizePsgc(identity.psgc));if(token!==state.apiRequestToken)return;
+  state.apiMode=result.mode;state.apiStatus=result.data;state.apiReason=result.reason;renderNow();updateOnline();
+}
+async function refreshApiHealth(){
+  const result=await getGridWatchHealth();state.apiMode=result.mode;state.apiHealth=result.data;state.apiReason=result.reason;if(state.selectedBarangay)renderNow();updateOnline();
 }
 function renderPlaceCard(){
   const card=el('placeCard');if(!card)return;card.replaceChildren();
   const nextReadout=el('nextEventReadout');
   if(!state.selectedBarangay){card.className='place-card empty-state';const strong=document.createElement('strong');strong.textContent='Choose a barangay.';const span=document.createElement('span');span.textContent='GridWatch will show the strongest verified local signal first.';card.append(strong,span);if(nextReadout)nextReadout.textContent='Choose a barangay to check.';renderGuidance({state:'NORMAL'});return;}
-  card.className='place-card';const context=mapContext();const st=statusForBarangay(state.selectedBarangay,context);const selectedIdentity=identityBarangay(state.selectedBarangay);const psgcCode=normalizePsgc(selectedIdentity?.psgc);const eventFeeders=st.event?.feeders||[];const feederRelations=feederRelationsForBarangay(state.selectedBarangay);
+  card.className='place-card';const context=mapContext();const st=apiEvidenceStatus()||statusForBarangay(state.selectedBarangay,context);const selectedIdentity=identityBarangay(state.selectedBarangay);const psgcCode=normalizePsgc(selectedIdentity?.psgc);const eventFeeders=st.event?.feeders||[];const feederRelations=feederRelationsForBarangay(state.selectedBarangay);
   const title=document.createElement('div');title.className='place-title';title.textContent=state.selectedBarangay;card.appendChild(title);
   const stateCode=document.createElement('div');stateCode.className=`place-state-code state-${String(st.state||'NORMAL').toLowerCase()}`;
   const codes={ACTIVE:'Power interruption confirmed',SCHEDULED:'Interruption scheduled',WINDOW_ENDED:'Loaded window ended',RESTORED:'Power restoration confirmed',COMMUNITY:'Community outage signal',NORMAL:'No confirmed interruption'};stateCode.textContent=codes[st.state]||codes.NORMAL;card.appendChild(stateCode);
   const status=document.createElement('div');status.className=`place-status status-${String(st.state||'NORMAL').toLowerCase()}`;const indicator=document.createElement('span');indicator.className='status-indicator';indicator.setAttribute('aria-hidden','true');const statusText=document.createElement('span');
   const messages={ACTIVE:'A loaded official interruption record currently resolves to this barangay.',SCHEDULED:'A loaded official future interruption resolves to this barangay.',WINDOW_ENDED:'The loaded interruption window ended; restoration has not been independently confirmed.',RESTORED:'An explicit official restoration record resolves to this barangay.',COMMUNITY:'A recent report stored on this device indicates power loss. Official confirmation is not loaded.',NORMAL:'Nothing in the loaded official interruption records currently resolves to this barangay.'};statusText.textContent=messages[st.state]||messages.NORMAL;status.append(indicator,statusText);card.appendChild(status);
   const evidence=document.createElement('div');evidence.className='claim-evidence';
-  if(st.event){const src=document.createElement('span');src.textContent=st.event.source?.publisher||'Imported source';const pub=document.createElement('span');pub.textContent=st.event.source?.publishedAt?`Published ${new Date(st.event.source.publishedAt).toLocaleString('en-PH',{timeZone:'Asia/Manila',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})}`:'Publication time unavailable';const cov=document.createElement('span');cov.textContent=`${st.coverage?.replaceAll('_',' ')||'Coverage not asserted'} · confidence ${st.event.confidence||coverageConfidence(st.coverage)}`;evidence.append(src,pub,cov);}else{const src=document.createElement('span');src.textContent=st.state==='COMMUNITY'?'Community reports only':'No active official local advisory in loaded records';evidence.append(src);}card.appendChild(evidence);
+  if(st.event){const src=document.createElement('span');src.textContent=st.event.source?.publisher||'Imported source';const pub=document.createElement('span');pub.textContent=st.event.source?.publishedAt?`Published ${new Date(st.event.source.publishedAt).toLocaleString('en-PH',{timeZone:'Asia/Manila',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})}`:'Publication time unavailable';const cov=document.createElement('span');cov.textContent=`${st.coverage?.replaceAll('_',' ')||'Coverage not asserted'} · confidence ${st.event.confidence||coverageConfidence(st.coverage)}`;evidence.append(src,pub,cov);}else{const src=document.createElement('span');src.textContent=st.state==='COMMUNITY'?'Community reports only':'No active official local advisory in loaded records';evidence.append(src);}card.appendChild(evidence);const liveNote=document.createElement('div');liveNote.className='live-service-note';liveNote.textContent=state.apiMode==='LIVE'?(state.apiHealth?.status==='NOT_CONNECTED'?'Live API connected · source ingestion not connected · bundled data active':state.apiHealth?.status==='DEGRADED'?'Live update service delayed · latest validated data active':'Live update service connected · validated API evidence checked'):state.apiMode==='NOT_CONFIGURED'?'Live update service not configured · bundled validated data active':state.apiMode==='CHECKING'?'Checking live update service':`Live update service unavailable · bundled validated data active${state.apiReason?` · ${state.apiReason}`:''}`;card.appendChild(liveNote);
   const meta=document.createElement('div');meta.className='place-meta-line';meta.textContent=`PSGC ${psgcCode||'unavailable'} · administrative identity validated to PSA`;card.appendChild(meta);
   const feederBlock=document.createElement('section');feederBlock.className='feeder-context';const fh=document.createElement('div');fh.className='feeder-context-head';const ftitle=document.createElement('strong');ftitle.textContent='Published feeder coverage';const fsrc=document.createElement('span');fsrc.textContent=state.feederData?'MORE Power coverage cards':'Feeder data unavailable';fh.append(ftitle,fsrc);feederBlock.appendChild(fh);
   if(feederRelations.length){const list=document.createElement('div');list.className='feeder-list';for(const rel of feederRelations){const row=document.createElement('div');row.className='feeder-row';const main=document.createElement('div');main.className='feeder-row-main';const name=document.createElement('b');name.textContent=rel.feeder_name;const id=document.createElement('small');id.textContent=rel.feeder_id;main.append(name,id);const cov=document.createElement('span');cov.className=`feeder-coverage ${rel.coverage_type.toLowerCase()}`;cov.textContent=rel.coverage_type==='WHOLE'?'WHOLE BARANGAY':'PORTION';row.append(main,cov);list.appendChild(row);}feederBlock.appendChild(list);const fn=document.createElement('p');fn.className='feeder-context-note';fn.textContent=feederRelations.some(r=>r.coverage_type==='PORTION')?'“Portion” means the utility card does not identify which streets or addresses inside the barangay are on that feeder. This relationship is network context, not an exact outage polygon.':'Utility coverage cards list the whole barangay on the feeder. A feeder association still does not by itself confirm a current interruption.';feederBlock.appendChild(fn);}else{const none=document.createElement('p');none.className='feeder-context-note';none.textContent=state.feederError?'Feeder coverage data could not be validated.':'No barangay-level feeder relationship is named for this barangay in the loaded MORE Power coverage cards.';feederBlock.appendChild(none);}card.appendChild(feederBlock);
@@ -841,7 +859,7 @@ function registerPWA(){
   window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();state.deferredInstall=e;if(el('installBtn'))el('installBtn').hidden=false;});
   el('installBtn')?.addEventListener('click',async()=>{if(!state.deferredInstall)return;state.deferredInstall.prompt();await state.deferredInstall.userChoice;state.deferredInstall=null;el('installBtn').hidden=true;});
 }
-function updateOnline(){const b=el('onlineBadge');const text=b.querySelector('span:last-child');if(navigator.onLine){if(text)text.textContent='Online · runtime cache enabled';b.className='connection-badge good';}else{if(text)text.textContent='Offline · cached/local data';b.className='connection-badge warning';}}
+function updateOnline(){const b=el('onlineBadge');const text=b.querySelector('span:last-child');if(!navigator.onLine){if(text)text.textContent='Offline · cached/local data';b.className='connection-badge warning';return;}if(state.apiMode==='LIVE'){const delayed=['DEGRADED','NOT_CONNECTED'].includes(state.apiHealth?.status);if(text)text.textContent=state.apiHealth?.status==='NOT_CONNECTED'?'API live · ingestion not connected':delayed?'API live · ingestion delayed':'Live API · validated';b.className=`connection-badge ${delayed?'warning':'good'}`;return;}if(state.apiMode==='CHECKING'){if(text)text.textContent='Checking live API';b.className='connection-badge neutral';return;}if(text)text.textContent=state.apiMode==='NOT_CONFIGURED'?'Local validated data':'Live update unavailable';b.className='connection-badge warning';}
 
 function bindUI(){
   qsAll('.tab').forEach(b=>b.addEventListener('click',()=>setView(b.dataset.view)));
@@ -856,11 +874,12 @@ function bindUI(){
   el('alertBtn')?.addEventListener('click',enableAlerts);el('homeMapBtn')?.addEventListener('click',()=>{if(!state.mapReady)return;const b=currentCityBounds();state.map.fitBounds([[b.west,b.south],[b.east,b.north]],{padding:36,pitch:0,bearing:0,duration:500});});
   el('tiltMapBtn')?.addEventListener('click',()=>{if(!state.mapReady)return;state.replayMode=true;state.replay3d=!state.replay3d;state.map.easeTo({pitch:state.replay3d?52:0,bearing:state.replay3d?-16:0,duration:450});el('tiltMapBtn').setAttribute('aria-pressed',String(state.replay3d));updateMap();});
   el('themeBtn')?.addEventListener('click',toggleTheme);
-  window.addEventListener('online',updateOnline);window.addEventListener('offline',updateOnline);
+  window.addEventListener('online',()=>{updateOnline();const identity=identityBarangay(state.selectedBarangay);if(identity)void refreshLiveStatus(identity);});window.addEventListener('offline',updateOnline);
 }
 async function boot(){
   initializeTheme();bindUI();registerPWA();updateOnline();state.dataSaver=false;
   try{const geographyReady=await loadData();if(geographyReady)initializeMap();}catch(e){console.error('GridWatch core data failed closed.',e);if(el('mapAuthority'))el('mapAuthority').textContent='CORE DATA NOT VALIDATED';if(el('mapMessage')){el('mapMessage').textContent=e.message;el('mapMessage').hidden=false;}if(el('map'))el('map').style.display='none';if(el('fallbackMap'))el('fallbackMap').hidden=false;}
+  await refreshApiHealth();
   setInterval(()=>{if(state.currentView==='now')renderNow();},60000);
 }
 boot();

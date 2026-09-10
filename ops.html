@@ -1,20 +1,35 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#f5f6f7" />
-  <title>GridWatch Operator</title>
+  <meta name="description" content="Read-only GridWatch ingestion and source health." />
+  <title>GridWatch Operator Health</title>
   <style>
-    :root{font-family:"Segoe UI",Arial,sans-serif;background:#f5f6f7;color:#08090b}*{box-sizing:border-box}body{margin:0}header{min-height:64px;border-bottom:1px solid #cfd3d7;display:flex;align-items:center;justify-content:space-between;padding:12px 20px}main{max-width:760px;margin:0 auto;padding:48px 24px}a{color:#145cff}h1{font-size:42px;letter-spacing:-.04em;margin:0 0 12px}p{line-height:1.6;color:#5c6269}.status{margin-top:28px;border-top:1px solid #cfd3d7;padding-top:18px;font-family:Consolas,monospace;font-size:13px;color:#5c6269}
+    :root{--font-ui:"Arial Nova","Avenir Next","Segoe UI",Arial,sans-serif;--font-mono:"SFMono-Regular",Consolas,"Liberation Mono",monospace;--paper:#f5f6f7;--surface:#fff;--surface-2:#eceff2;--ink:#08090b;--muted:#5c6269;--line:#cfd3d7;--line-soft:#e3e6e9;--utility:#145cff;--warning:#9a6200;--ok:#2e7650;--danger:#d93434;--focus:#145cff;color-scheme:light}
+    *{box-sizing:border-box}body{margin:0;min-width:320px;min-height:100dvh;background:var(--paper);color:var(--ink);font:16px/1.5 var(--font-ui)}a{color:var(--utility)}:where(a,button):focus-visible{outline:3px solid var(--focus);outline-offset:2px}.topbar{min-height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 20px;border-bottom:1px solid var(--line)}.brand{font-weight:900;letter-spacing:.04em}.topbar a{min-height:44px;display:inline-flex;align-items:center;padding:8px;text-transform:uppercase;font:750 10px/1 var(--font-mono);letter-spacing:.045em}.shell{width:min(1080px,100%);margin:0 auto;padding:40px 24px 64px}.hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:end;padding-bottom:24px;border-bottom:1px solid var(--line)}.eyebrow{color:var(--muted);font:800 11px/1.2 var(--font-mono);letter-spacing:.08em;text-transform:uppercase}.hero h1{margin:8px 0;font-size:clamp(32px,5vw,54px);line-height:1;letter-spacing:-.045em}.hero p{max-width:62ch;margin:0;color:var(--muted)}.state{padding:10px 12px;border:1px solid var(--line);background:var(--surface);font:850 12px/1 var(--font-mono);letter-spacing:.05em}.state.live{border-color:var(--ok);color:var(--ok)}.state.degraded{border-color:var(--warning);color:var(--warning)}.state.not-connected{border-color:var(--danger);color:var(--danger)}.section{padding:28px 0;border-bottom:1px solid var(--line)}.section h2{margin:0 0 14px;font-size:19px;letter-spacing:-.02em}.metric-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}.metric{min-height:116px;padding:16px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface)}.metric span,.row span{display:block;color:var(--muted);font:700 10px/1.35 var(--font-mono);letter-spacing:.04em;text-transform:uppercase}.metric strong{display:block;margin-top:14px;font-size:18px;line-height:1.2;overflow-wrap:anywhere}.rows{border-top:1px solid var(--line)}.row{display:grid;grid-template-columns:minmax(170px,.7fr) minmax(0,1fr);gap:20px;padding:12px 0;border-bottom:1px solid var(--line-soft)}.row strong{font:650 13px/1.45 var(--font-mono);overflow-wrap:anywhere}.note{margin-top:20px;padding:14px 0;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+    @media(max-width:760px){.shell{padding:28px 16px 48px}.hero{grid-template-columns:1fr;align-items:start}.state{justify-self:start}.metric-grid{grid-template-columns:1fr 1fr}.row{grid-template-columns:1fr;gap:5px}}
+    @media(max-width:480px){.topbar{padding:10px 12px}.metric-grid{grid-template-columns:1fr}.hero h1{font-size:34px}}
   </style>
 </head>
 <body>
-<header><strong>GRIDWATCH / OPS</strong><a href="./index.html">Resident app</a></header>
-<main>
-  <h1>Operator console</h1>
-  <p>The resident application is deployable independently. This route is reserved for the separate GridWatch operator workflow and deliberately does not expose resident controls as admin controls.</p>
-  <div class="status">OPS UI STATUS: SHELL ONLY · BACKEND/AUTH NOT CONNECTED</div>
-</main>
+  <header class="topbar"><span class="brand">GRIDWATCH / OPS</span><a href="./index.html">Resident app</a></header>
+  <main class="shell">
+    <section class="hero"><div><span class="eyebrow">Read-only ingestion health</span><h1>Evidence pipeline</h1><p>Source checks, review pressure, and free-tier protection. This page exposes no publishing or administrative controls.</p></div><strong id="overallState" class="state not-connected" role="status">CHECKING</strong></section>
+    <section class="section"><h2>Service status</h2><div id="serviceMetrics" class="metric-grid" aria-live="polite"></div></section>
+    <section class="section"><h2>Source activity</h2><div id="sourceRows" class="rows"></div></section>
+    <section class="section"><h2>Daily budget guards</h2><div id="budgetRows" class="rows"></div><p class="note">Soft limits intentionally preserve headroom. When a guard stops ingestion, the resident app continues with the most recent validated dataset.</p></section>
+  </main>
+  <script src="./data/runtime-config.js"></script>
+  <script type="module">
+    import {getGridWatchHealth} from './src/gridwatch-api.js';
+    const el=id=>document.getElementById(id),text=value=>value==null?'Not available':String(value),stamp=value=>value?new Date(value).toLocaleString('en-PH',{timeZone:'Asia/Manila'}):'Not available';
+    function metric(label,value){const item=document.createElement('div');item.className='metric';const name=document.createElement('span');name.textContent=label;const data=document.createElement('strong');data.textContent=text(value);item.append(name,data);return item;}
+    function row(label,value){const item=document.createElement('div');item.className='row';const name=document.createElement('span');name.textContent=label;const data=document.createElement('strong');data.textContent=text(value);item.append(name,data);return item;}
+    function renderUnavailable(mode,reason){const state=el('overallState');state.textContent=mode==='NOT_CONFIGURED'?'NOT CONNECTED':'DEGRADED';state.className=`state ${mode==='NOT_CONFIGURED'?'not-connected':'degraded'}`;el('serviceMetrics').replaceChildren(metric('API',mode==='NOT_CONFIGURED'?'NOT CONNECTED':'UNAVAILABLE'),metric('D1','NOT CONNECTED'),metric('R2','NOT CONNECTED'));el('sourceRows').replaceChildren(row('Last NGCP check','Not available'),row('Last MORE check','Not available'),row('Live service',reason||'No API configured'));el('budgetRows').replaceChildren(row('Browser','Not available'),row('Workers AI','Not available'),row('Queue','Not available'));}
+    function render(data){const state=el('overallState');state.textContent=data.status.replaceAll('_',' ');state.className=`state ${data.status.toLowerCase().replace('_','-')}`;el('serviceMetrics').replaceChildren(metric('API',data.api),metric('D1',data.d1_status),metric('R2',data.r2_status),metric('Pending review',data.pending_review_count),metric('Validation failures',data.validation_failures),metric('Latest event',data.latest_published_event?.event_type||'None'));el('sourceRows').replaceChildren(row('Last NGCP check',data.last_ngcp_check?`${data.last_ngcp_check.status} · ${stamp(data.last_ngcp_check.started_at)}`:'Not checked'),row('Last MORE check',data.last_more_check?`${data.last_more_check.status} · ${stamp(data.last_more_check.started_at)}`:'Not checked'),row('Last successful ingestion',data.last_successful_ingestion?stamp(data.last_successful_ingestion.finished_at):'None'),row('Latest source',data.latest_source?`${data.latest_source.publisher} · ${stamp(data.latest_source.retrieved_at)}`:'None'));const budgets=data.budgets||{};el('budgetRows').replaceChildren(...['browser','ai','queue'].map(key=>row(key,`${budgets[key]?.used??0} / ${budgets[key]?.limit??'unknown'} ${budgets[key]?.unit||''}`)));}
+    const result=await getGridWatchHealth();if(result.mode==='LIVE')render(result.data);else renderUnavailable(result.mode,result.reason);
+  </script>
 </body>
 </html>
