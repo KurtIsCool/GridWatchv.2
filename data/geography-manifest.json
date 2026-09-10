@@ -1,13 +1,35 @@
 {
-  "schema_version": 1,
-  "status": "PENDING_BUILD",
+  "schema_version": 2,
+  "status": "VALIDATED",
   "app_target": "GridWatch v2.8",
   "city_psgc": "0631000000",
   "city_name": "City of Iloilo",
   "expected_barangay_count": 180,
-  "note": "Fail-closed placeholder. Run tools/build-geography.mjs to replace this file and generate the validated local GeoJSON bundle. GridWatch will not treat PENDING_BUILD geography as valid.",
-  "validation_date": "2026-09-05",
-  "identity_status": "PSA_MANIFEST_FROZEN_180",
+  "validation_date": "2026-09-10T06:17:21.410Z",
+  "identity_source": {
+    "label": "Philippine Statistics Authority — PSGC City of Iloilo barangay registry",
+    "url": "https://psa.gov.ph/classification/psgc/barangays/0631000000",
+    "publication": "Philippine Standard Geographic Code as of 30 June 2026"
+  },
+  "geometry_sources": [
+    {
+      "status": "VALIDATED",
+      "city_psgc": "0631000000",
+      "expected_features": 180,
+      "source": "Project CCHAIN Iloilo barangay geography (derived from HDX/OCHA COD-AB-PHL)",
+      "source_url": "https://data.humdata.org/dataset/project-cchain",
+      "retrieved_at": "2026-09-10T06:17:21.410Z"
+    },
+    {
+      "status": "VALIDATED",
+      "city_psgc": "0631000000",
+      "expected_features": 1,
+      "source": "OpenStreetMap administrative boundary relation 3499101 (independent source)",
+      "source_url": "https://www.openstreetmap.org/relation/3499101",
+      "license": "ODbL-1.0",
+      "retrieved_at": "2026-09-10T06:17:21.410Z"
+    }
+  ],
   "barangays": [
     {
       "psgc": "0631000001",
@@ -729,18 +751,5 @@
       "psgc": "0631000202",
       "name": "Rizal"
     }
-  ],
-  "sources": {
-    "identity": {
-      "label": "Philippine Statistics Authority — PSGC City of Iloilo barangay registry",
-      "url": "https://psa.gov.ph/classification/psgc/barangays/0631000000",
-      "publication": "Philippine Standard Geographic Code as of 30 June 2026"
-    },
-    "barangay_geometry": {
-      "status": "PENDING_BUILD"
-    },
-    "city_boundary": {
-      "status": "PENDING_BUILD"
-    }
-  }
+  ]
 }

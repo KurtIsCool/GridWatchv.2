@@ -31,7 +31,7 @@ Push to `main`, enable **Settings → Pages → Source: GitHub Actions**, and th
 
 ## Current release status
 
-**v2.8.2 deployment package**
+**v2.8.3 deployment package**
 
 PSA barangay identity and the MORE Power feeder dataset are available in the resident app. Local polygon geography is intentionally `PENDING_BUILD`, so the map remains disabled until the exact 180-feature geography and independent city boundary pass `npm run test:geography`.
 

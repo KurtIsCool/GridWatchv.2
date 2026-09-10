@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "dataset_id": "gridwatch-more-power-feeder-coverage",
   "utility": "MORE Power",
   "city_psgc": "0631000000",
@@ -13,7 +13,11 @@
     "confirmed_against_additional_user_images": [
       "e8478ce8-b8f0-4c1e-bd3a-3f1a521f59a9.png",
       "0c5802ff-cc22-4848-b385-7be54244e63f.png"
-    ]
+    ],
+    "dataset_version": "2026.09.10",
+    "retrieved_at": "2026-09-10T06:00:00+08:00",
+    "completeness": "PARTIAL_SOURCE_SET",
+    "missing_cards_notice": "La Paz Feeder 6 and Megaworld Feeder 5 coverage cards were not present in the supplied card set; neither is inferred."
   },
   "policy": {
     "barangay_is_resident_location_unit": true,
@@ -22,17 +26,21 @@
     "portion_does_not_identify_exact_address_or_subbarangay_polygon": true,
     "feeder_wide_interruption_must_not_auto_paint_all_associated_barangays_as_confirmed": true,
     "outside_iloilo_city_records_are_context_only_and_must_not_enter_city_search_or_city_map": true,
-    "unresolved_aliases_must_fail_closed_for_barangay_level_use": true
+    "unresolved_aliases_must_fail_closed_for_barangay_level_use": true,
+    "resident_wording": {
+      "whole": "Known feeder coverage includes this whole barangay.",
+      "portion": "Possible feeders serving this barangay; the utility card names only a portion."
+    }
   },
   "summary": {
     "feeders_ingested": 16,
     "coverage_rows_total": 177,
-    "iloilo_city_rows_with_psgc": 170,
+    "iloilo_city_rows_with_psgc": 171,
     "unique_iloilo_city_barangays_referenced": 108,
     "whole_rows": 37,
-    "portion_rows": 133,
+    "portion_rows": 134,
     "outside_city_rows": 4,
-    "review_required_rows": 3
+    "review_required_rows": 2
   },
   "known_missing_cards_in_uploaded_set": [
     "La Paz Feeder 6",
@@ -54,7 +62,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Arsenal Aduana",
           "barangay_psgc": "0631000007",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -64,7 +75,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Danao",
           "barangay_psgc": "0631000042",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -74,7 +88,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Edganzon",
           "barangay_psgc": "0631000054",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -84,7 +101,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Inday",
           "barangay_psgc": "0631000070",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -94,7 +114,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Kauswagan",
           "barangay_psgc": "0631000081",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -104,7 +127,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Magsaysay",
           "barangay_psgc": "0631000102",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -114,7 +140,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Nonoy",
           "barangay_psgc": "0631000116",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -124,7 +153,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Roxas Village",
           "barangay_psgc": "0631000140",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -134,7 +166,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Sampaguita",
           "barangay_psgc": "0631000146",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -144,7 +179,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "San Agustin",
           "barangay_psgc": "0631000148",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -154,7 +192,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "San Felix",
           "barangay_psgc": "0631000150",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -164,7 +205,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Villa Anita",
           "barangay_psgc": "0631000189",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -174,7 +218,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Yulo-Arroyo",
           "barangay_psgc": "0631000193",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "La Paz",
@@ -184,9 +231,13 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Nabitasan",
           "barangay_psgc": "0631000114",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         }
-      ]
+      ],
+      "source_date": "UNKNOWN_FROM_CARDS"
     },
     {
       "feeder_id": "MORE-ILO-DIVERSION-F02",
@@ -205,7 +256,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Bakhaw",
           "barangay_psgc": "0631000009",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Mandurriao",
@@ -215,7 +269,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Bolilao",
           "barangay_psgc": "0631000021",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Mandurriao",
@@ -225,7 +282,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Buhang Taft North",
           "barangay_psgc": "0631000025",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Mandurriao",
@@ -235,7 +295,10 @@
           "match_status": "UNRESOLVED",
           "canonical_name": null,
           "barangay_psgc": null,
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "REVIEW_REQUIRED"
         },
         {
           "district": "Mandurriao",
@@ -245,7 +308,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Hibao-an Sur",
           "barangay_psgc": "0631000067",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Mandurriao",
@@ -255,7 +321,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Hibao-an Norte",
           "barangay_psgc": "0631000152",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Mandurriao",
@@ -265,7 +334,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "San Rafael",
           "barangay_psgc": "0631000160",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Mandurriao",
@@ -275,7 +347,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Santa Rosa",
           "barangay_psgc": "0631000165",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Mandurriao",
@@ -285,7 +360,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Pale Benedicto Rizal",
           "barangay_psgc": "0631000196",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Mandurriao",
@@ -295,7 +373,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "PHHC Block 22 NHA",
           "barangay_psgc": "0631000128",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Mandurriao",
@@ -305,7 +386,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "PHHC Block 17",
           "barangay_psgc": "0631000127",
-          "geometry_precision": "FULL_BARANGAY"
+          "geometry_precision": "FULL_BARANGAY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Jaro",
@@ -315,7 +399,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Calubihan",
           "barangay_psgc": "0631000078",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Jaro",
@@ -325,7 +412,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Cuartero",
           "barangay_psgc": "0631000040",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Jaro",
@@ -335,7 +425,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Dungon A",
           "barangay_psgc": "0631000050",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Jaro",
@@ -345,7 +438,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Dungon B",
           "barangay_psgc": "0631000051",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Jaro",
@@ -355,9 +451,13 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Sambag",
           "barangay_psgc": "0631000144",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         }
-      ]
+      ],
+      "source_date": "UNKNOWN_FROM_CARDS"
     },
     {
       "feeder_id": "MORE-ILO-DIVERSION-F03",
@@ -376,7 +476,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Edganzon",
           "barangay_psgc": "0631000054",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -386,7 +489,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Delgado-Jalandoni-Bagumbayan",
           "barangay_psgc": "0631000075",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -396,7 +502,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Jalandoni-Wilson",
           "barangay_psgc": "0631000074",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -406,7 +515,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Hipodromo",
           "barangay_psgc": "0631000069",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -416,7 +528,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Inday",
           "barangay_psgc": "0631000070",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -426,7 +541,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Kauswagan",
           "barangay_psgc": "0631000081",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -436,7 +554,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Kahirupan",
           "barangay_psgc": "0631000197",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -446,7 +567,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Liberation",
           "barangay_psgc": "0631000090",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -456,7 +580,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Magsaysay",
           "barangay_psgc": "0631000102",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -466,7 +593,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Maria Clara",
           "barangay_psgc": "0631000107",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -476,7 +606,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Nonoy",
           "barangay_psgc": "0631000116",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -486,7 +619,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Roxas Village",
           "barangay_psgc": "0631000140",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -496,7 +632,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Sampaguita",
           "barangay_psgc": "0631000146",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -506,7 +645,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "San Agustin",
           "barangay_psgc": "0631000148",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -516,7 +658,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Flores",
           "barangay_psgc": "0631000057",
-          "geometry_precision": "FULL_BARANGAY"
+          "geometry_precision": "FULL_BARANGAY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -526,7 +671,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Gloria",
           "barangay_psgc": "0631000062",
-          "geometry_precision": "FULL_BARANGAY"
+          "geometry_precision": "FULL_BARANGAY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -536,7 +684,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Osmeña",
           "barangay_psgc": "0631000123",
-          "geometry_precision": "FULL_BARANGAY"
+          "geometry_precision": "FULL_BARANGAY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -546,7 +697,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Rima-Rizal",
           "barangay_psgc": "0631000136",
-          "geometry_precision": "FULL_BARANGAY"
+          "geometry_precision": "FULL_BARANGAY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -556,7 +710,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Rizal Ibarra",
           "barangay_psgc": "0631000138",
-          "geometry_precision": "FULL_BARANGAY"
+          "geometry_precision": "FULL_BARANGAY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -566,7 +723,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Rizal Palapala I",
           "barangay_psgc": "0631000125",
-          "geometry_precision": "FULL_BARANGAY"
+          "geometry_precision": "FULL_BARANGAY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -576,7 +736,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Rizal Palapala II",
           "barangay_psgc": "0631000126",
-          "geometry_precision": "FULL_BARANGAY"
+          "geometry_precision": "FULL_BARANGAY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -586,9 +749,13 @@
           "match_status": "DISTRICT_DISAMBIGUATED",
           "canonical_name": "San Jose (City Proper)",
           "barangay_psgc": "0631000200",
-          "geometry_precision": "FULL_BARANGAY"
+          "geometry_precision": "FULL_BARANGAY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         }
-      ]
+      ],
+      "source_date": "UNKNOWN_FROM_CARDS"
     },
     {
       "feeder_id": "MORE-ILO-DIVERSION-F04",
@@ -608,7 +775,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Bolilao",
           "barangay_psgc": "0631000021",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Mandurriao",
@@ -618,20 +788,29 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "San Rafael",
           "barangay_psgc": "0631000160",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Mandurriao",
           "source_label": "Taft North",
           "coverage_type": "PORTION",
-          "city_membership": "ILOILO_CITY_EXPECTED",
-          "match_status": "REVIEW_REQUIRED",
-          "canonical_name": null,
-          "barangay_psgc": null,
+          "city_membership": "ILOILO_CITY",
+          "match_status": "DISTRICT_RESOLVED_ALIAS",
+          "canonical_name": "Buhang Taft North",
+          "barangay_psgc": "0631000025",
           "suggested_canonical_name": "Buhang Taft North",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "MEDIUM",
+          "manual_review": true,
+          "resolution_note": "Mandurriao context and the PSA roster identify Buhang Taft North as the only qualified barangay; retained as a reviewed alias."
         }
-      ]
+      ],
+      "source_date": "UNKNOWN_FROM_CARDS"
     },
     {
       "feeder_id": "MORE-ILO-LAPAZ-F01",
@@ -648,7 +827,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Alalasan Lapuz",
           "barangay_psgc": "0631000005",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Lapuz",
@@ -658,7 +840,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Don Esteban-Lapuz",
           "barangay_psgc": "0631000047",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Lapuz",
@@ -668,7 +853,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Lapuz Sur",
           "barangay_psgc": "0631000088",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Lapuz",
@@ -678,7 +866,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Loboc-Lapuz",
           "barangay_psgc": "0631000094",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Lapuz",
@@ -688,7 +879,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Punong-Lapuz",
           "barangay_psgc": "0631000133",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Lapuz",
@@ -698,7 +892,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Sinikway",
           "barangay_psgc": "0631000014",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Lapuz",
@@ -708,7 +905,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Obrero-Lapuz",
           "barangay_psgc": "0631000121",
-          "geometry_precision": "FULL_BARANGAY"
+          "geometry_precision": "FULL_BARANGAY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Lapuz",
@@ -718,7 +918,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Jalandoni Estate-Lapuz",
           "barangay_psgc": "0631000073",
-          "geometry_precision": "FULL_BARANGAY"
+          "geometry_precision": "FULL_BARANGAY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Lapuz",
@@ -728,7 +931,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Lapuz Norte",
           "barangay_psgc": "0631000087",
-          "geometry_precision": "FULL_BARANGAY"
+          "geometry_precision": "FULL_BARANGAY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Lapuz",
@@ -738,7 +944,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Libertad-Lapuz",
           "barangay_psgc": "0631000092",
-          "geometry_precision": "FULL_BARANGAY"
+          "geometry_precision": "FULL_BARANGAY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Lapuz",
@@ -748,7 +957,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Mansaya-Lapuz",
           "barangay_psgc": "0631000105",
-          "geometry_precision": "FULL_BARANGAY"
+          "geometry_precision": "FULL_BARANGAY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Lapuz",
@@ -758,7 +970,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Progreso-Lapuz",
           "barangay_psgc": "0631000132",
-          "geometry_precision": "FULL_BARANGAY"
+          "geometry_precision": "FULL_BARANGAY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "La Paz",
@@ -768,7 +983,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Baldoza",
           "barangay_psgc": "0631000012",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "La Paz",
@@ -778,7 +996,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Ingore",
           "barangay_psgc": "0631000072",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -788,7 +1009,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Danao",
           "barangay_psgc": "0631000042",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -798,9 +1022,13 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Edganzon",
           "barangay_psgc": "0631000054",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         }
-      ]
+      ],
+      "source_date": "UNKNOWN_FROM_CARDS"
     },
     {
       "feeder_id": "MORE-ILO-LAPAZ-F02",
@@ -819,7 +1047,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Baldoza",
           "barangay_psgc": "0631000012",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "La Paz",
@@ -829,7 +1060,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Banuyao",
           "barangay_psgc": "0631000016",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "La Paz",
@@ -839,7 +1073,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Hinactacan",
           "barangay_psgc": "0631000068",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "La Paz",
@@ -849,7 +1086,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Ingore",
           "barangay_psgc": "0631000072",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "La Paz",
@@ -859,7 +1099,10 @@
           "match_status": "DISTRICT_DISAMBIGUATED",
           "canonical_name": "San Isidro (La Paz)",
           "barangay_psgc": "0631000199",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "La Paz",
@@ -869,7 +1112,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Ticud",
           "barangay_psgc": "0631000183",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Jaro",
@@ -879,7 +1125,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Balabago",
           "barangay_psgc": "0631000010",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Jaro",
@@ -889,7 +1138,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Balantang",
           "barangay_psgc": "0631000011",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Jaro",
@@ -899,7 +1151,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Bito-on",
           "barangay_psgc": "0631000019",
-          "geometry_precision": "FULL_BARANGAY"
+          "geometry_precision": "FULL_BARANGAY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Jaro",
@@ -909,7 +1164,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Buntatala",
           "barangay_psgc": "0631000026",
-          "geometry_precision": "FULL_BARANGAY"
+          "geometry_precision": "FULL_BARANGAY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Jaro",
@@ -919,7 +1177,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Lanit",
           "barangay_psgc": "0631000086",
-          "geometry_precision": "FULL_BARANGAY"
+          "geometry_precision": "FULL_BARANGAY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Jaro",
@@ -929,9 +1190,13 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Tagbac",
           "barangay_psgc": "0631000179",
-          "geometry_precision": "FULL_BARANGAY"
+          "geometry_precision": "FULL_BARANGAY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         }
-      ]
+      ],
+      "source_date": "UNKNOWN_FROM_CARDS"
     },
     {
       "feeder_id": "MORE-ILO-LAPAZ-F03",
@@ -948,7 +1213,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Banuyao",
           "barangay_psgc": "0631000016",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "La Paz",
@@ -958,7 +1226,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Divinagracia",
           "barangay_psgc": "0631000046",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "La Paz",
@@ -968,7 +1239,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Hinactacan",
           "barangay_psgc": "0631000068",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "La Paz",
@@ -978,7 +1252,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Lopez Jaena Sur",
           "barangay_psgc": "0631000096",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "La Paz",
@@ -988,7 +1265,10 @@
           "match_status": "DISTRICT_DISAMBIGUATED",
           "canonical_name": "Tabuc Suba (La Paz)",
           "barangay_psgc": "0631000201",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Lapuz",
@@ -998,7 +1278,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Alalasan Lapuz",
           "barangay_psgc": "0631000005",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Lapuz",
@@ -1008,7 +1291,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Sinikway",
           "barangay_psgc": "0631000014",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Lapuz",
@@ -1018,7 +1304,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Don Esteban-Lapuz",
           "barangay_psgc": "0631000047",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Jaro",
@@ -1028,7 +1317,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Balabago",
           "barangay_psgc": "0631000010",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Jaro",
@@ -1038,7 +1330,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Buhang",
           "barangay_psgc": "0631000024",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Jaro",
@@ -1048,7 +1343,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Cubay",
           "barangay_psgc": "0631000041",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Jaro",
@@ -1058,7 +1356,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "M. V. Hechanova",
           "barangay_psgc": "0631000098",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Jaro",
@@ -1068,7 +1369,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Quintin Salas",
           "barangay_psgc": "0631000135",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Jaro",
@@ -1078,9 +1382,13 @@
           "match_status": "DISTRICT_DISAMBIGUATED",
           "canonical_name": "Tabuc Suba (Jaro)",
           "barangay_psgc": "0631000175",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         }
-      ]
+      ],
+      "source_date": "UNKNOWN_FROM_CARDS"
     },
     {
       "feeder_id": "MORE-ILO-LAPAZ-F04",
@@ -1097,7 +1405,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Edganzon",
           "barangay_psgc": "0631000054",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -1107,7 +1418,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Maria Clara",
           "barangay_psgc": "0631000107",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -1117,7 +1431,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Nonoy",
           "barangay_psgc": "0631000116",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -1127,7 +1444,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "President Roxas",
           "barangay_psgc": "0631000131",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -1137,7 +1457,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Yulo-Arroyo",
           "barangay_psgc": "0631000193",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -1147,7 +1470,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Arsenal Aduana",
           "barangay_psgc": "0631000007",
-          "geometry_precision": "FULL_BARANGAY"
+          "geometry_precision": "FULL_BARANGAY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -1157,7 +1483,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Concepcion-Montes",
           "barangay_psgc": "0631000038",
-          "geometry_precision": "FULL_BARANGAY"
+          "geometry_precision": "FULL_BARANGAY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -1167,7 +1496,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "General Hughes-Montes",
           "barangay_psgc": "0631000061",
-          "geometry_precision": "FULL_BARANGAY"
+          "geometry_precision": "FULL_BARANGAY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -1177,7 +1509,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Legaspi dela Rama",
           "barangay_psgc": "0631000089",
-          "geometry_precision": "FULL_BARANGAY"
+          "geometry_precision": "FULL_BARANGAY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -1187,7 +1522,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Monica Blumentritt",
           "barangay_psgc": "0631000020",
-          "geometry_precision": "FULL_BARANGAY"
+          "geometry_precision": "FULL_BARANGAY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -1197,7 +1535,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Muelle Loney-Montes",
           "barangay_psgc": "0631000113",
-          "geometry_precision": "FULL_BARANGAY"
+          "geometry_precision": "FULL_BARANGAY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -1207,7 +1548,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Ortiz",
           "barangay_psgc": "0631000122",
-          "geometry_precision": "FULL_BARANGAY"
+          "geometry_precision": "FULL_BARANGAY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -1217,7 +1561,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Santo Rosario-Duran",
           "barangay_psgc": "0631000169",
-          "geometry_precision": "FULL_BARANGAY"
+          "geometry_precision": "FULL_BARANGAY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -1227,7 +1574,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Veterans Village",
           "barangay_psgc": "0631000188",
-          "geometry_precision": "FULL_BARANGAY"
+          "geometry_precision": "FULL_BARANGAY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -1237,9 +1587,13 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Zamora-Melliza",
           "barangay_psgc": "0631000195",
-          "geometry_precision": "FULL_BARANGAY"
+          "geometry_precision": "FULL_BARANGAY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         }
-      ]
+      ],
+      "source_date": "UNKNOWN_FROM_CARDS"
     },
     {
       "feeder_id": "MORE-ILO-LAPAZ-F05",
@@ -1258,7 +1612,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Baldoza",
           "barangay_psgc": "0631000012",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "La Paz",
@@ -1268,7 +1625,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Burgos-Mabini-Plaza",
           "barangay_psgc": "0631000099",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "La Paz",
@@ -1278,7 +1638,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Divinagracia",
           "barangay_psgc": "0631000046",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "La Paz",
@@ -1288,7 +1651,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Laguda",
           "barangay_psgc": "0631000085",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "La Paz",
@@ -1298,7 +1664,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Railway",
           "barangay_psgc": "0631000139",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "La Paz",
@@ -1308,7 +1677,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Aguinaldo",
           "barangay_psgc": "0631000003",
-          "geometry_precision": "FULL_BARANGAY"
+          "geometry_precision": "FULL_BARANGAY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "La Paz",
@@ -1318,7 +1690,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Macarthur",
           "barangay_psgc": "0631000100",
-          "geometry_precision": "FULL_BARANGAY"
+          "geometry_precision": "FULL_BARANGAY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "La Paz",
@@ -1328,7 +1703,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Rizal",
           "barangay_psgc": "0631000202",
-          "geometry_precision": "FULL_BARANGAY"
+          "geometry_precision": "FULL_BARANGAY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Lapuz",
@@ -1338,7 +1716,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Alalasan Lapuz",
           "barangay_psgc": "0631000005",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Lapuz",
@@ -1348,7 +1729,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Lapuz Sur",
           "barangay_psgc": "0631000088",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Lapuz",
@@ -1358,7 +1742,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Loboc-Lapuz",
           "barangay_psgc": "0631000094",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Lapuz",
@@ -1368,7 +1755,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Punong-Lapuz",
           "barangay_psgc": "0631000133",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -1378,7 +1768,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Arsenal Aduana",
           "barangay_psgc": "0631000007",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -1388,7 +1781,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Danao",
           "barangay_psgc": "0631000042",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -1398,7 +1794,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Edganzon",
           "barangay_psgc": "0631000054",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -1408,7 +1807,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "President Roxas",
           "barangay_psgc": "0631000131",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -1418,7 +1820,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Sampaguita",
           "barangay_psgc": "0631000146",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "City Proper",
@@ -1428,9 +1833,13 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Yulo-Arroyo",
           "barangay_psgc": "0631000193",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         }
-      ]
+      ],
+      "source_date": "UNKNOWN_FROM_CARDS"
     },
     {
       "feeder_id": "MORE-ILO-LAPAZ-F07",
@@ -1447,7 +1856,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Baldoza",
           "barangay_psgc": "0631000012",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "La Paz",
@@ -1457,7 +1869,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Banuyao",
           "barangay_psgc": "0631000016",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "La Paz",
@@ -1467,7 +1882,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Burgos-Mabini-Plaza",
           "barangay_psgc": "0631000099",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "La Paz",
@@ -1477,7 +1895,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Jereos",
           "barangay_psgc": "0631000077",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "La Paz",
@@ -1487,7 +1908,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Lopez Jaena Sur",
           "barangay_psgc": "0631000096",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "La Paz",
@@ -1497,7 +1921,10 @@
           "match_status": "DISTRICT_DISAMBIGUATED",
           "canonical_name": "San Isidro (La Paz)",
           "barangay_psgc": "0631000199",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "La Paz",
@@ -1507,7 +1934,10 @@
           "match_status": "DISTRICT_DISAMBIGUATED",
           "canonical_name": "Tabuc Suba (La Paz)",
           "barangay_psgc": "0631000201",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "La Paz",
@@ -1517,7 +1947,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Ticud",
           "barangay_psgc": "0631000183",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "La Paz",
@@ -1527,7 +1960,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Caingin",
           "barangay_psgc": "0631000029",
-          "geometry_precision": "FULL_BARANGAY"
+          "geometry_precision": "FULL_BARANGAY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "La Paz",
@@ -1537,7 +1973,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Gustilo",
           "barangay_psgc": "0631000063",
-          "geometry_precision": "FULL_BARANGAY"
+          "geometry_precision": "FULL_BARANGAY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "La Paz",
@@ -1547,7 +1986,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Lopez Jaena Norte",
           "barangay_psgc": "0631000095",
-          "geometry_precision": "FULL_BARANGAY"
+          "geometry_precision": "FULL_BARANGAY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Jaro",
@@ -1557,7 +1999,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Benedicto",
           "barangay_psgc": "0631000018",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Jaro",
@@ -1567,7 +2012,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Democracia",
           "barangay_psgc": "0631000044",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Jaro",
@@ -1577,7 +2025,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Marcelo H. del Pilar",
           "barangay_psgc": "0631000106",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Jaro",
@@ -1587,9 +2038,13 @@
           "match_status": "DISTRICT_DISAMBIGUATED",
           "canonical_name": "San Pedro (Jaro)",
           "barangay_psgc": "0631000159",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         }
-      ]
+      ],
+      "source_date": "UNKNOWN_FROM_CARDS"
     },
     {
       "feeder_id": "MORE-ILO-LAPAZ-F08",
@@ -1599,7 +2054,8 @@
       "notes": [
         "Source card states “GOLDEN PORTALS - LA PAZ” and does not name a barangay. Stored as a feeder note, not converted to barangay coverage."
       ],
-      "coverage": []
+      "coverage": [],
+      "source_date": "UNKNOWN_FROM_CARDS"
     },
     {
       "feeder_id": "MORE-ILO-MEGAWORLD-F01",
@@ -1616,7 +2072,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Calahunan",
           "barangay_psgc": "0631000030",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Mandurriao",
@@ -1626,7 +2085,10 @@
           "match_status": "UNRESOLVED",
           "canonical_name": null,
           "barangay_psgc": null,
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "REVIEW_REQUIRED"
         },
         {
           "district": "Mandurriao",
@@ -1636,7 +2098,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Guzman-Jesena",
           "barangay_psgc": "0631000064",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Mandurriao",
@@ -1646,7 +2111,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Hibao-an Sur",
           "barangay_psgc": "0631000067",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Mandurriao",
@@ -1656,7 +2124,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Hibao-an Norte",
           "barangay_psgc": "0631000152",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Mandurriao",
@@ -1666,7 +2137,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Oñate de Leon",
           "barangay_psgc": "0631000120",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Mandurriao",
@@ -1676,7 +2150,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Santa Rosa",
           "barangay_psgc": "0631000165",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Mandurriao",
@@ -1686,7 +2163,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Pale Benedicto Rizal",
           "barangay_psgc": "0631000196",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Mandurriao",
@@ -1696,7 +2176,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "PHHC Block 22 NHA",
           "barangay_psgc": "0631000128",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Pavia",
@@ -1706,9 +2189,13 @@
           "match_status": "OUTSIDE_CITY",
           "canonical_name": null,
           "barangay_psgc": null,
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "REVIEW_REQUIRED"
         }
-      ]
+      ],
+      "source_date": "UNKNOWN_FROM_CARDS"
     },
     {
       "feeder_id": "MORE-ILO-MEGAWORLD-F02",
@@ -1725,7 +2212,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Abeto Mirasol Taft South",
           "barangay_psgc": "0631000178",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Mandurriao",
@@ -1735,9 +2225,13 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Airport",
           "barangay_psgc": "0631000004",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         }
-      ]
+      ],
+      "source_date": "UNKNOWN_FROM_CARDS"
     },
     {
       "feeder_id": "MORE-ILO-MEGAWORLD-F03",
@@ -1756,7 +2250,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Abeto Mirasol Taft South",
           "barangay_psgc": "0631000178",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Mandurriao",
@@ -1766,7 +2263,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Airport",
           "barangay_psgc": "0631000004",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Mandurriao",
@@ -1776,7 +2276,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Calahunan",
           "barangay_psgc": "0631000030",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Mandurriao",
@@ -1786,7 +2289,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Guzman-Jesena",
           "barangay_psgc": "0631000064",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Mandurriao",
@@ -1796,7 +2302,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Navais",
           "barangay_psgc": "0631000115",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Mandurriao",
@@ -1806,7 +2315,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "Oñate de Leon",
           "barangay_psgc": "0631000120",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Mandurriao",
@@ -1816,9 +2328,13 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Tabucan",
           "barangay_psgc": "0631000176",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         }
-      ]
+      ],
+      "source_date": "UNKNOWN_FROM_CARDS"
     },
     {
       "feeder_id": "MORE-ILO-MEGAWORLD-F04",
@@ -1837,7 +2353,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Buhang",
           "barangay_psgc": "0631000024",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Jaro",
@@ -1847,7 +2366,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Dungon B",
           "barangay_psgc": "0631000051",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Jaro",
@@ -1857,7 +2379,10 @@
           "match_status": "EXPLICIT_ALIAS",
           "canonical_name": "M. V. Hechanova",
           "barangay_psgc": "0631000098",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Jaro",
@@ -1867,7 +2392,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Quintin Salas",
           "barangay_psgc": "0631000135",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Jaro",
@@ -1877,7 +2405,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Sambag",
           "barangay_psgc": "0631000144",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Jaro",
@@ -1887,7 +2418,10 @@
           "match_status": "DISTRICT_DISAMBIGUATED",
           "canonical_name": "Tabuc Suba (Jaro)",
           "barangay_psgc": "0631000175",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Jaro",
@@ -1897,7 +2431,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Tacas",
           "barangay_psgc": "0631000177",
-          "geometry_precision": "FULL_BARANGAY"
+          "geometry_precision": "FULL_BARANGAY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Jaro",
@@ -1907,7 +2444,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Ungka",
           "barangay_psgc": "0631000187",
-          "geometry_precision": "FULL_BARANGAY"
+          "geometry_precision": "FULL_BARANGAY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Pavia",
@@ -1917,7 +2457,10 @@
           "match_status": "OUTSIDE_CITY",
           "canonical_name": null,
           "barangay_psgc": null,
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "REVIEW_REQUIRED"
         },
         {
           "district": "Pavia",
@@ -1927,7 +2470,10 @@
           "match_status": "OUTSIDE_CITY",
           "canonical_name": null,
           "barangay_psgc": null,
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "REVIEW_REQUIRED"
         },
         {
           "district": "Pavia",
@@ -1937,9 +2483,13 @@
           "match_status": "OUTSIDE_CITY",
           "canonical_name": null,
           "barangay_psgc": null,
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "REVIEW_REQUIRED"
         }
-      ]
+      ],
+      "source_date": "UNKNOWN_FROM_CARDS"
     },
     {
       "feeder_id": "MORE-ILO-MEGAWORLD-F06",
@@ -1956,7 +2506,10 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "Buhang Taft North",
           "barangay_psgc": "0631000025",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         },
         {
           "district": "Mandurriao",
@@ -1966,9 +2519,13 @@
           "match_status": "EXACT_PSA",
           "canonical_name": "San Rafael",
           "barangay_psgc": "0631000160",
-          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
+          "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY",
+          "source": "MORE_POWER_FEEDER_COVERAGE_CARD",
+          "source_date": "UNKNOWN_FROM_CARDS",
+          "confidence": "HIGH"
         }
-      ]
+      ],
+      "source_date": "UNKNOWN_FROM_CARDS"
     }
   ],
   "outside_iloilo_city": [
@@ -2027,18 +2584,6 @@
       "match_status": "UNRESOLVED",
       "canonical_name": null,
       "barangay_psgc": null,
-      "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
-    },
-    {
-      "feeder_id": "MORE-ILO-DIVERSION-F04",
-      "district": "Mandurriao",
-      "source_label": "Taft North",
-      "coverage_type": "PORTION",
-      "city_membership": "ILOILO_CITY_EXPECTED",
-      "match_status": "REVIEW_REQUIRED",
-      "canonical_name": null,
-      "barangay_psgc": null,
-      "suggested_canonical_name": "Buhang Taft North",
       "geometry_precision": "PARTIAL_NO_SUBBARANGAY_GEOMETRY"
     },
     {

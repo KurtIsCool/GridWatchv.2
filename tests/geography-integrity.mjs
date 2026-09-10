@@ -1,17 +1,22 @@
 import fs from 'node:fs';
 const manifest=JSON.parse(fs.readFileSync('data/geography-manifest.json','utf8'));
+const psa=JSON.parse(fs.readFileSync('data/psa-iloilo-city-barangays.json','utf8'));
 const barangays=JSON.parse(fs.readFileSync('data/iloilo-city-barangays.geojson','utf8'));
 const boundary=JSON.parse(fs.readFileSync('data/iloilo-city-boundary.geojson','utf8'));
-if(manifest.status!=='VALIDATED')throw new Error('Geography manifest is not VALIDATED.');
-if(manifest.city_psgc!=='0631000000'||manifest.barangays?.length!==180)throw new Error('Invalid City of Iloilo identity manifest.');
-if(barangays.type!=='FeatureCollection'||barangays.features?.length!==180)throw new Error('Barangay GeoJSON must contain exactly 180 features.');
-if(boundary.type!=='FeatureCollection'||boundary.features?.length!==1)throw new Error('City boundary GeoJSON must contain exactly one feature.');
-const expected=new Set(manifest.barangays.map(b=>String(b.psgc)));
-const seen=new Set();
-for(const f of barangays.features){
-  if(!['Polygon','MultiPolygon'].includes(f.geometry?.type))throw new Error('Invalid barangay geometry type.');
-  const p=String(f.properties?.psgc||f.properties?.psgc_code||f.properties?.adm4_psgc||f.properties?.barangay_psgc||'');
-  if(!expected.has(p)||seen.has(p))throw new Error(`Invalid or duplicate barangay PSGC ${p}`); seen.add(p);
-}
-if(!['Polygon','MultiPolygon'].includes(boundary.features[0]?.geometry?.type))throw new Error('Invalid city boundary geometry type.');
-console.log('PASS: geography is VALIDATED and contains exactly 180 PSA-matched barangays plus one city boundary.');
+const fail=message=>{throw new Error(`GEOGRAPHY INTEGRITY: ${message}`)};
+const eq=(a,b)=>a[0]===b[0]&&a[1]===b[1];
+const cross=(a,b,c)=>(b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0]);
+const on=(a,b,p)=>Math.min(a[0],b[0])<=p[0]&&p[0]<=Math.max(a[0],b[0])&&Math.min(a[1],b[1])<=p[1]&&p[1]<=Math.max(a[1],b[1]);
+const intersects=(a,b,c,d)=>{const ab1=cross(a,b,c),ab2=cross(a,b,d),cd1=cross(c,d,a),cd2=cross(c,d,b);if(ab1===0&&on(a,b,c))return true;if(ab2===0&&on(a,b,d))return true;if(cd1===0&&on(c,d,a))return true;if(cd2===0&&on(c,d,b))return true;return (ab1>0)!==(ab2>0)&&(cd1>0)!==(cd2>0)};
+function ringValid(ring,label){if(!Array.isArray(ring)||ring.length<4)fail(`${label} has an undersized ring`);if(!eq(ring[0],ring.at(-1)))fail(`${label} ring is not closed`);let area=0;for(let i=0;i<ring.length-1;i++){const a=ring[i],b=ring[i+1];if(!Array.isArray(a)||a.length<2||!Number.isFinite(a[0])||!Number.isFinite(a[1]))fail(`${label} has a null/non-finite coordinate`);area+=a[0]*b[1]-b[0]*a[1];}if(Math.abs(area)<1e-14)fail(`${label} has zero area`);for(let i=0;i<ring.length-1;i++)for(let j=i+1;j<ring.length-1;j++){if(Math.abs(i-j)<=1||(i===0&&j===ring.length-2))continue;if(intersects(ring[i],ring[i+1],ring[j],ring[j+1]))fail(`${label} self-intersects`);}}
+function geometryValid(geometry,label){if(!geometry||!['Polygon','MultiPolygon'].includes(geometry.type))fail(`${label} geometry is missing or not Polygon/MultiPolygon`);const polygons=geometry.type==='Polygon'?[geometry.coordinates]:geometry.coordinates;if(!polygons.length)fail(`${label} has no polygons`);polygons.forEach((polygon,i)=>{if(!Array.isArray(polygon)||!polygon.length)fail(`${label} polygon ${i} has no rings`);polygon.forEach((ring,j)=>ringValid(ring,`${label} polygon ${i} ring ${j}`));});}
+if(manifest.status!=='VALIDATED')fail('manifest is not VALIDATED');
+if(manifest.city_psgc!=='0631000000'||manifest.barangays?.length!==180)fail('manifest does not declare 180 Iloilo City barangays');
+if(psa.city_psgc!=='0631000000'||psa.barangays?.length!==180)fail('bundled PSA roster is invalid');
+const official=new Set(psa.barangays.map(b=>String(b.psgc)));if(official.size!==180)fail('PSA roster has duplicate PSGC codes');
+const manifestCodes=new Set(manifest.barangays.map(b=>String(b.psgc)));if(manifestCodes.size!==180||[...official].some(code=>!manifestCodes.has(code)))fail('manifest PSGC membership differs from PSA');
+if(barangays.type!=='FeatureCollection'||barangays.features?.length!==180)fail('barangay GeoJSON does not contain exactly 180 features');
+const seen=new Set();for(const feature of barangays.features){const code=String(feature.properties?.psgc||'');if(!official.has(code))fail(`non-PSA barangay feature ${code||'(missing)'}`);if(seen.has(code))fail(`duplicate barangay feature ${code}`);seen.add(code);geometryValid(feature.geometry,`barangay ${code}`);}if(seen.size!==180||[...official].some(code=>!seen.has(code)))fail('barangay GeoJSON membership differs from PSA');
+if(boundary.type!=='FeatureCollection'||boundary.features?.length!==1)fail('city boundary is unavailable or does not have exactly one feature');
+if(String(boundary.features[0].properties?.psgc||boundary.features[0].properties?.city_psgc||'')!=='0631000000')fail('city boundary PSGC mismatch');geometryValid(boundary.features[0].geometry,'Iloilo City boundary');
+console.log('PASS: mandatory geography gate validated 180 exact PSA members, valid unique polygon geometry, and one independently sourced city boundary.');

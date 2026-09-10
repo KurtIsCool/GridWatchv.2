@@ -1,4 +1,4 @@
-const CACHE = 'gridwatch-v2.8.2-shell';
+const CACHE = 'gridwatch-v2.8.3-shell';
 const CORE = [
   './',
   './index.html',
@@ -28,12 +28,12 @@ self.addEventListener('fetch', event => {
   const url = new URL(req.url);
   if (url.origin !== self.location.origin) return;
   event.respondWith(
-    caches.match(req).then(cached => cached || fetch(req).then(res => {
+    (req.mode === 'navigate' ? fetch(req).catch(() => caches.match('./index.html')) : caches.match(req).then(cached => cached || fetch(req))).then(res => {
       if (res && res.ok) {
         const clone = res.clone();
         caches.open(CACHE).then(cache => cache.put(req, clone));
       }
       return res;
-    }))
+    })
   );
 });

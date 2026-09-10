@@ -283,7 +283,7 @@ const MAP_STYLE = {
 };
 const ILOILO_CITY_PSGC = '0631000000';
 const EXPECTED_ILOILO_BARANGAYS = 180;
-const APP_VERSION = "2.8.2";
+const APP_VERSION = "2.8.3";
 
 const SOURCES = {
   psgc: 'Philippine Statistics Authority PSGC — City of Iloilo 0631000000, 180 barangays',
@@ -500,7 +500,7 @@ function validateIloiloFeatures(features,manifestCheck){
     if(!manifestCheck.codes.has(code)||seen.has(code)) throw new Error(`Local geography is not an exact PSA manifest match at barangay code ${code||'missing'}.`);
     seen.add(code);
     const canonical=manifestCheck.byCode.get(code);
-    f.properties={...f.properties,psgc:code,_psgcCode:code,city_psgc:ILOILO_CITY_PSGC,adm4_en:canonical.name,name:canonical.name,validated_against:'PSA PSGC',validation_date:manifestCheck.manifest.validation_date,geometry_source:manifestCheck.manifest.sources?.barangay_geometry?.label||'NAMRIA-derived bundled geometry'};
+    f.properties={...f.properties,psgc:code,_psgcCode:code,city_psgc:ILOILO_CITY_PSGC,adm4_en:canonical.name,name:canonical.name,validated_against:'PSA PSGC',validation_date:manifestCheck.manifest.validation_date,geometry_source:manifestCheck.manifest.geometry_sources?.[0]?.source||'bundled validated geometry'};
   }
   for(const code of manifestCheck.codes)if(!seen.has(code))throw new Error(`Local geography is missing PSA barangay ${code}.`);
   return features;
@@ -573,7 +573,7 @@ async function loadData(){
     const manifestCheck=validateManifest(manifest);
     const [geoRes,boundaryGeo]=await Promise.all([readLocalJson(LOCAL_GEOGRAPHY.barangays,'barangays'),readLocalJson(LOCAL_GEOGRAPHY.boundary,'boundary')]);
     state.geo=geoRes;state.cityFeatures=validateIloiloFeatures(geoRes.features,manifestCheck);state.cityBoundary=validateCityBoundary(boundaryGeo,manifestCheck);buildCityMask();state.geographyError=null;
-    if(el('mapAuthority'))el('mapAuthority').textContent=`PSA PSGC ${ILOILO_CITY_PSGC} · ${state.cityFeatures.length}/${EXPECTED_ILOILO_BARANGAYS} validated · local NAMRIA-derived geography · outside city constrained`;
+    if(el('mapAuthority'))el('mapAuthority').textContent=`PSA PSGC ${ILOILO_CITY_PSGC} · ${state.cityFeatures.length}/${EXPECTED_ILOILO_BARANGAYS} validated · local CCHAIN/OSM geography · outside city constrained`;
     updateAll();return true;
   }catch(err){
     state.geographyError=err;console.error('GridWatch geography build failed closed.',err);

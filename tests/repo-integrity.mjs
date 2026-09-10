@@ -9,6 +9,7 @@ const must=[
 ];
 for(const f of must){if(!fs.existsSync(path.join(root,f)))throw new Error(`Missing deploy file: ${f}`)}
 const manifest=JSON.parse(fs.readFileSync(path.join(root,'data/geography-manifest.json'),'utf8'));
+if(manifest.status!=='VALIDATED')throw new Error('Production deployment is blocked until geography is VALIDATED.');
 if(manifest.city_psgc!=='0631000000'||manifest.barangays?.length!==180)throw new Error('PSA identity manifest must contain exactly 180 Iloilo City barangays.');
 const codes=new Set(manifest.barangays.map(b=>String(b.psgc)));
 if(codes.size!==180)throw new Error('PSA identity manifest has duplicate PSGC codes.');
@@ -28,4 +29,3 @@ for(const rel of ['./manifest.webmanifest','./ops.html','./data/geography-bundle
 }
 if(!html.includes("navigator.serviceWorker.register('./sw.js')"))throw new Error('PWA service worker registration is not enabled.');
 console.log(`PASS: deploy shell valid · ${manifest.barangays.length} PSA barangays · ${feeder.feeders.length} feeder cards.`);
-if(manifest.status!=='VALIDATED')console.log('NOTICE: geography is PENDING_BUILD; resident/feeders deploy, map remains fail-closed.');
