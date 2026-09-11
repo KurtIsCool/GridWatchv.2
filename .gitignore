@@ -5,3 +5,7 @@ cloudflare/.dev.vars
 cloudflare/.wrangler/
 .gridwatch-local/
 node_modules/
+facebook-downloads/
+facebook-posts.json
+facebook-debug-articles.json
+facebook-debug.html
