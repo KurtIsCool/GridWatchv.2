@@ -112,7 +112,30 @@ function safeFilename(
   )}.${extension}`;
 }
 
-function validatePostUrl(
+/*
+ * Supported stable Facebook identities:
+ *
+ * pfbid...            regular Page post
+ * video_123456789     Page video post
+ * photo_123456789     Page photo evidence
+ */
+function isValidExternalId(
+  externalId
+) {
+  return (
+    /^pfbid[A-Za-z0-9]+$/.test(
+      externalId
+    ) ||
+    /^video_\d+$/.test(
+      externalId
+    ) ||
+    /^photo_\d+$/.test(
+      externalId
+    )
+  );
+}
+
+function validateFacebookItemUrl(
   rawUrl,
   externalId
 ) {
@@ -130,14 +153,57 @@ function validatePostUrl(
       return false;
     }
 
-    return (
-      url.pathname.includes(
-        "/MOREpowerIloilo/posts/"
-      ) &&
-      url.pathname.includes(
+    if (
+      /^pfbid[A-Za-z0-9]+$/.test(
         externalId
       )
-    );
+    ) {
+      return (
+        url.pathname.includes(
+          "/MOREpowerIloilo/posts/"
+        ) &&
+        url.pathname.includes(
+          externalId
+        )
+      );
+    }
+
+    const videoMatch =
+      externalId.match(
+        /^video_(\d+)$/
+      );
+
+    if (videoMatch) {
+      return (
+        url.pathname ===
+          `/MOREpowerIloilo/videos/${videoMatch[1]}` ||
+        url.pathname ===
+          `/MOREpowerIloilo/videos/${videoMatch[1]}/`
+      );
+    }
+
+    const photoMatch =
+      externalId.match(
+        /^photo_(\d+)$/
+      );
+
+    if (photoMatch) {
+      const isPhotoPath =
+        url.pathname ===
+          "/photo/" ||
+        url.pathname ===
+          "/photo.php";
+
+      return (
+        isPhotoPath &&
+        url.searchParams.get(
+          "fbid"
+        ) ===
+          photoMatch[1]
+      );
+    }
+
+    return false;
   } catch {
     return false;
   }
@@ -249,7 +315,7 @@ export async function handleMoreFacebookIngest(
     ).trim();
 
   if (
-    !/^pfbid[A-Za-z0-9]+$/.test(
+    !isValidExternalId(
       externalId
     )
   ) {
@@ -265,13 +331,13 @@ export async function handleMoreFacebookIngest(
     ).trim();
 
   if (
-    !validatePostUrl(
+    !validateFacebookItemUrl(
       sourceUrl,
       externalId
     )
   ) {
     return badRequest(
-      "Invalid MORE Power Facebook post URL."
+      "Invalid MORE Power Facebook item URL."
     );
   }
 
@@ -636,7 +702,7 @@ export async function handleMoreFacebookIngest(
 
   /*
    * Manifest links the Facebook
-   * post to every stored image.
+   * item to every stored image.
    */
   const manifest = {
     source:
@@ -668,7 +734,7 @@ export async function handleMoreFacebookIngest(
     );
 
   /*
-   * Archive the post manifest
+   * Archive the item manifest
    * itself in R2.
    */
   const manifestArchive =
