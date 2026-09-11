@@ -6,13 +6,19 @@ import crypto from "node:crypto";
 const FACEBOOK_URL =
   "https://www.facebook.com/MOREpowerIloilo";
 
-const DOWNLOAD_ROOT = path.resolve("facebook-downloads");
+const DOWNLOAD_ROOT =
+  path.resolve("facebook-downloads");
 
-const MAX_IMAGE_BYTES = 20 * 1024 * 1024;
+const MAX_IMAGE_BYTES =
+  20 * 1024 * 1024;
 
 const MAX_POSTS = 5;
 
-console.log("Starting MORE Power Facebook scraper...");
+const MAX_SCROLL_ATTEMPTS = 8;
+
+console.log(
+  "Starting MORE Power Facebook scraper..."
+);
 
 let browser = null;
 
@@ -37,14 +43,9 @@ function cleanFacebookUrl(rawUrl) {
   }
 
   try {
-    const url = new URL(rawUrl);
+    const url =
+      new URL(rawUrl);
 
-    /*
-     * Remove Facebook tracking parameters such as:
-     *
-     * ?__cft__=...
-     * &__tn__=...
-     */
     return `${url.origin}${url.pathname}`.replace(
       /\/$/,
       ""
@@ -54,23 +55,15 @@ function cleanFacebookUrl(rawUrl) {
   }
 }
 
-/*
- * Extract:
- *
- * pfbidXXXXXXXX
- *
- * from:
- *
- * facebook.com/MOREpowerIloilo/posts/pfbidXXXXXXXX
- */
 function extractExternalId(postUrl) {
   if (!postUrl) {
     return null;
   }
 
-  const match = postUrl.match(
-    /\/posts\/([^/?]+)/
-  );
+  const match =
+    postUrl.match(
+      /\/posts\/(pfbid[A-Za-z0-9]+)/
+    );
 
   return match?.[1] || null;
 }
@@ -84,25 +77,35 @@ function cleanCaption(text) {
     return null;
   }
 
-  return text
-    .replace(/\s*See less\s*$/i, "")
-    .trim();
+  const cleaned =
+    text
+      .replace(
+        /\s*See less\s*$/i,
+        ""
+      )
+      .trim();
+
+  return cleaned || null;
 }
 
-/*
- * Detect when Facebook gave us only part of a caption.
- */
 function isCaptionTruncated(caption) {
   if (!caption) {
     return false;
   }
 
-  const text = caption.trim();
+  const text =
+    caption.trim();
 
   return (
-    /\bSee more\s*$/i.test(text) ||
-    /…\s*See more\s*$/i.test(text) ||
-    /\.\.\.\s*See more\s*$/i.test(text)
+    /\bSee more\s*$/i.test(
+      text
+    ) ||
+    /…\s*See more\s*$/i.test(
+      text
+    ) ||
+    /\.\.\.\s*See more\s*$/i.test(
+      text
+    )
   );
 }
 
@@ -110,24 +113,14 @@ function isCaptionTruncated(caption) {
  * FACEBOOK MEDIA IDENTITY
  * ========================================================= */
 
-/*
- * Facebook CDN URLs look like:
- *
- * https://scontent.filo1-1.fna.fbcdn.net/v/.../123_n.png?...tokens...
- *
- * The hostname and query string may change.
- *
- * The pathname is much more stable:
- *
- * /v/.../123_n.png
- */
 function normalizeMediaIdentity(rawUrl) {
   if (!rawUrl) {
     return null;
   }
 
   try {
-    const url = new URL(rawUrl);
+    const url =
+      new URL(rawUrl);
 
     return url.pathname;
   } catch {
@@ -135,27 +128,24 @@ function normalizeMediaIdentity(rawUrl) {
   }
 }
 
-/*
- * Remove duplicate media items even if Facebook served the
- * same image from different CDN hosts or with different
- * temporary query parameters.
- */
 function deduplicateMedia(media) {
-  const seen = new Set();
+  const seen =
+    new Set();
 
   const result = [];
 
-  for (const item of media) {
+  for (
+    const item of media || []
+  ) {
     const identity =
       normalizeMediaIdentity(
         item.originalUrl
       );
 
-    if (!identity) {
-      continue;
-    }
-
-    if (seen.has(identity)) {
+    if (
+      !identity ||
+      seen.has(identity)
+    ) {
       continue;
     }
 
@@ -163,36 +153,50 @@ function deduplicateMedia(media) {
 
     result.push({
       ...item,
-      mediaIdentity: identity,
+      mediaIdentity:
+        identity,
     });
   }
 
   return result;
 }
 
+function createMediaFingerprint(
+  media
+) {
+  const identities =
+    (media || [])
+      .map(
+        (item) =>
+          normalizeMediaIdentity(
+            item.originalUrl
+          )
+      )
+      .filter(Boolean)
+      .sort();
+
+  return sha256(
+    Buffer.from(
+      JSON.stringify(
+        identities
+      ),
+      "utf8"
+    )
+  );
+}
+
 /* =========================================================
  * FILE UTILITIES
  * ========================================================= */
 
-async function fileExists(filename) {
-  try {
-    await fs.access(filename);
-
-    return true;
-  } catch {
-    return false;
-  }
-}
-
-/*
- * Load the previously saved version of a Facebook post.
- */
-async function loadPreviousPost(externalId) {
+async function loadPreviousPost(
+  externalId
+) {
   if (!externalId) {
     return null;
   }
 
-  const postJsonPath =
+  const filename =
     path.join(
       DOWNLOAD_ROOT,
       externalId,
@@ -200,23 +204,39 @@ async function loadPreviousPost(externalId) {
     );
 
   try {
-    const raw =
+    return JSON.parse(
       await fs.readFile(
-        postJsonPath,
+        filename,
         "utf8"
-      );
-
-    return JSON.parse(raw);
+      )
+    );
   } catch {
     return null;
   }
+}
+
+async function writeJson(
+  filename,
+  value
+) {
+  await fs.writeFile(
+    filename,
+    JSON.stringify(
+      value,
+      null,
+      2
+    ),
+    "utf8"
+  );
 }
 
 /* =========================================================
  * IMAGE FILE EXTENSIONS
  * ========================================================= */
 
-function extensionForMimeType(mimeType) {
+function extensionForMimeType(
+  mimeType
+) {
   const cleanType =
     mimeType
       ?.split(";")[0]
@@ -248,21 +268,24 @@ function extensionForMimeType(mimeType) {
  * LOGIN POPUP
  * ========================================================= */
 
-async function closeLoginPopup(page) {
+async function closeLoginPopup(
+  page
+) {
   const selectors = [
     'div[role="dialog"] [aria-label="Close"]',
-
     'div[role="dialog"] div[role="button"][aria-label="Close"]',
-
     'div[role="dialog"] button[aria-label="Close"]',
-
     '[aria-label="Close"][role="button"]',
   ];
 
-  for (const selector of selectors) {
+  for (
+    const selector of selectors
+  ) {
     try {
       const button =
-        page.locator(selector).first();
+        page
+          .locator(selector)
+          .first();
 
       if (
         await button.isVisible({
@@ -277,7 +300,9 @@ async function closeLoginPopup(page) {
           "Facebook login popup closed."
         );
 
-        await page.waitForTimeout(500);
+        await page.waitForTimeout(
+          500
+        );
 
         return true;
       }
@@ -293,20 +318,28 @@ async function closeLoginPopup(page) {
  * SEE MORE
  * ========================================================= */
 
-async function expandSeeMore(page) {
+async function expandSeeMore(
+  page
+) {
   console.log(
     'Looking for "See more" buttons...'
   );
 
   const articles =
-    page.locator('div[role="article"]');
+    page.locator(
+      'div[role="article"]'
+    );
 
   const count =
     await articles.count();
 
   let expanded = 0;
 
-  for (let i = 0; i < count; i++) {
+  for (
+    let i = 0;
+    i < count;
+    i++
+  ) {
     const article =
       articles.nth(i);
 
@@ -336,21 +369,12 @@ async function expandSeeMore(page) {
           350
         );
 
-        /*
-         * Facebook sometimes shows the login
-         * popup again after clicking See more.
-         */
         await closeLoginPopup(
           page
         );
       }
     } catch {
-      /*
-       * Not fatal.
-       *
-       * Some See more buttons cannot be expanded
-       * while logged out.
-       */
+      // Not fatal while logged out.
     }
   }
 
@@ -360,47 +384,127 @@ async function expandSeeMore(page) {
 }
 
 /* =========================================================
- * MEDIA COMPARISON
+ * LOAD MORE PUBLIC POSTS
  * ========================================================= */
 
-function createMediaFingerprint(media) {
-  const identities =
-    (media || [])
-      .map(
-        (item) =>
-          normalizeMediaIdentity(
-            item.originalUrl
-          )
-      )
-      .filter(Boolean)
-      .sort();
-
-  return sha256(
-    Buffer.from(
-      JSON.stringify(
-        identities
-      ),
-      "utf8"
-    )
+async function loadMorePublicPosts(
+  page
+) {
+  console.log(
+    "Scrolling Facebook to load more public posts..."
   );
+
+  const postSelector =
+    'a[href*="/MOREpowerIloilo/posts/"]';
+
+  let previousArticleCount = 0;
+
+  for (
+    let attempt = 1;
+    attempt <=
+      MAX_SCROLL_ATTEMPTS;
+    attempt++
+  ) {
+    const postLinkCount =
+      await page
+        .locator(
+          postSelector
+        )
+        .count();
+
+    const articleCount =
+      await page
+        .locator(
+          'div[role="article"]'
+        )
+        .count();
+
+    console.log(
+      `  Attempt ${attempt}: ${postLinkCount} post link(s), ${articleCount} article(s).`
+    );
+
+    if (
+      postLinkCount >=
+      MAX_POSTS
+    ) {
+      break;
+    }
+
+    /*
+     * Scroll by a large but realistic viewport amount.
+     * Facebook lazy-loads additional public feed cards.
+     */
+    await page.evaluate(
+      () => {
+        window.scrollBy(
+          0,
+          Math.max(
+            window.innerHeight *
+              1.6,
+            1400
+          )
+        );
+      }
+    );
+
+    await page.waitForTimeout(
+      1800
+    );
+
+    await closeLoginPopup(
+      page
+    );
+
+    /*
+     * If the feed appears stuck, one extra End press often
+     * triggers Facebook's next lazy-load boundary.
+     */
+    if (
+      articleCount ===
+      previousArticleCount
+    ) {
+      try {
+        await page.keyboard.press(
+          "End"
+        );
+
+        await page.waitForTimeout(
+          1400
+        );
+
+        await closeLoginPopup(
+          page
+        );
+      } catch {
+        // Not fatal.
+      }
+    }
+
+    previousArticleCount =
+      articleCount;
+  }
+
+  const finalCount =
+    await page
+      .locator(
+        postSelector
+      )
+      .count();
+
+  console.log(
+    `MORE Power /posts/ links after scrolling: ${finalCount}`
+  );
+
+  return finalCount;
 }
 
 /* =========================================================
  * FINAL REVISION HASH
  * ========================================================= */
 
-/*
- * IMPORTANT:
- *
- * Do NOT include:
- *
- * "2h"
- * "13h"
- * "1d"
- *
- * because Facebook changes those automatically.
- */
-function createRevisionHash(post) {
+function createRevisionHash(
+  post
+) {
   const material = {
     externalId:
       post.externalId,
@@ -543,25 +647,354 @@ async function downloadImage({
 }
 
 /* =========================================================
+ * RAW ARTICLE EXTRACTION
+ * ========================================================= */
+
+async function extractRawArticles(
+  page
+) {
+  return page
+    .locator(
+      'div[role="article"]'
+    )
+    .evaluateAll(
+      (articles) => {
+        function canonicalPostUrl(
+          rawUrl
+        ) {
+          if (!rawUrl) {
+            return null;
+          }
+
+          try {
+            const url =
+              new URL(
+                rawUrl,
+                window.location.origin
+              );
+
+            if (
+              url.searchParams.has(
+                "comment_id"
+              )
+            ) {
+              return null;
+            }
+
+            const direct =
+              url.pathname.match(
+                /\/MOREpowerIloilo\/posts\/(pfbid[A-Za-z0-9]+)/
+              );
+
+            if (direct) {
+              return (
+                `${url.origin}/MOREpowerIloilo/posts/${direct[1]}`
+              );
+            }
+
+            /*
+             * Facebook sometimes uses permalink.php with a
+             * story_fbid instead of a /posts/ href.
+             */
+            const storyFbid =
+              url.searchParams.get(
+                "story_fbid"
+              );
+
+            if (
+              storyFbid &&
+              /^pfbid[A-Za-z0-9]+$/.test(
+                storyFbid
+              )
+            ) {
+              return (
+                `${url.origin}/MOREpowerIloilo/posts/${storyFbid}`
+              );
+            }
+
+            return null;
+          } catch {
+            return null;
+          }
+        }
+
+        return articles.map(
+          (
+            article,
+            articleIndex
+          ) => {
+            const messageElement =
+              article.querySelector(
+                '[data-ad-preview="message"]'
+              ) ||
+              article.querySelector(
+                '[data-ad-comet-preview="message"]'
+              );
+
+            const text =
+              messageElement
+                ?.innerText
+                ?.trim() ||
+              "";
+
+            const links = [
+              ...article.querySelectorAll(
+                "a[href]"
+              ),
+            ]
+              .map(
+                (element) => ({
+                  url:
+                    element.href ||
+                    element.getAttribute(
+                      "href"
+                    ) ||
+                    "",
+
+                  text:
+                    element
+                      .innerText
+                      ?.trim() ||
+                    "",
+
+                  title:
+                    element.getAttribute(
+                      "title"
+                    ) ||
+                    "",
+
+                  ariaLabel:
+                    element.getAttribute(
+                      "aria-label"
+                    ) ||
+                    "",
+                })
+              )
+              .filter(
+                (item) =>
+                  item.url
+              );
+
+            let canonical = null;
+            let postLink = null;
+
+            for (
+              const link of links
+            ) {
+              const candidate =
+                canonicalPostUrl(
+                  link.url
+                );
+
+              if (candidate) {
+                canonical =
+                  candidate;
+
+                postLink =
+                  link;
+
+                break;
+              }
+            }
+
+            /*
+             * Occasionally the canonical post URL is present in
+             * the article markup but not exposed through an anchor.
+             */
+            if (!canonical) {
+              const html =
+                article.outerHTML ||
+                "";
+
+              const htmlMatch =
+                html.match(
+                  /\/MOREpowerIloilo\/posts\/(pfbid[A-Za-z0-9]+)/
+                );
+
+              if (htmlMatch) {
+                canonical =
+                  `${window.location.origin}/MOREpowerIloilo/posts/${htmlMatch[1]}`;
+              }
+            }
+
+            let timestampText =
+              postLink?.text ||
+              null;
+
+            let timestampTitle =
+              postLink?.title ||
+              null;
+
+            let timestampAriaLabel =
+              postLink
+                ?.ariaLabel ||
+              null;
+
+            const timeElement =
+              article.querySelector(
+                "time"
+              );
+
+            if (timeElement) {
+              timestampText =
+                timestampText ||
+                timeElement
+                  .textContent
+                  ?.trim() ||
+                null;
+
+              timestampTitle =
+                timestampTitle ||
+                timeElement.getAttribute(
+                  "datetime"
+                ) ||
+                timeElement.getAttribute(
+                  "title"
+                ) ||
+                null;
+
+              timestampAriaLabel =
+                timestampAriaLabel ||
+                timeElement.getAttribute(
+                  "aria-label"
+                ) ||
+                null;
+            }
+
+            const images = [
+              ...article.querySelectorAll(
+                "img"
+              ),
+            ]
+              .map(
+                (img) => ({
+                  url:
+                    img.currentSrc ||
+                    img.src ||
+                    "",
+
+                  alt:
+                    img.alt ||
+                    "",
+
+                  width:
+                    img.naturalWidth ||
+                    img.width ||
+                    0,
+
+                  height:
+                    img.naturalHeight ||
+                    img.height ||
+                    0,
+                })
+              )
+              .filter(
+                (image) => {
+                  if (
+                    !image.url
+                  ) {
+                    return false;
+                  }
+
+                  const isFacebookCdn =
+                    image.url.includes(
+                      "scontent"
+                    ) ||
+                    image.url.includes(
+                      "fbcdn"
+                    );
+
+                  if (
+                    !isFacebookCdn
+                  ) {
+                    return false;
+                  }
+
+                  return (
+                    image.width >=
+                      200 &&
+                    image.height >=
+                      200
+                  );
+                }
+              );
+
+            const candidateLinks =
+              links
+                .filter(
+                  ({ url }) =>
+                    url.includes(
+                      "MOREpowerIloilo"
+                    ) ||
+                    url.includes(
+                      "pfbid"
+                    ) ||
+                    url.includes(
+                      "/videos/"
+                    ) ||
+                    url.includes(
+                      "/reel/"
+                    ) ||
+                    url.includes(
+                      "permalink.php"
+                    )
+                )
+                .slice(
+                  0,
+                  25
+                );
+
+            return {
+              articleIndex,
+
+              text,
+
+              postUrl:
+                canonical,
+
+              timestampText,
+
+              timestampTitle,
+
+              timestampAriaLabel,
+
+              images,
+
+              candidateLinks,
+            };
+          }
+        );
+      }
+    );
+}
+
+/* =========================================================
  * MAIN
  * ========================================================= */
 
 try {
+  const isCI =
+    process.env.CI ===
+    "true";
+
   console.log(
-    "Launching your installed Google Chrome..."
+    isCI
+      ? "Launching Playwright Chromium for CI..."
+      : "Launching your installed Google Chrome..."
   );
 
- const isCI = process.env.CI === "true";
+  browser =
+    await chromium.launch({
+      ...(isCI
+        ? {}
+        : {
+            channel:
+              "chrome",
+          }),
 
-browser = await chromium.launch({
-  // On your Windows PC, use installed Google Chrome.
-  // On GitHub Actions, use Playwright's Chromium.
-  ...(isCI
-    ? {}
-    : { channel: "chrome" }),
-
-  headless: isCI,
-});
+      headless:
+        isCI,
+    });
 
   const context =
     await browser.newContext({
@@ -613,17 +1046,20 @@ browser = await chromium.launch({
     page.url()
   );
 
-  /*
-   * Remove login overlay if Facebook
-   * provides a Close button.
-   */
   await closeLoginPopup(
     page
   );
 
   /*
-   * Try to obtain full captions.
+   * The logged-out feed is nondeterministic. The first card can
+   * be a video, placeholder, or other content that has no /posts/
+   * permalink. Scroll before extracting so older public Page posts
+   * have a chance to enter the DOM.
    */
+  await loadMorePublicPosts(
+    page
+  );
+
   await expandSeeMore(
     page
   );
@@ -643,248 +1079,10 @@ browser = await chromium.launch({
     `Found ${articleCount} article elements.`
   );
 
-  /* =======================================================
-   * RAW DOM EXTRACTION
-   * ======================================================= */
-
   const rawArticles =
-    await page
-      .locator(
-        'div[role="article"]'
-      )
-      .evaluateAll(
-        (articles) => {
-          return articles.map(
-            (
-              article,
-              articleIndex
-            ) => {
-              /* -----------------------
-               * CAPTION
-               * ----------------------- */
-
-              const messageElement =
-                article.querySelector(
-                  '[data-ad-preview="message"]'
-                ) ||
-                article.querySelector(
-                  '[data-ad-comet-preview="message"]'
-                );
-
-              const text =
-                messageElement
-                  ?.innerText
-                  ?.trim() ||
-                "";
-
-              /* -----------------------
-               * LINKS
-               * ----------------------- */
-
-              const links = [
-                ...article.querySelectorAll(
-                  "a[href]"
-                ),
-              ]
-                .map(
-                  (element) => ({
-                    url:
-                      element.href ||
-                      element.getAttribute(
-                        "href"
-                      ) ||
-                      "",
-
-                    text:
-                      element
-                        .innerText
-                        ?.trim() ||
-                      "",
-
-                    title:
-                      element.getAttribute(
-                        "title"
-                      ) ||
-                      "",
-
-                    ariaLabel:
-                      element.getAttribute(
-                        "aria-label"
-                      ) ||
-                      "",
-                  })
-                )
-                .filter(
-                  (item) =>
-                    item.url
-                );
-
-              /*
-               * Real MORE Power post.
-               *
-               * Comments may also contain /posts/
-               * URLs, so comment_id must be excluded.
-               */
-              const postLink =
-                links.find(
-                  ({ url }) =>
-                    url.includes(
-                      "/MOREpowerIloilo/posts/"
-                    ) &&
-                    !url.includes(
-                      "comment_id="
-                    )
-                ) ||
-                null;
-
-              /* -----------------------
-               * TIMESTAMP
-               * ----------------------- */
-
-              let timestampText =
-                postLink
-                  ?.text ||
-                null;
-
-              let timestampTitle =
-                postLink
-                  ?.title ||
-                null;
-
-              let timestampAriaLabel =
-                postLink
-                  ?.ariaLabel ||
-                null;
-
-              const timeElement =
-                article.querySelector(
-                  "time"
-                );
-
-              if (
-                timeElement
-              ) {
-                timestampText =
-                  timestampText ||
-                  timeElement
-                    .textContent
-                    ?.trim() ||
-                  null;
-
-                timestampTitle =
-                  timestampTitle ||
-                  timeElement.getAttribute(
-                    "datetime"
-                  ) ||
-                  timeElement.getAttribute(
-                    "title"
-                  ) ||
-                  null;
-
-                timestampAriaLabel =
-                  timestampAriaLabel ||
-                  timeElement.getAttribute(
-                    "aria-label"
-                  ) ||
-                  null;
-              }
-
-              /* -----------------------
-               * IMAGES
-               * ----------------------- */
-
-              const images = [
-                ...article.querySelectorAll(
-                  "img"
-                ),
-              ]
-                .map(
-                  (img) => ({
-                    url:
-                      img.currentSrc ||
-                      img.src ||
-                      "",
-
-                    alt:
-                      img.alt ||
-                      "",
-
-                    width:
-                      img.naturalWidth ||
-                      img.width ||
-                      0,
-
-                    height:
-                      img.naturalHeight ||
-                      img.height ||
-                      0,
-                  })
-                )
-                .filter(
-                  (image) => {
-                    if (
-                      !image.url
-                    ) {
-                      return false;
-                    }
-
-                    const isFacebookCdn =
-                      image.url.includes(
-                        "scontent"
-                      ) ||
-                      image.url.includes(
-                        "fbcdn"
-                      );
-
-                    if (
-                      !isFacebookCdn
-                    ) {
-                      return false;
-                    }
-
-                    /*
-                     * Filter most:
-                     *
-                     * avatars
-                     * icons
-                     * reactions
-                     * tiny UI images
-                     */
-                    return (
-                      image.width >=
-                        200 &&
-                      image.height >=
-                        200
-                    );
-                  }
-                );
-
-              return {
-                articleIndex,
-
-                text,
-
-                postUrl:
-                  postLink
-                    ?.url ||
-                  null,
-
-                timestampText,
-
-                timestampTitle,
-
-                timestampAriaLabel,
-
-                images,
-              };
-            }
-          );
-        }
-      );
-
-  /* =======================================================
-   * NORMALIZE REAL POSTS
-   * ======================================================= */
+    await extractRawArticles(
+      page
+    );
 
   let posts =
     rawArticles
@@ -892,22 +1090,6 @@ browser = await chromium.launch({
         (article) => {
           if (
             !article.postUrl
-          ) {
-            return false;
-          }
-
-          if (
-            article.postUrl.includes(
-              "comment_id="
-            )
-          ) {
-            return false;
-          }
-
-          if (
-            !article.postUrl.includes(
-              "/MOREpowerIloilo/posts/"
-            )
           ) {
             return false;
           }
@@ -944,12 +1126,6 @@ browser = await chromium.launch({
                 article.text
               ),
 
-            /*
-             * This is observational only.
-             *
-             * "2h" must never be used to determine
-             * whether a post changed.
-             */
             published: {
               text:
                 article.timestampText,
@@ -990,8 +1166,7 @@ browser = await chromium.launch({
       );
 
   /*
-   * Remove duplicate DOM representations
-   * of the same Facebook post.
+   * Remove duplicate DOM representations of the same post.
    */
   posts =
     posts.filter(
@@ -1023,15 +1198,12 @@ browser = await chromium.launch({
   console.log(
     "=============================="
   );
-
   console.log(
     "MORE POWER FACEBOOK POSTS"
   );
-
   console.log(
     "=============================="
   );
-
   console.log(
     `Actual posts detected: ${posts.length}`
   );
@@ -1044,11 +1216,40 @@ browser = await chromium.launch({
     }
   );
 
+  /*
+   * Always save diagnostics. When Facebook changes the public DOM,
+   * candidateLinks makes the next failure much easier to inspect.
+   */
+  await writeJson(
+    path.join(
+      DOWNLOAD_ROOT,
+      "debug-articles.json"
+    ),
+    rawArticles
+  );
+
+  if (
+    posts.length === 0
+  ) {
+    try {
+      await fs.writeFile(
+        path.join(
+          DOWNLOAD_ROOT,
+          "debug-page.html"
+        ),
+        await page.content(),
+        "utf8"
+      );
+    } catch {
+      // Diagnostic only.
+    }
+  }
+
   const runResults = [];
 
-  /* =======================================================
-   * COMPARE EACH POST WITH PREVIOUSLY SAVED VERSION
-   * ======================================================= */
+  let newCount = 0;
+  let updatedCount = 0;
+  let unchangedCount = 0;
 
   for (
     const scrapedPost of posts
@@ -1064,25 +1265,14 @@ browser = await chromium.launch({
 
     console.log("");
 
-    /* -----------------------------------------------------
-     * NEW POST
-     * ----------------------------------------------------- */
-
     if (!previous) {
       console.log(
         `NEW: ${post.externalId}`
       );
     }
 
-    /*
-     * Facebook's public feed is not deterministic.
-     *
-     * Sometimes a previously full caption is returned
-     * truncated during the next scrape.
-     *
-     * Empty/truncated data is NOT evidence that MORE
-     * Power edited the post.
-     */
+    let preservePreviousMedia =
+      false;
 
     if (previous) {
       const currentTruncated =
@@ -1095,10 +1285,6 @@ browser = await chromium.launch({
           previous.caption
         );
 
-      /*
-       * If current scrape lost the caption entirely,
-       * preserve our previous evidence.
-       */
       if (
         !post.caption &&
         previous.caption
@@ -1106,7 +1292,6 @@ browser = await chromium.launch({
         console.log(
           `OBSERVATION: ${post.externalId}`
         );
-
         console.log(
           "  Current caption missing; preserving previous caption."
         );
@@ -1115,20 +1300,14 @@ browser = await chromium.launch({
           previous.caption;
       }
 
-      /*
-       * Current Facebook scrape is truncated,
-       * but previous capture was complete.
-       *
-       * Keep the better evidence.
-       */
-      else if (
+      if (
         currentTruncated &&
+        previous.caption &&
         !previousTruncated
       ) {
         console.log(
           `OBSERVATION: ${post.externalId}`
         );
-
         console.log(
           "  Current caption truncated; preserving previous full caption."
         );
@@ -1137,10 +1316,6 @@ browser = await chromium.launch({
           previous.caption;
       }
 
-      /*
-       * If Facebook temporarily fails to render images,
-       * don't interpret that as MORE Power deleting them.
-       */
       if (
         post.media.length ===
           0 &&
@@ -1153,122 +1328,53 @@ browser = await chromium.launch({
         console.log(
           `OBSERVATION: ${post.externalId}`
         );
-
         console.log(
-          "  Current media missing; preserving previous media."
+          "  Current media missing; preserving previous media evidence."
         );
 
         post.media =
           previous.media.map(
-            (media) => ({
-              ...media,
-
-              /*
-               * Keep a normalized identity available.
-               */
-              mediaIdentity:
-                normalizeMediaIdentity(
-                  media.originalUrl
-                ),
+            (item) => ({
+              ...item,
             })
           );
+
+        preservePreviousMedia =
+          true;
       }
-    }
 
-    /* -----------------------------------------------------
-     * DETERMINE WHETHER EVIDENCE CHANGED
-     * ----------------------------------------------------- */
-
-    let captionChanged =
-      false;
-
-    let mediaChanged =
-      false;
-
-    if (previous) {
-      captionChanged =
-        (post.caption || "") !==
-        (previous.caption || "");
-
-      const currentMediaFingerprint =
+      /*
+       * If the visible media identities are the same, reuse the
+       * already-downloaded evidence locally. A fresh GitHub runner
+       * has no previous files, so CI still downloads the images.
+       */
+      if (
+        !preservePreviousMedia &&
+        Array.isArray(
+          previous.media
+        ) &&
+        previous.media.length >
+          0 &&
+        post.media.length >
+          0 &&
         createMediaFingerprint(
           post.media
-        );
+        ) ===
+          createMediaFingerprint(
+            previous.media
+          )
+      ) {
+        post.media =
+          previous.media.map(
+            (item) => ({
+              ...item,
+            })
+          );
 
-      const previousMediaFingerprint =
-        createMediaFingerprint(
-          previous.media ||
-            []
-        );
-
-      mediaChanged =
-        currentMediaFingerprint !==
-        previousMediaFingerprint;
+        preservePreviousMedia =
+          true;
+      }
     }
-
-    /* -----------------------------------------------------
-     * UNCHANGED
-     * ----------------------------------------------------- */
-
-    if (
-      previous &&
-      !captionChanged &&
-      !mediaChanged
-    ) {
-      console.log(
-        `UNCHANGED: ${post.externalId}`
-      );
-
-      console.log(
-        "  Caption/media unchanged."
-      );
-
-      console.log(
-        "  Skipping image downloads."
-      );
-
-      runResults.push({
-        externalId:
-          post.externalId,
-
-        url:
-          post.url,
-
-        result:
-          "UNCHANGED",
-
-        revisionSha256:
-          previous.revisionSha256 ||
-          null,
-
-        observedAt:
-          post.observedAt,
-      });
-
-      continue;
-    }
-
-    /* -----------------------------------------------------
-     * UPDATED
-     * ----------------------------------------------------- */
-
-    if (previous) {
-      console.log(
-        `UPDATED: ${post.externalId}`
-      );
-
-      console.log(
-        `  Caption changed: ${captionChanged}`
-      );
-
-      console.log(
-        `  Media changed: ${mediaChanged}`
-      );
-    }
-
-    /* =====================================================
-     * DOWNLOAD NEW/UPDATED EVIDENCE
-     * ===================================================== */
 
     const postDirectory =
       path.join(
@@ -1284,152 +1390,105 @@ browser = await chromium.launch({
       }
     );
 
-    const downloadedMedia =
-      [];
+    if (
+      !preservePreviousMedia
+    ) {
+      const downloadedMedia =
+        [];
+
+      let imageNumber = 0;
+
+      for (
+        const media of
+        post.media
+      ) {
+        imageNumber++;
+
+        try {
+          const downloaded =
+            await downloadImage({
+              request:
+                context.request,
+
+              imageUrl:
+                media.originalUrl,
+
+              postDirectory,
+
+              imageNumber,
+            });
+
+          downloadedMedia.push({
+            ...media,
+
+            ...downloaded,
+          });
+        } catch (error) {
+          console.error(
+            `    FAILED image ${imageNumber}: ${error.message}`
+          );
+        }
+      }
+
+      post.media =
+        downloadedMedia;
+    }
+
+    const revisionHash =
+      createRevisionHash(
+        post
+      );
+
+    let status =
+      "NEW";
+
+    if (previous) {
+      status =
+        previous.revisionHash ===
+        revisionHash
+          ? "UNCHANGED"
+          : "UPDATED";
+    }
+
+    if (
+      status ===
+      "NEW"
+    ) {
+      newCount++;
+    } else if (
+      status ===
+      "UPDATED"
+    ) {
+      updatedCount++;
+
+      console.log(
+        `UPDATED: ${post.externalId}`
+      );
+    } else {
+      unchangedCount++;
+
+      console.log(
+        `UNCHANGED: ${post.externalId}`
+      );
+    }
 
     console.log(
       `  Images: ${post.media.length}`
     );
 
-    for (
-      let i = 0;
-      i < post.media.length;
-      i++
-    ) {
-      const media =
-        post.media[i];
+    console.log(
+      `  Revision SHA-256: ${revisionHash}`
+    );
 
-      /*
-       * If media came from previous evidence because the
-       * current Facebook scrape did not render images,
-       * preserve it instead of attempting an unnecessary
-       * download.
-       */
-      if (
-        media.sha256 &&
-        media.filename &&
-        !media.downloadError &&
-        post.media ===
-          previous?.media
-      ) {
-        downloadedMedia.push(
-          media
-        );
+    const savedPost = {
+      ...post,
 
-        continue;
-      }
+      retrievedAt:
+        new Date()
+          .toISOString(),
 
-      try {
-        const downloaded =
-          await downloadImage({
-            request:
-              context.request,
-
-            imageUrl:
-              media.originalUrl,
-
-            postDirectory,
-
-            imageNumber:
-              i + 1,
-          });
-
-        downloadedMedia.push({
-          originalUrl:
-            media.originalUrl,
-
-          mediaIdentity:
-            normalizeMediaIdentity(
-              media.originalUrl
-            ),
-
-          alt:
-            media.alt ||
-            "",
-
-          width:
-            media.width ||
-            0,
-
-          height:
-            media.height ||
-            0,
-
-          ...downloaded,
-        });
-      } catch (error) {
-        console.error(
-          `  Failed to download image ${i + 1}: ${error.message}`
-        );
-
-        /*
-         * If this image existed in our previous version,
-         * preserve its downloaded evidence.
-         */
-        const oldMedia =
-          previous?.media?.find(
-            (
-              candidate
-            ) =>
-              normalizeMediaIdentity(
-                candidate.originalUrl
-              ) ===
-              normalizeMediaIdentity(
-                media.originalUrl
-              )
-          );
-
-        if (
-          oldMedia?.sha256
-        ) {
-          console.log(
-            "  Preserving previously downloaded copy."
-          );
-
-          downloadedMedia.push({
-            ...oldMedia,
-
-            originalUrl:
-              media.originalUrl,
-          });
-
-          continue;
-        }
-
-        downloadedMedia.push({
-          ...media,
-
-          mediaIdentity:
-            normalizeMediaIdentity(
-              media.originalUrl
-            ),
-
-          downloadError:
-            error.message,
-        });
-      }
-    }
-
-    post.media =
-      downloadedMedia;
-
-    /* =====================================================
-     * REVISION HASH
-     * ===================================================== */
-
-    post.revisionSha256 =
-      createRevisionHash(
-        post
-      );
-
-    post.savedAt =
-      new Date()
-        .toISOString();
-
-    /*
-     * We deliberately do not include Facebook's
-     * relative "2h" timestamp in revisionSha256.
-     */
+      revisionHash,
+    };
 
     const postJsonPath =
       path.join(
@@ -1437,23 +1496,9 @@ browser = await chromium.launch({
         "post.json"
       );
 
-    await fs.writeFile(
+    await writeJson(
       postJsonPath,
-      JSON.stringify(
-        post,
-        null,
-        2
-      ),
-      "utf8"
-    );
-
-    const result =
-      previous
-        ? "UPDATED"
-        : "NEW";
-
-    console.log(
-      `  Revision SHA-256: ${post.revisionSha256}`
+      savedPost
     );
 
     console.log(
@@ -1467,126 +1512,75 @@ browser = await chromium.launch({
       url:
         post.url,
 
-      result,
+      caption:
+        post.caption,
 
-      revisionSha256:
-        post.revisionSha256,
+      published:
+        post.published,
 
-      observedAt:
-        post.observedAt,
+      mediaCount:
+        post.media.length,
+
+      revisionHash,
+
+      status,
     });
   }
 
-  /* =======================================================
-   * RUN SUMMARY
-   * ======================================================= */
-
-  const summary = {
+  const index = {
     source:
       "MORE_POWER_FACEBOOK",
 
     sourceUrl:
       FACEBOOK_URL,
 
-    checkedAt:
+    retrievedAt:
       new Date()
         .toISOString(),
 
-    detected:
-      posts.length,
-
-    new:
-      runResults.filter(
-        (item) =>
-          item.result ===
-          "NEW"
-      ).length,
-
-    updated:
-      runResults.filter(
-        (item) =>
-          item.result ===
-          "UPDATED"
-      ).length,
-
-    unchanged:
-      runResults.filter(
-        (item) =>
-          item.result ===
-          "UNCHANGED"
-      ).length,
+    postCount:
+      runResults.length,
 
     posts:
       runResults,
   };
 
-  await fs.writeFile(
+  await writeJson(
     path.join(
       DOWNLOAD_ROOT,
       "index.json"
     ),
-    JSON.stringify(
-      summary,
-      null,
-      2
-    ),
-    "utf8"
-  );
-
-  /* =======================================================
-   * DEBUG FILE
-   * ======================================================= */
-
-  await fs.writeFile(
-    path.join(
-      DOWNLOAD_ROOT,
-      "debug-articles.json"
-    ),
-    JSON.stringify(
-      rawArticles,
-      null,
-      2
-    ),
-    "utf8"
+    index
   );
 
   console.log("");
   console.log(
     "=============================="
   );
-
   console.log(
     "RUN SUMMARY"
   );
-
   console.log(
     "=============================="
   );
-
   console.log(
-    `DETECTED:  ${summary.detected}`
+    `DETECTED:  ${posts.length}`
   );
-
   console.log(
-    `NEW:       ${summary.new}`
+    `NEW:       ${newCount}`
   );
-
   console.log(
-    `UPDATED:   ${summary.updated}`
+    `UPDATED:   ${updatedCount}`
   );
-
   console.log(
-    `UNCHANGED: ${summary.unchanged}`
+    `UNCHANGED: ${unchangedCount}`
   );
-
   console.log("");
-
   console.log(
     `Saved to: ${DOWNLOAD_ROOT}`
   );
 
   console.log("");
-
   console.log(
     "Keeping browser open for 5 seconds..."
   );
@@ -1596,19 +1590,9 @@ browser = await chromium.launch({
   );
 } catch (error) {
   console.error("");
-
   console.error(
-    "=============================="
+    "MORE Power Facebook scraper failed."
   );
-
-  console.error(
-    "SCRAPER FAILED"
-  );
-
-  console.error(
-    "=============================="
-  );
-
   console.error(error);
 
   process.exitCode = 1;
