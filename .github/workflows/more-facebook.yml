@@ -33,6 +33,12 @@ jobs:
         env:
           CI: "true"
 
+      - name: Send Facebook evidence to GridWatch
+        run: node tools/push-more-facebook-to-gridwatch.mjs
+        env:
+          FACEBOOK_INGEST_SECRET: ${{ secrets.FACEBOOK_INGEST_SECRET }}
+          GRIDWATCH_INGEST_URL: https://gridwatch-ingestion.ltuvilla8.workers.dev/internal/ingest/more-facebook
+
       - name: Upload collector results
         if: always()
         uses: actions/upload-artifact@v4
