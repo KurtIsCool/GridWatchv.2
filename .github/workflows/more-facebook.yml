@@ -1,0 +1,43 @@
+name: MORE Power Facebook Collector
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  scrape:
+    name: Test MORE Power Facebook
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run MORE Power Facebook collector
+        run: npm run collect:more-facebook
+        env:
+          CI: "true"
+
+      - name: Upload collector results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: more-facebook-results
+          path: facebook-downloads/
+          if-no-files-found: warn
+          retention-days: 3

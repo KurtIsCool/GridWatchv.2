@@ -1,0 +1,18 @@
+{
+  "source": "MORE_POWER_FACEBOOK",
+  "sourceUrl": "https://www.facebook.com/MOREpowerIloilo",
+  "checkedAt": "2026-09-11T02:59:58.362Z",
+  "detected": 1,
+  "new": 0,
+  "updated": 0,
+  "unchanged": 1,
+  "posts": [
+    {
+      "externalId": "pfbid02VPdWbCXNsWMxW1GpatV7Jy6amBqMQyqzjDJvGrUahsKbzxHx9bqKPGnS6sPizUdWl",
+      "url": "https://www.facebook.com/MOREpowerIloilo/posts/pfbid02VPdWbCXNsWMxW1GpatV7Jy6amBqMQyqzjDJvGrUahsKbzxHx9bqKPGnS6sPizUdWl",
+      "result": "UNCHANGED",
+      "revisionSha256": "728cfc8164b2897ab4bacc24e87e08d1965320b09c0f5a9348349e3c675bf6ee",
+      "observedAt": "2026-09-11T02:59:58.357Z"
+    }
+  ]
+}
