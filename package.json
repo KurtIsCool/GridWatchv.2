@@ -16,10 +16,12 @@
     "cf:dev": "wrangler dev --config cloudflare/wrangler.local.jsonc",
     "cf:test": "node --test cloudflare/tests/*.test.mjs",
     "cf:migrate:local": "wrangler d1 migrations apply gridwatch-db --local --config cloudflare/wrangler.jsonc",
-    "ingest:image": "node tools/ingest-image.mjs"
+    "ingest:image": "node tools/ingest-image.mjs",
+    "collect:more-facebook": "node tools/scrape-more-facebook.mjs"
   },
   "devDependencies": {
     "@turf/turf": "7.4.0",
+    "playwright": "^1.63.0",
     "wrangler": "^4.130.0"
   },
   "overrides": {
