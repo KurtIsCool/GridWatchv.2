@@ -3,12 +3,15 @@ name: MORE Power Facebook Collector
 on:
   workflow_dispatch:
 
+  schedule:
+    - cron: "17,47 * * * *"
+
 permissions:
   contents: read
 
 jobs:
   scrape:
-    name: Test MORE Power Facebook
+    name: Collect MORE Power Facebook
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
