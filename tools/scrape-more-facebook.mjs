@@ -46,6 +46,26 @@ function cleanFacebookUrl(rawUrl) {
     const url =
       new URL(rawUrl);
 
+    const photoId =
+      url.searchParams.get(
+        "fbid"
+      );
+
+    if (
+      photoId &&
+      /^\d+$/.test(photoId) &&
+      (
+        url.pathname ===
+          "/photo/" ||
+        url.pathname ===
+          "/photo.php"
+      )
+    ) {
+      return (
+        `${url.origin}/photo/?fbid=${photoId}`
+      );
+    }
+
     return `${url.origin}${url.pathname}`.replace(
       /\/$/,
       ""
@@ -55,17 +75,55 @@ function cleanFacebookUrl(rawUrl) {
   }
 }
 
-function extractExternalId(postUrl) {
-  if (!postUrl) {
+function extractExternalId(itemUrl) {
+  if (!itemUrl) {
     return null;
   }
 
-  const match =
-    postUrl.match(
-      /\/posts\/(pfbid[A-Za-z0-9]+)/
-    );
+  try {
+    const url =
+      new URL(itemUrl);
 
-  return match?.[1] || null;
+    const postMatch =
+      url.pathname.match(
+        /\/posts\/(pfbid[A-Za-z0-9]+)/
+      );
+
+    if (postMatch) {
+      return postMatch[1];
+    }
+
+    const videoMatch =
+      url.pathname.match(
+        /\/MOREpowerIloilo\/videos\/(\d+)/
+      );
+
+    if (videoMatch) {
+      return `video_${videoMatch[1]}`;
+    }
+
+    const photoId =
+      url.searchParams.get(
+        "fbid"
+      );
+
+    if (
+      photoId &&
+      /^\d+$/.test(photoId) &&
+      (
+        url.pathname ===
+          "/photo/" ||
+        url.pathname ===
+          "/photo.php"
+      )
+    ) {
+      return `photo_${photoId}`;
+    }
+  } catch {
+    return null;
+  }
+
+  return null;
 }
 
 /* =========================================================
@@ -659,7 +717,7 @@ async function extractRawArticles(
     )
     .evaluateAll(
       (articles) => {
-        function canonicalPostUrl(
+        function canonicalFacebookItemUrl(
           rawUrl
         ) {
           if (!rawUrl) {
@@ -681,14 +739,25 @@ async function extractRawArticles(
               return null;
             }
 
-            const direct =
+            const directPost =
               url.pathname.match(
                 /\/MOREpowerIloilo\/posts\/(pfbid[A-Za-z0-9]+)/
               );
 
-            if (direct) {
+            if (directPost) {
               return (
-                `${url.origin}/MOREpowerIloilo/posts/${direct[1]}`
+                `${url.origin}/MOREpowerIloilo/posts/${directPost[1]}`
+              );
+            }
+
+            const directVideo =
+              url.pathname.match(
+                /\/MOREpowerIloilo\/videos\/(\d+)/
+              );
+
+            if (directVideo) {
+              return (
+                `${url.origin}/MOREpowerIloilo/videos/${directVideo[1]}`
               );
             }
 
@@ -782,7 +851,7 @@ async function extractRawArticles(
               const link of links
             ) {
               const candidate =
-                canonicalPostUrl(
+                canonicalFacebookItemUrl(
                   link.url
                 );
 
@@ -806,14 +875,26 @@ async function extractRawArticles(
                 article.outerHTML ||
                 "";
 
-              const htmlMatch =
+              const htmlPostMatch =
                 html.match(
                   /\/MOREpowerIloilo\/posts\/(pfbid[A-Za-z0-9]+)/
                 );
 
-              if (htmlMatch) {
+              if (htmlPostMatch) {
                 canonical =
-                  `${window.location.origin}/MOREpowerIloilo/posts/${htmlMatch[1]}`;
+                  `${window.location.origin}/MOREpowerIloilo/posts/${htmlPostMatch[1]}`;
+              }
+
+              if (!canonical) {
+                const htmlVideoMatch =
+                  html.match(
+                    /\/MOREpowerIloilo\/videos\/(\d+)/
+                  );
+
+                if (htmlVideoMatch) {
+                  canonical =
+                    `${window.location.origin}/MOREpowerIloilo/videos/${htmlVideoMatch[1]}`;
+                }
               }
             }
 
@@ -966,6 +1047,357 @@ async function extractRawArticles(
         );
       }
     );
+}
+
+/* =========================================================
+ * PHOTO FALLBACK
+ * ========================================================= */
+
+/*
+ * Facebook's logged-out feed sometimes refuses to expose older
+ * /posts/ cards, but the Page still renders a "Photos" strip with
+ * public photo links. Those links give us a second public evidence
+ * path for image advisories.
+ */
+async function discoverPhotoCandidates(
+  page
+) {
+  const candidates =
+    await page
+      .locator(
+        'a[href*="/photo/?fbid="], a[href*="/photo.php?fbid="]'
+      )
+      .evaluateAll(
+        (links) => {
+          const found = [];
+
+          for (const link of links) {
+            try {
+              const url =
+                new URL(
+                  link.href,
+                  window.location.origin
+                );
+
+              const photoId =
+                url.searchParams.get(
+                  "fbid"
+                );
+
+              const set =
+                url.searchParams.get(
+                  "set"
+                ) ||
+                "";
+
+              /*
+               * Prefer the Page's actual photo strip rather than
+               * profile/cover images elsewhere on the page.
+               */
+              if (
+                !photoId ||
+                !/^\d+$/.test(
+                  photoId
+                ) ||
+                !set.includes(
+                  "pb.100064352995613"
+                )
+              ) {
+                continue;
+              }
+
+              const img =
+                link.querySelector(
+                  "img"
+                );
+
+              found.push({
+                photoId,
+
+                url:
+                  `${url.origin}/photo/?fbid=${photoId}`,
+
+                thumbnail:
+                  img
+                    ? {
+                        url:
+                          img.currentSrc ||
+                          img.src ||
+                          "",
+
+                        alt:
+                          img.alt ||
+                          "",
+
+                        width:
+                          img.naturalWidth ||
+                          img.width ||
+                          0,
+
+                        height:
+                          img.naturalHeight ||
+                          img.height ||
+                          0,
+                      }
+                    : null,
+              });
+            } catch {
+              // Ignore malformed links.
+            }
+          }
+
+          return found.filter(
+            (
+              candidate,
+              index,
+              array
+            ) =>
+              index ===
+              array.findIndex(
+                (item) =>
+                  item.photoId ===
+                  candidate.photoId
+              )
+          );
+        }
+      );
+
+  console.log(
+    `Photo fallback candidates: ${candidates.length}`
+  );
+
+  return candidates;
+}
+
+async function loadPhotoCandidate(
+  context,
+  candidate
+) {
+  const photoPage =
+    await context.newPage();
+
+  try {
+    console.log(
+      `  Opening photo ${candidate.photoId}...`
+    );
+
+    await photoPage.goto(
+      candidate.url,
+      {
+        waitUntil:
+          "domcontentloaded",
+
+        timeout:
+          45000,
+      }
+    );
+
+    await photoPage.waitForTimeout(
+      3000
+    );
+
+    await closeLoginPopup(
+      photoPage
+    );
+
+    await expandSeeMore(
+      photoPage
+    );
+
+    await photoPage.waitForTimeout(
+      800
+    );
+
+    const detail =
+      await photoPage.evaluate(
+        ({
+          photoId,
+          fallbackThumbnail,
+        }) => {
+          const messageElements = [
+            ...document.querySelectorAll(
+              '[data-ad-preview="message"], [data-ad-comet-preview="message"]'
+            ),
+          ];
+
+          const caption =
+            messageElements
+              .map(
+                (element) =>
+                  element
+                    .innerText
+                    ?.trim() ||
+                  ""
+              )
+              .find(Boolean) ||
+            null;
+
+          const images = [
+            ...document.querySelectorAll(
+              "img"
+            ),
+          ]
+            .map(
+              (img) => ({
+                url:
+                  img.currentSrc ||
+                  img.src ||
+                  "",
+
+                alt:
+                  img.alt ||
+                  "",
+
+                width:
+                  img.naturalWidth ||
+                  img.width ||
+                  0,
+
+                height:
+                  img.naturalHeight ||
+                  img.height ||
+                  0,
+              })
+            )
+            .filter(
+              (image) =>
+                image.url &&
+                (
+                  image.url.includes(
+                    "scontent"
+                  ) ||
+                  image.url.includes(
+                    "fbcdn"
+                  )
+                ) &&
+                image.width >=
+                  300 &&
+                image.height >=
+                  300
+            )
+            .sort(
+              (a, b) =>
+                b.width *
+                  b.height -
+                a.width *
+                  a.height
+            );
+
+          const selectedImage =
+            images[0] ||
+            fallbackThumbnail ||
+            null;
+
+          const timeElement =
+            document.querySelector(
+              "time"
+            );
+
+          return {
+            caption,
+
+            image:
+              selectedImage,
+
+            published: {
+              text:
+                timeElement
+                  ?.textContent
+                  ?.trim() ||
+                null,
+
+              title:
+                timeElement
+                  ?.getAttribute(
+                    "datetime"
+                  ) ||
+                timeElement
+                  ?.getAttribute(
+                    "title"
+                  ) ||
+                null,
+
+              ariaLabel:
+                timeElement
+                  ?.getAttribute(
+                    "aria-label"
+                  ) ||
+                null,
+            },
+
+            photoId,
+          };
+        },
+        {
+          photoId:
+            candidate.photoId,
+
+          fallbackThumbnail:
+            candidate.thumbnail,
+        }
+      );
+
+    if (
+      !detail.image?.url
+    ) {
+      console.log(
+        `  Photo ${candidate.photoId}: no usable image found.`
+      );
+
+      return null;
+    }
+
+    return {
+      source:
+        "MORE_POWER_FACEBOOK",
+
+      externalId:
+        `photo_${candidate.photoId}`,
+
+      url:
+        `https://www.facebook.com/photo/?fbid=${candidate.photoId}`,
+
+      caption:
+        cleanCaption(
+          detail.caption
+        ),
+
+      published:
+        detail.published,
+
+      media:
+        deduplicateMedia([
+          {
+            originalUrl:
+              detail.image.url,
+
+            alt:
+              detail.image.alt ||
+              "",
+
+            width:
+              detail.image.width ||
+              0,
+
+            height:
+              detail.image.height ||
+              0,
+          },
+        ]),
+
+      observedAt:
+        new Date()
+          .toISOString(),
+    };
+  } catch (error) {
+    console.log(
+      `  Photo ${candidate.photoId} fallback failed: ${error.message}`
+    );
+
+    return null;
+  } finally {
+    await photoPage.close();
+  }
 }
 
 /* =========================================================
@@ -1164,6 +1596,63 @@ try {
           };
         }
       );
+
+  /*
+   * If normal Page posts are unavailable, supplement the run with
+   * recent public Page photos. This is especially useful for outage
+   * advisories because MORE Power often publishes the advisory as
+   * an image.
+   */
+  const regularPostCount =
+    posts.filter(
+      (post) =>
+        post.externalId
+          ?.startsWith(
+            "pfbid"
+          )
+    ).length;
+
+  if (
+    regularPostCount === 0 &&
+    posts.length <
+      MAX_POSTS
+  ) {
+    const photoCandidates =
+      await discoverPhotoCandidates(
+        page
+      );
+
+    for (
+      const candidate of
+      photoCandidates
+    ) {
+      if (
+        posts.length >=
+        MAX_POSTS
+      ) {
+        break;
+      }
+
+      const photoPost =
+        await loadPhotoCandidate(
+          context,
+          candidate
+        );
+
+      if (
+        photoPost &&
+        !posts.some(
+          (existing) =>
+            existing.externalId ===
+            photoPost.externalId
+        )
+      ) {
+        posts.push(
+          photoPost
+        );
+      }
+    }
+  }
 
   /*
    * Remove duplicate DOM representations of the same post.
