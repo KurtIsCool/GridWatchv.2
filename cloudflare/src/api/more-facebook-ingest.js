@@ -1,5 +1,6 @@
 import {
   createSourceItem,
+  rawObjectKey,
 } from "../ingestion/source-item.js";
 
 import {
@@ -11,11 +12,20 @@ import {
   requireIngestion,
 } from "../security/auth.js";
 
+import {
+  canEnqueue,
+  recordBudgetLimit,
+  recordUsage,
+} from "../budget/usage.js";
+
 const PUBLISHER =
   "MORE Power";
 
 const SOURCE_TYPE =
   "MORE_POWER_FACEBOOK_POST";
+
+const FACEBOOK_IMAGE_SOURCE_TYPE =
+  "MORE_POWER_FACEBOOK_IMAGE";
 
 const MAX_MEDIA_ITEMS = 10;
 
@@ -30,6 +40,13 @@ const ALLOWED_TYPES =
     "image/jpeg",
     "image/png",
     "image/webp",
+  ]);
+
+const RETRYABLE_QUEUE_STATUSES =
+  new Set([
+    "COLLECTED",
+    "QUEUE_NOT_CONNECTED",
+    "WAITING_FOR_QUEUE_BUDGET",
   ]);
 
 function jsonResponse(
@@ -209,39 +226,292 @@ function validateFacebookItemUrl(
   }
 }
 
-function canonicalRevisionData(
-  payload
+function imageEvidenceUrl(
+  sourceUrl,
+  imageNumber
 ) {
+  const url =
+    new URL(sourceUrl);
+
+  url.hash =
+    `image-${String(
+      imageNumber
+    ).padStart(2, "0")}`;
+
+  return url.toString();
+}
+
+async function enqueueSource({
+  env,
+  store,
+  sourceItem,
+  revision,
+  now,
+}) {
+  const budget =
+    await canEnqueue(
+      store,
+      env,
+      now
+    );
+
+  if (!budget.ok) {
+    await store.markSourceStatus(
+      sourceItem.id,
+      "WAITING_FOR_QUEUE_BUDGET"
+    );
+
+    await recordBudgetLimit(
+      store,
+      "QUEUE",
+      budget,
+      now
+    );
+
+    return {
+      status:
+        "BUDGET_LIMIT_REACHED",
+
+      sourceItemId:
+        sourceItem.id,
+
+      revision,
+    };
+  }
+
+  if (
+    !env.INGESTION_QUEUE
+      ?.send
+  ) {
+    await store.markSourceStatus(
+      sourceItem.id,
+      "QUEUE_NOT_CONNECTED"
+    );
+
+    return {
+      status:
+        "NOT_CONNECTED",
+
+      sourceItemId:
+        sourceItem.id,
+
+      revision,
+    };
+  }
+
+  await env.INGESTION_QUEUE.send({
+    sourceId:
+      sourceItem.id,
+
+    revision,
+  });
+
+  await recordUsage(
+    store,
+    {
+      queue_operations:
+        3,
+    },
+    now
+  );
+
+  await store.markSourceStatus(
+    sourceItem.id,
+    "QUEUED"
+  );
+
   return {
-    externalId:
-      payload.externalId,
+    status:
+      "QUEUED",
 
-    url:
-      payload.url,
+    sourceItemId:
+      sourceItem.id,
 
-    caption:
-      payload.caption ||
-      null,
-
-    media:
-      payload.media.map(
-        (media) => ({
-          sha256:
-            media.sha256,
-
-          mimeType:
-            media.mimeType,
-
-          width:
-            media.width ||
-            null,
-
-          height:
-            media.height ||
-            null,
-        })
-      ),
+    revision,
   };
+}
+
+/*
+ * Every Facebook advisory image gets its own source item.
+ *
+ * The image source points to the already archived R2 object.
+ * We do NOT upload a duplicate copy.
+ *
+ * A composite content hash is used so the same image reused
+ * in two different Facebook posts remains distinct evidence.
+ */
+async function ensureFacebookImageSource({
+  env,
+  store,
+  parentExternalId,
+  parentSourceUrl,
+  media,
+  index,
+  now,
+}) {
+  const imageNumber =
+    index + 1;
+
+  const imageExternalId =
+    `${parentExternalId}:image:${String(
+      imageNumber
+    ).padStart(
+      2,
+      "0"
+    )}`;
+
+  const imageSourceUrl =
+    imageEvidenceUrl(
+      parentSourceUrl,
+      imageNumber
+    );
+
+  const imageContentHash =
+    await sha256Hex(
+      stableJson({
+        facebookExternalId:
+          parentExternalId,
+
+        imageNumber,
+
+        imageSha256:
+          media.sha256,
+      })
+    );
+
+  const imageSource =
+    await createSourceItem(
+      {
+        publisher:
+          PUBLISHER,
+
+        sourceType:
+          FACEBOOK_IMAGE_SOURCE_TYPE,
+
+        sourceUrl:
+          imageSourceUrl,
+
+        externalId:
+          imageExternalId,
+
+        contentHash:
+          imageContentHash,
+
+        rawObjectKey:
+          media.objectKey,
+
+        publishedAt:
+          null,
+
+        retrievedAt:
+          now,
+      },
+      now
+    );
+
+  const existing =
+    await store.findSourceMatch(
+      imageSource
+    );
+
+  if (
+    existing &&
+    existing.content_hash ===
+      imageContentHash
+  ) {
+    if (
+      RETRYABLE_QUEUE_STATUSES.has(
+        existing.processing_status
+      )
+    ) {
+      return enqueueSource({
+        env,
+        store,
+
+        sourceItem:
+          existing,
+
+        revision:
+          existing.current_revision ||
+          1,
+
+        now,
+      });
+    }
+
+    return {
+      status:
+        "UNCHANGED",
+
+      sourceItemId:
+        existing.id,
+
+      revision:
+        existing.current_revision ||
+        1,
+    };
+  }
+
+  const saved =
+    await store.upsertSource(
+      imageSource
+    );
+
+  return enqueueSource({
+    env,
+    store,
+
+    sourceItem:
+      saved.item,
+
+    revision:
+      saved.revision,
+
+    now,
+  });
+}
+
+async function ensureFacebookImageSources({
+  env,
+  store,
+  parentExternalId,
+  parentSourceUrl,
+  media,
+  now,
+}) {
+  const results = [];
+
+  for (
+    let i = 0;
+    i < media.length;
+    i++
+  ) {
+    const result =
+      await ensureFacebookImageSource({
+        env,
+        store,
+
+        parentExternalId,
+        parentSourceUrl,
+
+        media:
+          media[i],
+
+        index:
+          i,
+
+        now,
+      });
+
+    results.push({
+      imageNumber:
+        i + 1,
+
+      ...result,
+    });
+  }
+
+  return results;
 }
 
 export async function handleMoreFacebookIngest(
@@ -262,10 +532,6 @@ export async function handleMoreFacebookIngest(
     );
   }
 
-  /*
-   * Authenticate before parsing
-   * potentially large input.
-   */
   const auth =
     requireIngestion(
       request,
@@ -301,12 +567,6 @@ export async function handleMoreFacebookIngest(
       "Request body is not valid JSON."
     );
   }
-
-  /*
-   * -----------------------------
-   * Validate Facebook identity
-   * -----------------------------
-   */
 
   const externalId =
     String(
@@ -351,12 +611,6 @@ export async function handleMoreFacebookIngest(
             100000
           )
       : null;
-
-  /*
-   * -----------------------------
-   * Validate media
-   * -----------------------------
-   */
 
   if (
     !Array.isArray(
@@ -511,12 +765,6 @@ export async function handleMoreFacebookIngest(
     });
   }
 
-  /*
-   * Build the content hash ourselves.
-   *
-   * Do NOT use Facebook relative
-   * timestamps such as "2h".
-   */
   const revisionInput = {
     externalId,
 
@@ -553,10 +801,6 @@ export async function handleMoreFacebookIngest(
   const now =
     new Date();
 
-  /*
-   * Create GridWatch's canonical
-   * source identity.
-   */
   const source =
     await createSourceItem(
       {
@@ -577,12 +821,6 @@ export async function handleMoreFacebookIngest(
             revisionInput
           ),
 
-        /*
-         * We currently only have
-         * Facebook relative times,
-         * so don't invent an exact
-         * publishedAt value.
-         */
         publishedAt:
           null,
 
@@ -592,19 +830,79 @@ export async function handleMoreFacebookIngest(
       now
     );
 
-  /*
-   * Check D1 BEFORE writing anything.
-   */
   const existing =
     await store.findSourceMatch(
       source
     );
 
+  /*
+   * The parent may already have been stored before
+   * image extraction was connected.
+   *
+   * Even when the parent is UNCHANGED, create any
+   * missing image source records and enqueue them.
+   *
+   * R2 keys are deterministic, so this does not
+   * upload duplicate image bytes.
+   */
   if (
     existing &&
     existing.content_hash ===
       contentHash
   ) {
+    const archivedMedia =
+      verifiedMedia.map(
+        (media, index) => {
+          const filename =
+            safeFilename(
+              index,
+              media.mimeType
+            );
+
+          return {
+            filename,
+
+            objectKey:
+              rawObjectKey(
+                source,
+                filename
+              ),
+
+            sha256:
+              media.sha256,
+
+            mimeType:
+              media.mimeType,
+
+            width:
+              media.width,
+
+            height:
+              media.height,
+
+            alt:
+              media.alt,
+          };
+        }
+      );
+
+    const imageSources =
+      await ensureFacebookImageSources({
+        env,
+        store,
+
+        parentExternalId:
+          externalId,
+
+        parentSourceUrl:
+          sourceUrl,
+
+        media:
+          archivedMedia,
+
+        now,
+      });
+
     return jsonResponse({
       status:
         "UNCHANGED",
@@ -622,14 +920,10 @@ export async function handleMoreFacebookIngest(
 
       mediaCount:
         verifiedMedia.length,
+
+      imageSources,
     });
   }
-
-  /*
-   * -----------------------------
-   * Store images in R2
-   * -----------------------------
-   */
 
   const archivedMedia =
     [];
@@ -700,10 +994,6 @@ export async function handleMoreFacebookIngest(
     });
   }
 
-  /*
-   * Manifest links the Facebook
-   * item to every stored image.
-   */
   const manifest = {
     source:
       "MORE_POWER_FACEBOOK",
@@ -733,10 +1023,6 @@ export async function handleMoreFacebookIngest(
       manifest
     );
 
-  /*
-   * Archive the item manifest
-   * itself in R2.
-   */
   const manifestArchive =
     await archive.put(
       source,
@@ -766,9 +1052,6 @@ export async function handleMoreFacebookIngest(
     );
   }
 
-  /*
-   * D1 points to the manifest.
-   */
   source.raw_object_key =
     manifestArchive.key;
 
@@ -781,20 +1064,28 @@ export async function handleMoreFacebookIngest(
     );
 
   /*
-   * IMPORTANT:
+   * Create image evidence source items and enqueue them.
    *
-   * We intentionally DO NOT enqueue
-   * this source yet.
-   *
-   * For this checkpoint we only:
-   *
-   * - authenticate
-   * - deduplicate
-   * - persist D1
-   * - persist R2
-   *
-   * Extraction/publication comes later.
+   * The queue consumer will run AI extraction, but
+   * Facebook-derived image candidates are forced into
+   * REVIEW_REQUIRED for now. They cannot auto-publish.
    */
+  const imageSources =
+    await ensureFacebookImageSources({
+      env,
+      store,
+
+      parentExternalId:
+        externalId,
+
+      parentSourceUrl:
+        sourceUrl,
+
+      media:
+        archivedMedia,
+
+      now,
+    });
 
   return jsonResponse(
     {
@@ -818,6 +1109,8 @@ export async function handleMoreFacebookIngest(
 
       manifestObjectKey:
         manifestArchive.key,
+
+      imageSources,
     },
     saved.created
       ? 201
