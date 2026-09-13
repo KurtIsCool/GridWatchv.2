@@ -23,5 +23,12 @@ export async function extractAdvisoryFromImage(image,{env,store,now=new Date(),m
   });
   const estimated=Number(env.AI_ESTIMATED_UNITS_PER_CALL||DEFAULT_BUDGETS.aiPerCall);
   await recordUsage(store,{ai_calls:1,ai_units:Number.isFinite(estimated)?estimated:DEFAULT_BUDGETS.aiPerCall},now);
-  return parseCandidateJson(response?.response??response);
+  try{
+    return parseCandidateJson(response?.response??response);
+  }catch(error){
+    throw Object.assign(
+      new Error('Workers AI returned invalid advisory JSON.',{cause:error}),
+      {code:'AI_EXTRACTION_INVALID'}
+    );
+  }
 }

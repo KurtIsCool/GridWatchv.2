@@ -7,7 +7,7 @@ import {
 } from "../src/api/more-facebook-ingest.js";
 
 import {
-  processSourceMessage,
+  consumeQueue,
 } from "../src/queue/consumer.js";
 
 import {
@@ -414,7 +414,7 @@ test(
 );
 
 test(
-  "Facebook image extraction is forced to review instead of publishing",
+  "Facebook image queue processing is review-only and idempotent",
   async () => {
     const store =
       createMemoryStore();
@@ -481,51 +481,107 @@ test(
       source
     );
 
-    const result =
-      await processSourceMessage(
-        {
-          sourceId:
-            source.id,
+    let aiCalls = 0;
+    let archiveKey = null;
+    let acknowledgements = 0;
+    let retries = 0;
 
-          revision:
-            1,
-        },
-        {
-          env: {
-            AI_DAILY_SOFT_LIMIT:
-              "8000",
+    const message = {
+      id:
+        "facebook-image-message",
 
-            AI_ESTIMATED_UNITS_PER_CALL:
-              "500",
+      body: {
+        sourceId:
+          source.id,
 
-            VISION_MODEL:
-              "@cf/test/vision",
+        revision:
+          1,
+      },
 
-            AI: {
-              run:
-                async () => ({
-                  response:
-                    extraction,
-                }),
+      ack() {
+        acknowledgements++;
+      },
+
+      retry() {
+        retries++;
+      },
+    };
+
+    const context = {
+      env: {
+        AI_DAILY_SOFT_LIMIT:
+          "8000",
+
+        AI_ESTIMATED_UNITS_PER_CALL:
+          "500",
+
+        VISION_MODEL:
+          "@cf/test/vision",
+
+        AI: {
+          run:
+            async () => {
+              aiCalls++;
+
+              return {
+                response:
+                  extraction,
+              };
             },
+        },
+      },
+
+      store,
+
+      archive: {
+        get:
+          async (key) => {
+            archiveKey = key;
+
+            return imageBytes
+              .buffer;
           },
+      },
 
-          store,
+      now,
+    };
 
-          archive: {
-            get:
-              async () =>
-                imageBytes
-                  .buffer,
-          },
+    await consumeQueue(
+      {
+        messages: [
+          message,
+        ],
+      },
+      context
+    );
 
-          now,
-        }
-      );
+    await consumeQueue(
+      {
+        messages: [
+          message,
+        ],
+      },
+      context
+    );
 
     assert.equal(
-      result.status,
-      "REVIEW_REQUIRED"
+      archiveKey,
+      source.raw_object_key
+    );
+
+    assert.equal(
+      aiCalls,
+      1
+    );
+
+    assert.equal(
+      acknowledgements,
+      2
+    );
+
+    assert.equal(
+      retries,
+      0
     );
 
     assert.equal(
@@ -563,6 +619,140 @@ test(
         )
         .processing_status,
       "REVIEW_REQUIRED"
+    );
+  }
+);
+
+test(
+  "non-JSON Workers AI output creates a pending review instead of retrying",
+  async () => {
+    const store =
+      createMemoryStore();
+
+    const source = {
+      id:
+        "src_invalid_ai_json",
+      publisher:
+        "MORE Power",
+      source_type:
+        "MORE_POWER_FACEBOOK_IMAGE",
+      source_url:
+        "https://www.facebook.com/MOREpowerIloilo/posts/pfbidInvalidJson#image-01",
+      external_id:
+        "pfbidInvalidJson:image:01",
+      content_hash:
+        await sha256Hex(
+          "invalid-ai-json"
+        ),
+      published_at:
+        null,
+      retrieved_at:
+        now.toISOString(),
+      raw_object_key:
+        "sources/test/invalid-json.jpg",
+      inline_content:
+        null,
+      processing_status:
+        "QUEUED",
+      current_revision:
+        1,
+      created_at:
+        now.toISOString(),
+    };
+
+    store.state.sources.set(
+      source.id,
+      source
+    );
+
+    let acknowledgements = 0;
+    let retries = 0;
+
+    await consumeQueue(
+      {
+        messages: [
+          {
+            id:
+              "invalid-ai-json-message",
+            body: {
+              sourceId:
+                source.id,
+              revision:
+                1,
+            },
+            ack() {
+              acknowledgements++;
+            },
+            retry() {
+              retries++;
+            },
+          },
+        ],
+      },
+      {
+        env: {
+          AI: {
+            run:
+              async () => ({
+                response:
+                  "**NGCP Power Advisory**",
+              }),
+          },
+          VISION_MODEL:
+            "@cf/test/vision",
+        },
+        store,
+        archive: {
+          get:
+            async () =>
+              new Uint8Array([
+                0xff,
+                0xd8,
+                0xff,
+                0xd9,
+              ]).buffer,
+        },
+        now,
+      }
+    );
+
+    assert.equal(
+      acknowledgements,
+      1
+    );
+    assert.equal(
+      retries,
+      0
+    );
+    assert.equal(
+      store.state.candidates.size,
+      1
+    );
+    assert.deepEqual(
+      [
+        ...store.state.candidates
+          .values(),
+      ][0].review_reasons,
+      [
+        "AI_EXTRACTION_INVALID",
+      ]
+    );
+    assert.equal(
+      store.state.reviews[0]
+        .status,
+      "PENDING"
+    );
+    assert.equal(
+      store.state.events.size,
+      0
+    );
+    assert.equal(
+      (
+        await store.getUsage(
+          "2026-09-11"
+        )
+      ).ai_calls,
+      1
     );
   }
 );

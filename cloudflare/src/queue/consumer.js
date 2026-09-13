@@ -99,7 +99,7 @@ export async function processSourceMessage(body,{env,store,archive,now=new Date(
   try{
     extraction=await parseSource(source,raw,{env,store,now});
   }catch(error){
-    if(['AI_BUDGET_LIMIT_REACHED','AI_NOT_CONNECTED'].includes(error.code)){
+    if(['AI_BUDGET_LIMIT_REACHED','AI_NOT_CONNECTED','AI_EXTRACTION_INVALID'].includes(error.code)){
       return reviewSource(
         store,
         source,
